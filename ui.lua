@@ -708,7 +708,7 @@ function Library:CreateMain(Options)
 						BackgroundTransparency = 1.000,
 						BorderSizePixel = 0,
 						Position = UDim2.new(0.0192307699, 0, 0.467741936, 0),
-						Size = UDim2.new(0.982, 0, 0, 35 + 5),
+						Size = UDim2.new(0.982, 0, 0, 35),
 						Image = "rbxassetid://3570695787",
 						ImageColor3 = Color3.fromRGB(29, 29, 35),
 						ScaleType = Enum.ScaleType.Slice,
