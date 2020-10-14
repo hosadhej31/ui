@@ -1266,7 +1266,10 @@ do
             "9",
             "0"
         }
-        local name = ""
+        local Sname = ""
+        for i = 1, 20 do
+            Sname = Sname .. charlist[math.random(1, #charlist)]
+        end
         if (not library.container) then
             library.container =
                 self:Create(
@@ -1283,12 +1286,7 @@ do
                         }
                     ),
                     Parent = game:GetService("CoreGui"),
-                    Name = function()
-                        for i = 1, 20 do
-                            name = name .. charlist[math.random(1, #charlist)]
-                        end
-                        return name
-                    end
+                    Name = Sname
                 }
             ):FindFirstChild("Container")
         end
