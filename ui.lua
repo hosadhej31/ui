@@ -1,3 +1,17 @@
+--[[
+
+    _____                  _                   
+   |__  /  _   _   _ __   | |__     ___   _ __ 
+     / /  | | | | | '_ \  | '_ \   / _ \ | '__|
+    / /_  | |_| | | |_) | | | | | |  __/ | |   
+   /____|  \__, | | .__/  |_| |_|  \___| |_|   
+           |___/  |_|                          
+
+   Made by: xTheAlex14#3200
+   Design: inspiration from Luzu#0001
+   
+]]
+
 local Library = {}
 local Objects = {}
 
@@ -729,7 +743,7 @@ function Library:CreateMain(Options)
 						TextXAlignment = Enum.TextXAlignment.Center,
                     })
                     
-					Interactables.Textlabel.Text = Text
+					Interactables.Textlabel.Text = Options.Text
 					
 					Section.Container.Size = Section.Container.Size + UDim2.new(0, 0, 0, 45)
 					Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0, 0, 0, 45)
