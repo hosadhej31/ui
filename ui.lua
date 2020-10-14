@@ -1,17 +1,3 @@
---[[
-
-    _____                  _                   
-   |__  /  _   _   _ __   | |__     ___   _ __ 
-     / /  | | | | | '_ \  | '_ \   / _ \ | '__|
-    / /_  | |_| | | |_) | | | | | |  __/ | |   
-   /____|  \__, | | .__/  |_| |_|  \___| |_|   
-           |___/  |_|                          
-
-   Made by: xTheAlex14#3200
-   Design: inspiration from Luzu#0001
-   
-]]
-
 local Library = {}
 local Objects = {}
 
@@ -36,6 +22,7 @@ local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
 local RS = game:GetService("RunService")
 
+
 function Library:CreateMain(Options)
 	
 	local nameforcheck = Options.projName
@@ -56,8 +43,6 @@ function Library:CreateMain(Options)
 		Size = UDim2.new(0, 700, 0, 460),
 	})
 
-	-- Drag is not made by me
-	
 	local dragInput
 	local dragStart
 	local startPos
@@ -289,7 +274,7 @@ function Library:CreateMain(Options)
 			Category.Container.Visible = true
 		end)
 		
-		function Category:CreateSection(Name)
+		function Category:CreateSection(Name, Options)
 			
 			local Section = {}
 			
@@ -299,7 +284,7 @@ function Library:CreateMain(Options)
 				BackgroundTransparency = 1.000,
 				BorderSizePixel = 0,
 				Position = UDim2.new(0.0272727273, 0, 0, 0),
-				Size = UDim2.new(0.973, 0, 0, 35),
+				Size = UDim2.new(0.973, 0, 0, Options.Size or 35),
 				Image = "rbxassetid://3570695787",
 				ImageColor3 = Color3.fromRGB(39, 38, 46),
 				ScaleType = Enum.ScaleType.Slice,
