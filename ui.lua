@@ -315,14 +315,14 @@ function FuzkiLib:Create(name)
             tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
             tglLine.Size = UDim2.new(0, 401, 0, 1)
 
-            bindInf.Name = info
+            bindInf.Name = "keybindInfo"
             bindInf.Parent = keybindFrame
             bindInf.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             bindInf.BackgroundTransparency = 1.000
             bindInf.Position = UDim2.new(0.0390804596, 0, 0, 0)
             bindInf.Size = UDim2.new(0, 210, 0, 49)
             bindInf.Font = Enum.Font.GothamSemibold
-            bindInf.Text = "Keybind Info"
+            bindInf.Text = info
             bindInf.TextColor3 = Color3.fromRGB(212, 212, 212)
             bindInf.TextSize = 16.000
             bindInf.TextXAlignment = Enum.TextXAlignment.Left
