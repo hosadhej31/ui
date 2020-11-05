@@ -173,6 +173,7 @@ function FuzkiLib:Create(name)
             tabButton.BackgroundColor3 = Color3.fromRGB(40,40,40)
             elementContainer.Visible = true
         end)
+
         local Items = {}
 
         function Items:CreateLabel(text)
@@ -203,147 +204,92 @@ function FuzkiLib:Create(name)
             tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
             tglLine.Size = UDim2.new(0, 401, 0, 1)
         end
-        function Items:CreateButton(text, info, callback)
-            text = text or "Button Epic"
-            info = info or "Epic Info"
+        function Items:CreateToggle(info, callback)
+            toggle = toggle or "Toggle"
+            info = info or "Info"
             callback = callback or function() end
-        
-            local buttonFrame = Instance.new("Frame")
-            local btnLine = Instance.new("Frame")
-            local btnInfo = Instance.new("TextLabel")
-            local TextButton = Instance.new("TextButton")
-            local buttonCorner = Instance.new("UICorner")
 
-            buttonFrame.Name = "buttonFrame"
-            buttonFrame.Parent = elementContainer
-            buttonFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            buttonFrame.BackgroundTransparency = 1.000
-            buttonFrame.Size = UDim2.new(0, 435, 0, 50)
+            local toggleFrame = Instance.new("Frame")
+            local tglLine = Instance.new("Frame")
+            local toggleInfo = Instance.new("TextLabel")
+            local toggle = Instance.new("Frame")
+            local toggleCorner = Instance.new("UICorner")
+            local toggleBtn = Instance.new("TextButton")
+            local togCorner = Instance.new("UICorner")
 
-            btnLine.Name = "btnLine"
-            btnLine.Parent = buttonFrame
-            btnLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-            btnLine.BorderSizePixel = 0
-            btnLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
-            btnLine.Size = UDim2.new(0, 401, 0, 1)
+            toggleFrame.Name = "toggleFrame"
+            toggleFrame.Parent = elementContainer
+            toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            toggleFrame.BackgroundTransparency = 1.000
+            toggleFrame.Size = UDim2.new(0, 435, 0, 50)
 
-            btnInfo.Name = "btnInfo"
-            btnInfo.Parent = buttonFrame
-            btnInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            btnInfo.BackgroundTransparency = 1.000
-            btnInfo.Position = UDim2.new(0.0390804596, 0, 0, 0)
-            btnInfo.Size = UDim2.new(0, 210, 0, 49)
-            btnInfo.Font = Enum.Font.GothamSemibold
-            btnInfo.Text = info
-            btnInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
-            btnInfo.TextSize = 16.000
-            btnInfo.TextXAlignment = Enum.TextXAlignment.Left
+            tglLine.Name = "tglLine"
+            tglLine.Parent = toggleFrame
+            tglLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            tglLine.BorderSizePixel = 0
+            tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
+            tglLine.Size = UDim2.new(0, 401, 0, 1)
 
-            TextButton.Parent = buttonFrame
-            TextButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-            TextButton.BorderSizePixel = 0
-            TextButton.Position = UDim2.new(0.666666687, 0, 0.180000007, 0)
-            TextButton.Size = UDim2.new(0, 128, 0, 30)
-            TextButton.Font = Enum.Font.GothamSemibold
-            TextButton.TextColor3 = Color3.fromRGB(212, 212, 212)
-            TextButton.TextSize = 14.000
-            TextButton.Text = text
+            toggleInfo.Name = "toggleInfo"
+            toggleInfo.Parent = toggleFrame
+            toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            toggleInfo.BackgroundTransparency = 1.000
+            toggleInfo.Position = UDim2.new(0.0390804596, 0, 0, 0)
+            toggleInfo.Size = UDim2.new(0, 210, 0, 49)
+            toggleInfo.Font = Enum.Font.GothamSemibold
+            toggleInfo.Text = info
+            toggleInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
+            toggleInfo.TextSize = 16.000
+            toggleInfo.TextXAlignment = Enum.TextXAlignment.Left
 
-            buttonCorner.CornerRadius = UDim.new(0, 3)
-            buttonCorner.Name = "buttonCorner"
-            buttonCorner.Parent = TextButton
+            toggle.Name = "toggle"
+            toggle.Parent = toggleFrame
+            toggle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            toggle.Position = UDim2.new(0.891954064, 0, 0.180000007, 0)
+            toggle.Size = UDim2.new(0, 30, 0, 30)
 
-            TextButton.MouseButton1Click:Connect(function()
-                callback()
+            toggleCorner.CornerRadius = UDim.new(0, 3)
+            toggleCorner.Name = "toggleCorner"
+            toggleCorner.Parent = toggle
+
+            toggleBtn.Name = "toggleBtn"
+            toggleBtn.Parent = toggle
+            toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            toggleBtn.BorderSizePixel = 0
+            toggleBtn.Position = UDim2.new(0.060919337, 0, 0.0666666627, 0)
+            toggleBtn.Size = UDim2.new(0, 26, 0, 26)
+            toggleBtn.Font = Enum.Font.GothamSemibold
+            toggleBtn.Text = ""
+            toggleBtn.TextColor3 = Color3.fromRGB(212, 212, 212)
+            toggleBtn.TextSize = 14.000
+
+            togCorner.CornerRadius = UDim.new(0, 3)
+            togCorner.Name = "togCorner"
+            togCorner.Parent = toggleBtn
+
+            
+            local tog = false
+            local ts = game:GetService("TweenService")
+            local tsInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.In)
+
+            local off = {
+                BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            }
+            local on = {
+                BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            }
+
+            local playon = ts:Create(toggleBtn,tsInfo, on)
+            local playoff = ts:Create(toggleBtn,tsInfo, off)
+            toggleBtn.MouseButton1Click:Connect(function()
+                tog = not tog
+                callback(tog)
+                if tog then
+                    playon:Play()
+                else
+                    playoff:Play()
+                end
             end)
-
-            function Items:CreateToggle(info, callback)
-                toggle = toggle or "Toggle"
-                info = info or "Info"
-                callback = callback or function() end
-
-                local toggleFrame = Instance.new("Frame")
-                local tglLine = Instance.new("Frame")
-                local toggleInfo = Instance.new("TextLabel")
-                local toggle = Instance.new("Frame")
-                local toggleCorner = Instance.new("UICorner")
-                local toggleBtn = Instance.new("TextButton")
-                local togCorner = Instance.new("UICorner")
-
-                toggleFrame.Name = "toggleFrame"
-                toggleFrame.Parent = elementContainer
-                toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                toggleFrame.BackgroundTransparency = 1.000
-                toggleFrame.Size = UDim2.new(0, 435, 0, 50)
-
-                tglLine.Name = "tglLine"
-                tglLine.Parent = toggleFrame
-                tglLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-                tglLine.BorderSizePixel = 0
-                tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
-                tglLine.Size = UDim2.new(0, 401, 0, 1)
-
-                toggleInfo.Name = "toggleInfo"
-                toggleInfo.Parent = toggleFrame
-                toggleInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                toggleInfo.BackgroundTransparency = 1.000
-                toggleInfo.Position = UDim2.new(0.0390804596, 0, 0, 0)
-                toggleInfo.Size = UDim2.new(0, 210, 0, 49)
-                toggleInfo.Font = Enum.Font.GothamSemibold
-                toggleInfo.Text = info
-                toggleInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
-                toggleInfo.TextSize = 16.000
-                toggleInfo.TextXAlignment = Enum.TextXAlignment.Left
-
-                toggle.Name = "toggle"
-                toggle.Parent = toggleFrame
-                toggle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-                toggle.Position = UDim2.new(0.891954064, 0, 0.180000007, 0)
-                toggle.Size = UDim2.new(0, 30, 0, 30)
-
-                toggleCorner.CornerRadius = UDim.new(0, 3)
-                toggleCorner.Name = "toggleCorner"
-                toggleCorner.Parent = toggle
-
-                toggleBtn.Name = "toggleBtn"
-                toggleBtn.Parent = toggle
-                toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-                toggleBtn.BorderSizePixel = 0
-                toggleBtn.Position = UDim2.new(0.060919337, 0, 0.0666666627, 0)
-                toggleBtn.Size = UDim2.new(0, 26, 0, 26)
-                toggleBtn.Font = Enum.Font.GothamSemibold
-                toggleBtn.Text = ""
-                toggleBtn.TextColor3 = Color3.fromRGB(212, 212, 212)
-                toggleBtn.TextSize = 14.000
-
-                togCorner.CornerRadius = UDim.new(0, 3)
-                togCorner.Name = "togCorner"
-                togCorner.Parent = toggleBtn
-
-                
-                local tog = false
-                local ts = game:GetService("TweenService")
-                local tsInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quint, Enum.EasingDirection.In)
-
-                local off = {
-                    BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-                }
-                local on = {
-                    BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-                }
-
-                local playon = ts:Create(toggleBtn,tsInfo, on)
-                local playoff = ts:Create(toggleBtn,tsInfo, off)
-                toggleBtn.MouseButton1Click:Connect(function()
-                    tog = not tog
-                    callback(tog)
-                    if tog then
-                        playon:Play()
-                    else
-                        playoff:Play()
-                    end
-                end)
-            end
         end
         function Items:CreateBind(info, first, callback)
             info = info or "Info"
@@ -404,7 +350,7 @@ function FuzkiLib:Create(name)
                     oldKey = a.KeyCode.Name;
                 end
             end)
-    
+
             game:GetService("UserInputService").InputBegan:connect(function(current, ok) 
                 if not ok then 
                     if current.KeyCode.Name == oldKey then 
@@ -584,7 +530,62 @@ function FuzkiLib:Create(name)
                 end)
             end)
         end
-    return Items
+        function Items:CreateButton(text, info, callback)
+            text = text or "Button Epic"
+            info = info or "Epic Info"
+            callback = callback or function() end
+        
+            local buttonFrame = Instance.new("Frame")
+            local btnLine = Instance.new("Frame")
+            local btnInfo = Instance.new("TextLabel")
+            local TextButton = Instance.new("TextButton")
+            local buttonCorner = Instance.new("UICorner")
+
+            buttonFrame.Name = "buttonFrame"
+            buttonFrame.Parent = elementContainer
+            buttonFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            buttonFrame.BackgroundTransparency = 1.000
+            buttonFrame.Size = UDim2.new(0, 435, 0, 50)
+
+            btnLine.Name = "btnLine"
+            btnLine.Parent = buttonFrame
+            btnLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            btnLine.BorderSizePixel = 0
+            btnLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
+            btnLine.Size = UDim2.new(0, 401, 0, 1)
+
+            btnInfo.Name = "btnInfo"
+            btnInfo.Parent = buttonFrame
+            btnInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            btnInfo.BackgroundTransparency = 1.000
+            btnInfo.Position = UDim2.new(0.0390804596, 0, 0, 0)
+            btnInfo.Size = UDim2.new(0, 210, 0, 49)
+            btnInfo.Font = Enum.Font.GothamSemibold
+            btnInfo.Text = info
+            btnInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
+            btnInfo.TextSize = 16.000
+            btnInfo.TextXAlignment = Enum.TextXAlignment.Left
+
+            TextButton.Parent = buttonFrame
+            TextButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            TextButton.BorderSizePixel = 0
+            TextButton.Position = UDim2.new(0.666666687, 0, 0.180000007, 0)
+            TextButton.Size = UDim2.new(0, 128, 0, 30)
+            TextButton.Font = Enum.Font.GothamSemibold
+            TextButton.TextColor3 = Color3.fromRGB(212, 212, 212)
+            TextButton.TextSize = 14.000
+            TextButton.Text = text
+
+            buttonCorner.CornerRadius = UDim.new(0, 3)
+            buttonCorner.Name = "buttonCorner"
+            buttonCorner.Parent = TextButton
+
+            TextButton.MouseButton1Click:Connect(function()
+                callback()
+            end)
+        end
+
+        return Items
     end
     return InsideFuzki
 end
