@@ -2,7 +2,7 @@ local Library = {}
 
 function Library:Create(options)
 	options = options or {
-		highlightColor = Color3.fromRGB(0, 165, 255)
+		highlight = Color3.fromRGB(0, 255, 127)
 	}
 	local windowItems = {}
 
@@ -23,14 +23,14 @@ function Library:Create(options)
 	MainFrame.BorderSizePixel = 0
 	MainFrame.Position = UDim2.new(0.2910496, 0, 0.22760801, 0)
 	MainFrame.Size = UDim2.new(0, 500, 0, 400)
-	
+
 	UICorner.Parent = MainFrame
 	UICorner.CornerRadius = UDim.new(0, 8)
 	UICorner.Archivable = true
 
 	HeaderLine.Name = "HeaderLine"
 	HeaderLine.Parent = MainFrame
-	HeaderLine.BackgroundColor3 = options.highlightColor
+	HeaderLine.BackgroundColor3 = options.highlight
 	HeaderLine.Position = UDim2.new(0, 0, 0.075000003, 0)
 	HeaderLine.Size = UDim2.new(0, 500, 0, 1)
 
@@ -84,7 +84,7 @@ function Library:Create(options)
 
 	function windowItems:Toggle()
 		MainFrame.Visible = not MainFrame.Visible
-    end
+	end
 
 	function windowItems:Tab(name)
 		name = name or "tab"
@@ -122,6 +122,7 @@ function Library:Create(options)
 		ScrollingFrame.Size = UDim2.new(0, 500, 0, 365)
 		ScrollingFrame.BottomImage = ""
 		ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+		ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(40, 40, 40)
 		ScrollingFrame.ScrollBarThickness = 3
 		ScrollingFrame.TopImage = ""
 		ScrollingFrame.Visible = false
@@ -147,12 +148,21 @@ function Library:Create(options)
 					end
 				end
 			end
+			for i,v in pairs(TabContainer:GetChildren()) do
+				if (v.Name:find("Page")) then
+					if (v.Name ~= name .. "Page") then
+						v.TextColor3 = Color3.fromRGB(104, 104, 104)
+					else
+						v.TextColor3 = options.highlight
+					end
+				end
+			end
 		end)
 
 		function tabItems:Section(sectionName)
 			local Section = Instance.new("Frame")
-            local Text = Instance.new("TextLabel")
-            local UICornerS = Instance.new("UICorner")
+			local Text = Instance.new("TextLabel")
+			local UICornerS = Instance.new("UICorner")
 
 			Section.Name = "Section"
 			Section.Parent = ScrollingFrame
@@ -160,9 +170,9 @@ function Library:Create(options)
 			Section.BorderSizePixel = 0
 			Section.Size = UDim2.new(0, 500, 0, 30)
 
-            UICornerS.Parent = Section
-            UICornerS.CornerRadius = UDim.new(0, 8)
-            UICornerS.Archivable = true
+			UICornerS.Parent = Section
+			UICornerS.CornerRadius = UDim.new(0, 8)
+			UICornerS.Archivable = true
 
 			Text.Name = "Text"
 			Text.Parent = Section
@@ -174,16 +184,16 @@ function Library:Create(options)
 			Text.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Text.TextSize = 18.000
 		end
-		
+
 		function tabItems:Button(buttonName, callback)
 			buttonName = buttonName or "Button"
 			callback = callback or function()
 				print("Button Pressed")
 			end
-			
-            local Button = Instance.new("TextButton")
-            local UICornerB = Instance.new("UICorner")
-			
+
+			local Button = Instance.new("TextButton")
+			local UICornerB = Instance.new("UICorner")
+
 			Button.Name = "Button"
 			Button.Parent = ScrollingFrame
 			Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -192,39 +202,35 @@ function Library:Create(options)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = "Button Info"
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Button.TextSize = 18.000
+			Button.TextSize = 18.000
 
-            UICornerB.Parent = Button
-            UICornerB.CornerRadius = UDim.new(0, 8)
-            UICornerB.Archivable = true
-            
-            Button.MouseButton1Click:Connect(function()
-                callback()
-            end)
+			UICornerB.Parent = Button
+			UICornerB.CornerRadius = UDim.new(0, 8)
+			UICornerB.Archivable = true
+
+			Button.MouseButton1Click:Connect(function()
+				callback()
+			end)
 		end
-		
+
 		function tabItems:Toggle(toggleName, callback)
 			toggleName = toggleName or "Toggle"
 			callback = callback or function(state)
 				print("Toggle: ",state)
-            end
-            local toggleItems = {}
-			
+			end
+			local toggleItems = {}
+
 			local toggled
-            local Toggle = Instance.new("Frame")
-            local UICornerT = Instance.new("UICorner")
+			local Toggle = Instance.new("Frame")
 			local Text_2 = Instance.new("TextLabel")
 			local Frame = Instance.new("Frame")
 			local TextButton = Instance.new("TextButton")
-			
+			local UICornerT = Instance.new("UICorner")
+
 			Toggle.Name = "Toggle"
 			Toggle.Parent = ScrollingFrame
 			Toggle.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            Toggle.Size = UDim2.new(0, 480, 0, 30)
-            
-            UICornerT.Parent = Toggle
-            UICornerT.CornerRadius = UDim.new(0, 50)
-            UICornerT.Archivable = true
+			Toggle.Size = UDim2.new(0, 480, 0, 30)
 
 			Text_2.Name = "Text"
 			Text_2.Parent = Toggle
@@ -250,31 +256,109 @@ function Library:Create(options)
 			TextButton.Font = Enum.Font.SourceSans
 			TextButton.Text = ""
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextButton.TextSize = 14.000
-			
+			TextButton.TextSize = 18.000
+
+			UICornerT.Parent = TextButton
+			UICornerT.CornerRadius = UDim.new(0, 50)
+			UICornerT.Archivable = true
+
 			TextButton.MouseButton1Click:Connect(function()
 				toggled = not toggled		
-                
-                if (toggled) then
-                    TextButton.Text = "X"
-                else
-                    TextButton.Text = ""
-                end
 
-                callback(toggled)
-            end)
+				if (toggled) then
+					TextButton.Text = "X"
+				else
+					TextButton.Text = ""
+				end
 
-            function toggleItems:Update(state)
-                toggled = state
+				callback(toggled)
+			end)
 
-                if (toggled) then
-                    TextButton.Text = "X"
-                else
-                    TextButton.Text = ""
-                end
-            end
-            
-            return toggleItems
+			function toggleItems:Update(state)
+				toggled = state
+
+				if (toggled) then
+					TextButton.Text = "X"
+				else
+					TextButton.Text = ""
+				end
+			end
+
+			return toggleItems
+		end
+		
+		function tabItems:Textbox(textboxName, callback)
+			textboxName = textboxName or "Textbox"
+			callback = callback or function(new, old)
+				print("New: ",new," | Old: ",old)
+			end
+			local oldInput = ""
+			local textboxItems = {}
+			
+			local Textbox = Instance.new("Frame")
+			local Text_3 = Instance.new("TextLabel")
+			local Box = Instance.new("TextBox")
+			
+			Textbox.Name = "Textbox"
+			Textbox.Parent = ScrollingFrame
+			Textbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			Textbox.Size = UDim2.new(0, 480, 0, 30)
+
+			Text_3.Name = "Text"
+			Text_3.Parent = Textbox
+			Text_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Text_3.BackgroundTransparency = 1.000
+			Text_3.Position = UDim2.new(0.020833334, 0, 0, 0)
+			Text_3.Size = UDim2.new(0, 470, 0, 30)
+			Text_3.Font = Enum.Font.SourceSans
+			Text_3.Text = textboxName
+			Text_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Text_3.TextSize = 18.000
+			Text_3.TextXAlignment = Enum.TextXAlignment.Left
+
+			Box.Name = "Box"
+			Box.Parent = Textbox
+			Box.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			Box.Position = UDim2.new(0.583333313, 0, 0.166666672, 0)
+			Box.Size = UDim2.new(0, 190, 0, 20)
+			Box.Font = Enum.Font.SourceSans
+			Box.Text = ""
+			Box.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Box.TextSize = 18.000
+			Box.TextWrapped = true	
+			
+			Box.FocusLost:Connect(function()
+				callback(Box.Text, oldInput)
+				oldInput = Box.Text
+			end)
+			
+			function textboxItems:Update(text)
+				Box.Text = text
+			end
+			
+			return textboxItems
+		end
+		
+		function tabItems:Label(labelName)
+			labelName = labelName or "Label"
+			local labelItems = {}
+			
+			local Label = Instance.new("TextLabel")
+			
+			Label.Name = "Label"
+			Label.Parent = ScrollingFrame
+			Label.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			Label.Size = UDim2.new(0, 480, 0, 30)
+			Label.Font = Enum.Font.SourceSans
+			Label.Text = labelName
+			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Label.TextSize = 18.000
+			
+			function labelItems:Update(text)
+				Label.Text = text
+			end
+			
+			return labelItems
 		end
 
 		return tabItems
