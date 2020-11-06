@@ -255,7 +255,11 @@ function Library:Create(options)
 			Frame.Parent = Toggle
 			Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 			Frame.Position = UDim2.new(0.9375, 0, 0.166666657, 0)
-			Frame.Size = UDim2.new(0, 20, 0, 20)
+            Frame.Size = UDim2.new(0, 20, 0, 20)
+            
+            UICornerTT.Parent = Frame
+			UICornerTT.CornerRadius = UDim.new(0, 50)
+			UICornerTT.Archivable = true
 
 			TextButton.Parent = Frame
 			TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -265,10 +269,6 @@ function Library:Create(options)
 			TextButton.Text = ""
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.TextSize = 18.000
-
-			UICornerTT.Parent = TextButton
-			UICornerTT.CornerRadius = UDim.new(0, 50)
-			UICornerTT.Archivable = true
 
 			TextButton.MouseButton1Click:Connect(function()
 				toggled = not toggled		
@@ -340,7 +340,7 @@ function Library:Create(options)
 			Box.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Box.TextSize = 18.000
             Box.TextWrapped = true
-            
+
             UICornerT2.Parent = Box
 			UICornerT2.CornerRadius = UDim.new(0, 8)
 			UICornerT2.Archivable = true
