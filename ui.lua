@@ -22,7 +22,7 @@ function UILib:Create(name, options)
         syn.protect_gui(UI)
     end
 
-    UI.Name = "name"
+    UI.Name = name
     UI.Parent = game.CoreGui
     UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -159,7 +159,10 @@ function UILib:Create(name, options)
         elementContainer.BackgroundTransparency = 1.000
         elementContainer.Size = UDim2.new(0, 435, 0, 372)
         elementContainer.CanvasSize = UDim2.new(0, 0, 5, 0)
-        elementContainer.ScrollBarThickness = 1
+        elementContainer.ScrollBarImageColor3 = options.highlightcolor
+        elementContainer.ScrollBarThickness = 2
+        elementContainer.TopImage = ""
+        elementContainer.BottomImage = ""
         elementContainer.Visible = false    
 
         elementList.Name = "elementList"
