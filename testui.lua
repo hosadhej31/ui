@@ -32,7 +32,8 @@ function Library:Create(options)
 	HeaderLine.Parent = MainFrame
 	HeaderLine.BackgroundColor3 = options.highlight
 	HeaderLine.Position = UDim2.new(0, 0, 0.075000003, 0)
-	HeaderLine.Size = UDim2.new(0, 500, 0, 1)
+    HeaderLine.Size = UDim2.new(0, 500, 0, 1)
+    HeaderLine.BorderSizePixel = 0
 
 	TabContainer.Name = "TabContainer"
 	TabContainer.Parent = MainFrame
@@ -224,13 +225,18 @@ function Library:Create(options)
 			local Toggle = Instance.new("Frame")
 			local Text_2 = Instance.new("TextLabel")
 			local Frame = Instance.new("Frame")
-			local TextButton = Instance.new("TextButton")
-			local UICornerT = Instance.new("UICorner")
+            local TextButton = Instance.new("TextButton")
+            local UICornerT = Instance.new("UICorner")
+			local UICornerTT = Instance.new("UICorner")
 
 			Toggle.Name = "Toggle"
 			Toggle.Parent = ScrollingFrame
 			Toggle.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-			Toggle.Size = UDim2.new(0, 480, 0, 30)
+            Toggle.Size = UDim2.new(0, 480, 0, 30)
+            
+            UICornerT.Parent = Toggle
+			UICornerT.CornerRadius = UDim.new(0, 8)
+			UICornerT.Archivable = true
 
 			Text_2.Name = "Text"
 			Text_2.Parent = Toggle
@@ -258,9 +264,9 @@ function Library:Create(options)
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.TextSize = 18.000
 
-			UICornerT.Parent = TextButton
-			UICornerT.CornerRadius = UDim.new(0, 50)
-			UICornerT.Archivable = true
+			UICornerTT.Parent = TextButton
+			UICornerTT.CornerRadius = UDim.new(0, 50)
+			UICornerTT.Archivable = true
 
 			TextButton.MouseButton1Click:Connect(function()
 				toggled = not toggled		
@@ -297,12 +303,18 @@ function Library:Create(options)
 			
 			local Textbox = Instance.new("Frame")
 			local Text_3 = Instance.new("TextLabel")
-			local Box = Instance.new("TextBox")
+            local Box = Instance.new("TextBox")
+            local UICornerT1 = Instance.new("UICorner")
+            local UICornerT2 = Instance.new("UICorner")
 			
 			Textbox.Name = "Textbox"
 			Textbox.Parent = ScrollingFrame
 			Textbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-			Textbox.Size = UDim2.new(0, 480, 0, 30)
+            Textbox.Size = UDim2.new(0, 480, 0, 30)
+            
+            UICornerT1.Parent = Textbox
+			UICornerT1.CornerRadius = UDim.new(0, 8)
+			UICornerT1.Archivable = true
 
 			Text_3.Name = "Text"
 			Text_3.Parent = Textbox
@@ -325,7 +337,11 @@ function Library:Create(options)
 			Box.Text = ""
 			Box.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Box.TextSize = 18.000
-			Box.TextWrapped = true	
+            Box.TextWrapped = true
+            
+            UICornerT2.Parent = Box
+			UICornerT2.CornerRadius = UDim.new(0, 8)
+			UICornerT2.Archivable = true
 			
 			Box.FocusLost:Connect(function()
 				callback(Box.Text, oldInput)
@@ -343,7 +359,8 @@ function Library:Create(options)
 			labelName = labelName or "Label"
 			local labelItems = {}
 			
-			local Label = Instance.new("TextLabel")
+            local Label = Instance.new("TextLabel")
+            local UICornerL = Instance.new("UICorner")
 			
 			Label.Name = "Label"
 			Label.Parent = ScrollingFrame
@@ -352,7 +369,11 @@ function Library:Create(options)
 			Label.Font = Enum.Font.SourceSans
 			Label.Text = labelName
 			Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Label.TextSize = 18.000
+            Label.TextSize = 18.000
+            
+            UICornerL.Parent = Label
+			UICornerL.CornerRadius = UDim.new(0, 8)
+			UICornerL.Archivable = true
 			
 			function labelItems:Update(text)
 				Label.Text = text
