@@ -30,7 +30,7 @@ function UILib:Create(name, options)
 
     headerLine.Name = "headerLine"
     headerLine.Parent = MainLib
-    headerLine.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    headerLine.BackgroundColor3 = options.highlightcolor
     headerLine.BorderSizePixel = 0
     headerLine.Position = UDim2.new(0, 0, 0.0909090936, 0)
     headerLine.Size = UDim2.new(0, 469, 0, 1)
