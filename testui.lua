@@ -118,7 +118,8 @@ function Library:Create(options)
 		ScrollingFrame.BottomImage = ""
 		ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
 		ScrollingFrame.ScrollBarThickness = 3
-		ScrollingFrame.TopImage = ""
+        ScrollingFrame.TopImage = ""
+        ScrollingFrame.Visible = false
 
 		UIPadding.Parent = ScrollingFrame
 		UIPadding.PaddingBottom = UDim.new(0, 5)
@@ -129,7 +130,19 @@ function Library:Create(options)
 		UIListLayout_2.Parent = ScrollingFrame
 		UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_2.Padding = UDim.new(0, 10)
+        UIListLayout_2.Padding = UDim.new(0, 10)
+        
+        Page1.MouseButton1Click:Connect(function()
+            for i,v in pairs(MainFrame:GetChildren()) do
+                if (v.Name:find("Page")) then
+                    if (v.Name ~= name .. "Page") then
+                        v.ScrollingFrame.Visible = false
+                    else
+                        v.ScrollingFrame.Visible = true
+                    end
+                end
+            end
+        end)
 		
 		function tabItems:Section(sectionName)
 			local Section = Instance.new("Frame")
