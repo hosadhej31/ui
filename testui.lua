@@ -11,10 +11,12 @@ function Library:Create(options)
 	local UICorner = Instance.new("UICorner")
 	local HeaderLine = Instance.new("Frame")
 	local TabContainer = Instance.new("Frame")
-	local UIListLayout = Instance.new("UIListLayout")
+    local UIListLayout = Instance.new("UIListLayout")
+    
+    syn.protect_gui(UILib)
 
 	UILib.Name = "UILib"
-	UILib.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	UILib.Parent = game.CoreGui
 	UILib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	MainFrame.Name = "MainFrame"
