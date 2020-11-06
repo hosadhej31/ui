@@ -511,7 +511,7 @@ function UILib:Create(name, options)
             sliderCorner.Parent = sliderBtn
 
             Frame.Parent = sliderBtn
-            Frame.BackgroundColor3 = Color3.fromRGB(212, 212, 212)
+            Frame.BackgroundColor3 = options.highlightcolor
             Frame.Size = UDim2.new(0, 15, 0, 10)
 
             buttonCorner.CornerRadius = UDim.new(0, 3)
@@ -593,7 +593,7 @@ function UILib:Create(name, options)
             btnInfo.Size = UDim2.new(0, 210, 0, 49)
             btnInfo.Font = Enum.Font.GothamSemibold
             btnInfo.Text = info
-            btnInfo.TextColor3 = options.highlightcolor
+            btnInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
             btnInfo.TextSize = 16.000
             btnInfo.TextXAlignment = Enum.TextXAlignment.Left
 
