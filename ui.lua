@@ -1,7 +1,8 @@
 local UILib = {}
 
-function UILib:Create(name)
+function UILib:Create(name, options)
     name = name or "UILib"
+    options = options or {highlightcolor = Color3.fromRGB(0, 165, 255)}
     local InsideUI = {}
 
     local UI = Instance.new("ScreenGui")
@@ -592,7 +593,7 @@ function UILib:Create(name)
             btnInfo.Size = UDim2.new(0, 210, 0, 49)
             btnInfo.Font = Enum.Font.GothamSemibold
             btnInfo.Text = info
-            btnInfo.TextColor3 = Color3.fromRGB(212, 212, 212)
+            btnInfo.TextColor3 = options.highlightcolor
             btnInfo.TextSize = 16.000
             btnInfo.TextXAlignment = Enum.TextXAlignment.Left
 
