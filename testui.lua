@@ -223,7 +223,7 @@ function Library:Create(options)
             Toggle.Size = UDim2.new(0, 480, 0, 30)
             
             UICornerT.Parent = Toggle
-            UICornerT.CornerRadius = UDim.new(0, 8)
+            UICornerT.CornerRadius = UDim.new(0, 50)
             UICornerT.Archivable = true
 
 			Text_2.Name = "Text"
