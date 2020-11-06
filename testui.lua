@@ -186,7 +186,11 @@ function Library:Create(options)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = "Button Info"
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Button.TextSize = 18.000
+            Button.TextSize = 18.000
+            
+            Button.MouseButton1Click:Connect(function()
+                callback()
+            end)
 		end
 
 		return tabItems
