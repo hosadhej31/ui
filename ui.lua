@@ -18,6 +18,10 @@ function UILib:Create(name, options)
     local elementsCorner = Instance.new("UICorner")
     local elementFolder = Instance.new("Folder")
 
+    if (syn) then
+        syn.protect_gui(UI)
+    end
+
     UI.Name = "name"
     UI.Parent = game.CoreGui
     UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -62,7 +66,7 @@ function UILib:Create(name, options)
 
     lineTab.Name = "lineTab"
     lineTab.Parent = tabMain
-    lineTab.BackgroundColor3 = options.highlightcolor
+    lineTab.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     lineTab.BorderSizePixel = 0
     lineTab.Position = UDim2.new(0, 0, 0.972222209, 0)
     lineTab.Size = UDim2.new(0, 435, 0, 1)
@@ -154,8 +158,8 @@ function UILib:Create(name, options)
         elementContainer.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         elementContainer.BackgroundTransparency = 1.000
         elementContainer.Size = UDim2.new(0, 435, 0, 372)
-        elementContainer.CanvasSize = UDim2.new(0, 0, 15, 0)
-        elementContainer.ScrollBarThickness = 0
+        elementContainer.CanvasSize = UDim2.new(0, 0, 5, 0)
+        elementContainer.ScrollBarThickness = 1
         elementContainer.Visible = false    
 
         elementList.Name = "elementList"
