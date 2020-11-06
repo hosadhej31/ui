@@ -186,11 +186,56 @@ function Library:Create(options)
 			Button.Font = Enum.Font.SourceSans
 			Button.Text = "Button Info"
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Button.TextSize = 18.000
-            
-            Button.MouseButton1Click:Connect(function()
-                callback()
-            end)
+			Button.TextSize = 18.000
+		end
+		
+		function tabItems:Toggle(toggleName, callback)
+			toggleName = toggleName or "Toggle"
+			callback = callback or function(state)
+				print("Toggle: ",state)
+			end
+			
+			local toggled
+			local Toggle = Instance.new("Frame")
+			local Text_2 = Instance.new("TextLabel")
+			local Frame = Instance.new("Frame")
+			local TextButton = Instance.new("TextButton")
+			
+			Toggle.Name = "Toggle"
+			Toggle.Parent = ScrollingFrame
+			Toggle.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			Toggle.Size = UDim2.new(0, 480, 0, 30)
+
+			Text_2.Name = "Text"
+			Text_2.Parent = Toggle
+			Text_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Text_2.BackgroundTransparency = 1.000
+			Text_2.Position = UDim2.new(0.020833334, 0, 0, 0)
+			Text_2.Size = UDim2.new(0, 470, 0, 30)
+			Text_2.Font = Enum.Font.SourceSans
+			Text_2.Text = toggleName
+			Text_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Text_2.TextSize = 18.000
+			Text_2.TextXAlignment = Enum.TextXAlignment.Left
+
+			Frame.Parent = Toggle
+			Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			Frame.Position = UDim2.new(0.9375, 0, 0.166666657, 0)
+			Frame.Size = UDim2.new(0, 20, 0, 20)
+
+			TextButton.Parent = Frame
+			TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.BackgroundTransparency = 1.000
+			TextButton.Size = UDim2.new(0, 20, 0, 20)
+			TextButton.Font = Enum.Font.SourceSans
+			TextButton.Text = ""
+			TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.TextSize = 14.000
+			
+			TextButton.MouseButton1Click:Connect(function()
+				toggled = not toggled		
+				callback(toggled)
+			end)
 		end
 
 		return tabItems
