@@ -126,7 +126,7 @@ function FuzkiLib:Create(name)
         MainLib.Visible = not MainLib.Visible
     end
 
-    function InsideFuzki:CreateSection(tab)
+    function InsideFuzki:CreateTab(tab)
         tab = tab or "tab"
         local tabButton = Instance.new("TextButton")
         local tabCorner = Instance.new("UICorner")
@@ -176,6 +176,34 @@ function FuzkiLib:Create(name)
 
         local Items = {}
 
+        function Items:CreateSection(text)
+            local textSectionFrame = Instance.new("Frame")
+            local TextSection = Instance.new("TextLabel")
+            local tglLine = Instance.new("Frame")
+
+            textSectionFrame.Name = "textSectionFrame"
+            textSectionFrame.Parent = elementContainer
+            textSectionFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            textSectionFrame.Size = UDim2.new(0, 435, 0, 50)
+
+            TextSection.Parent = textSectionFrame
+            TextSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextSection.BackgroundTransparency = 1.000
+            TextSection.Position = UDim2.new(0.0390804596, 0, 0, 0)
+            TextSection.Size = UDim2.new(0, 398, 0, 49)
+            TextSection.Font = Enum.Font.GothamSemibold
+            TextSection.Text = text
+            TextSection.TextColor3 = Color3.fromRGB(212, 212, 212)
+            TextSection.TextSize = 16.000
+
+            tglLine.Name = "tglLine"
+            tglLine.Parent = textSectionFrame
+            tglLine.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            tglLine.BorderSizePixel = 0
+            tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
+            tglLine.Size = UDim2.new(0, 401, 0, 1)
+        end
+
         function Items:CreateLabel(text)
             local textLabelFrame = Instance.new("Frame")
             local TextLabel = Instance.new("TextLabel")
@@ -204,6 +232,7 @@ function FuzkiLib:Create(name)
             tglLine.Position = UDim2.new(0.0390804596, 0, 0.980000019, 0)
             tglLine.Size = UDim2.new(0, 401, 0, 1)
         end
+
         function Items:CreateToggle(info, callback)
             toggle = toggle or "Toggle"
             info = info or "Info"
