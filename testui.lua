@@ -233,12 +233,19 @@ function Library:Create(options)
 			TextButton.Size = UDim2.new(0, 20, 0, 20)
 			TextButton.Font = Enum.Font.SourceSans
 			TextButton.Text = ""
-			TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.TextSize = 14.000
 			
 			TextButton.MouseButton1Click:Connect(function()
 				toggled = not toggled		
-				callback(toggled)
+                
+                if (toggled) then
+                    TextButton.Text = "X"
+                else
+                    TextButton.Text = ""
+                end
+
+                callback(toggled)
 			end)
 		end
 
