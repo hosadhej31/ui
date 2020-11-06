@@ -84,7 +84,7 @@ function Library:Create(options)
 
 	function windowItems:Toggle()
 		MainFrame.Visible = not MainFrame.Visible
-	end
+    end
 
 	function windowItems:Tab(name)
 		name = name or "tab"
@@ -151,13 +151,18 @@ function Library:Create(options)
 
 		function tabItems:Section(sectionName)
 			local Section = Instance.new("Frame")
-			local Text = Instance.new("TextLabel")
+            local Text = Instance.new("TextLabel")
+            local UICornerS = Instance.new("UICorner")
 
 			Section.Name = "Section"
 			Section.Parent = ScrollingFrame
 			Section.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 			Section.BorderSizePixel = 0
 			Section.Size = UDim2.new(0, 500, 0, 30)
+
+            UICornerS.Parent = Section
+            UICornerS.CornerRadius = UDim.new(0, 8)
+            UICornerS.Archivable = true
 
 			Text.Name = "Text"
 			Text.Parent = Section
@@ -176,7 +181,8 @@ function Library:Create(options)
 				print("Button Pressed")
 			end
 			
-			local Button = Instance.new("TextButton")
+            local Button = Instance.new("TextButton")
+            local UICornerB = Instance.new("UICorner")
 			
 			Button.Name = "Button"
 			Button.Parent = ScrollingFrame
@@ -187,6 +193,10 @@ function Library:Create(options)
 			Button.Text = "Button Info"
 			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
             Button.TextSize = 18.000
+
+            UICornerB.Parent = Button
+            UICornerB.CornerRadius = UDim.new(0, 8)
+            UICornerB.Archivable = true
             
             Button.MouseButton1Click:Connect(function()
                 callback()
@@ -197,10 +207,12 @@ function Library:Create(options)
 			toggleName = toggleName or "Toggle"
 			callback = callback or function(state)
 				print("Toggle: ",state)
-			end
+            end
+            local toggleItems = {}
 			
 			local toggled
-			local Toggle = Instance.new("Frame")
+            local Toggle = Instance.new("Frame")
+            local UICornerT = Instance.new("UICorner")
 			local Text_2 = Instance.new("TextLabel")
 			local Frame = Instance.new("Frame")
 			local TextButton = Instance.new("TextButton")
@@ -208,7 +220,11 @@ function Library:Create(options)
 			Toggle.Name = "Toggle"
 			Toggle.Parent = ScrollingFrame
 			Toggle.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-			Toggle.Size = UDim2.new(0, 480, 0, 30)
+            Toggle.Size = UDim2.new(0, 480, 0, 30)
+            
+            UICornerT.Parent = Toggle
+            UICornerT.CornerRadius = UDim.new(0, 8)
+            UICornerT.Archivable = true
 
 			Text_2.Name = "Text"
 			Text_2.Parent = Toggle
@@ -246,7 +262,19 @@ function Library:Create(options)
                 end
 
                 callback(toggled)
-			end)
+            end)
+
+            function toggleItems:Update(state)
+                toggled = state
+
+                if (toggled) then
+                    TextButton.Text = "X"
+                else
+                    TextButton.Text = ""
+                end
+            end
+            
+            return toggleItems
 		end
 
 		return tabItems
