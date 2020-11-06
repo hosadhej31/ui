@@ -1,10 +1,10 @@
-local FuzkiLib = {}
+local UILib = {}
 
-function FuzkiLib:Create(name)
-    name = name or "FuzkiLib"
-    local InsideFuzki = {}
+function UILib:Create(name)
+    name = name or "UILib"
+    local InsideUI = {}
 
-    local Fuzki = Instance.new("ScreenGui")
+    local UI = Instance.new("ScreenGui")
     local MainLib = Instance.new("Frame")
     local headerLine = Instance.new("Frame")
     local mainCorner = Instance.new("UICorner")
@@ -17,12 +17,12 @@ function FuzkiLib:Create(name)
     local elementsCorner = Instance.new("UICorner")
     local elementFolder = Instance.new("Folder")
 
-    Fuzki.Name = "name"
-    Fuzki.Parent = game.CoreGui
-    Fuzki.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    UI.Name = "name"
+    UI.Parent = game.CoreGui
+    UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     MainLib.Name = "MainLib"
-    MainLib.Parent = Fuzki
+    MainLib.Parent = UI
     MainLib.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     MainLib.Position = UDim2.new(0.357499987, 0, 0.162544176, 0)
     MainLib.Size = UDim2.new(0, 469, 0, 484)
@@ -122,11 +122,11 @@ function FuzkiLib:Create(name)
     elementFolder.Name = "elementFolder"
     elementFolder.Parent = elements
 
-    function InsideFuzki:Toggle()
+    function InsideUI:Toggle()
         MainLib.Visible = not MainLib.Visible
     end
 
-    function InsideFuzki:CreateTab(tab)
+    function InsideUI:CreateTab(tab)
         tab = tab or "tab"
         local tabButton = Instance.new("TextButton")
         local tabCorner = Instance.new("UICorner")
@@ -184,6 +184,7 @@ function FuzkiLib:Create(name)
             textSectionFrame.Name = "textSectionFrame"
             textSectionFrame.Parent = elementContainer
             textSectionFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            textSectionFrame.BorderSizePixel = 0
             textSectionFrame.Size = UDim2.new(0, 435, 0, 50)
 
             TextSection.Parent = textSectionFrame
@@ -616,6 +617,6 @@ function FuzkiLib:Create(name)
 
         return Items
     end
-    return InsideFuzki
+    return InsideUI
 end
-return FuzkiLib
+return UILib
