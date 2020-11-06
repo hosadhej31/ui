@@ -62,7 +62,7 @@ function UILib:Create(name, options)
 
     lineTab.Name = "lineTab"
     lineTab.Parent = tabMain
-    lineTab.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    lineTab.BackgroundColor3 = options.highlightcolor
     lineTab.BorderSizePixel = 0
     lineTab.Position = UDim2.new(0, 0, 0.972222209, 0)
     lineTab.Size = UDim2.new(0, 435, 0, 1)
