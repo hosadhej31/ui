@@ -162,6 +162,27 @@ function Library:Create(options)
 			end
 		end)
 
+		function tabItems:SelectTab()
+			for i,v in pairs(MainFrame:GetChildren()) do
+				if (v.Name:find("Page")) then
+					if (v.Name ~= name .. "Page") then
+						v.ScrollingFrame.Visible = false
+					else
+						v.ScrollingFrame.Visible = true
+					end
+				end
+			end
+			for i,v in pairs(TabContainer:GetChildren()) do
+				if (v.Name:find("Page")) then
+					if (v.Name ~= name .. "Page") then
+						v.TextColor3 = Color3.fromRGB(104, 104, 104)
+					else
+						v.TextColor3 = options.highlight
+					end
+				end
+			end
+		end
+
 		function tabItems:Section(sectionName)
 			local Section = Instance.new("Frame")
 			local Text = Instance.new("TextLabel")
