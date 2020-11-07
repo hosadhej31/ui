@@ -6,11 +6,10 @@ function Library:Create(options)
 	}
 	local windowItems = {}
 
-	while true do
+	while wait() do
 		if (options.highlight == "rainbow") then
 			for hue = 0, 255, 4 do
 				options.highlight = Color3.fromHSV(hue/256, 1, 1)
-				wait()
 			end
 		end
 	end
