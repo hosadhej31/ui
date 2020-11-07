@@ -184,6 +184,8 @@ function Library:Create(options)
 		end
 
 		function tabItems:Section(sectionName)
+			sectionName = sectionName or "Section"
+
 			local Section = Instance.new("Frame")
 			local Text = Instance.new("TextLabel")
 			local UICornerS = Instance.new("UICorner")
@@ -204,7 +206,7 @@ function Library:Create(options)
 			Text.BackgroundTransparency = 1.000
 			Text.Size = UDim2.new(0, 500, 0, 30)
 			Text.Font = Enum.Font.SourceSans
-			Text.Text = "Section Info"
+			Text.Text = sectionName
 			Text.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Text.TextSize = 18.000
 		end
