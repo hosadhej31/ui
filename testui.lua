@@ -305,6 +305,10 @@ function Library:Create(options)
 				callback(toggled)
 			end)
 
+			function toggleItems:GetState()
+				return toggled
+			end
+
 			function toggleItems:Update(state)
 				toggled = state
 
@@ -372,6 +376,10 @@ function Library:Create(options)
 				callback(Box.Text, oldInput)
 				oldInput = Box.Text
 			end)
+
+			function textboxItems:GetText()
+				return Box.Text
+			end
 			
 			function textboxItems:Update(text)
 				Box.Text = text
