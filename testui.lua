@@ -6,6 +6,15 @@ function Library:Create(options)
 	}
 	local windowItems = {}
 
+	while true do
+		if (options.highlight == "rainbow") then
+			for hue = 0, 255, 4 do
+				options.highlight = Color3.fromHSV(hue/256, 1, 1)
+				wait()
+			end
+		end
+	end
+
 	local UILib = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
