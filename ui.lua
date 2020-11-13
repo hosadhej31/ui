@@ -660,16 +660,21 @@ do
     end
     
     function section:addLabel(title)
-        utility:Create("TextLabel", {
+        utility:Create("ImageLabel", {
             Name = "Title",
-            BackgroundTransparency = 1,
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
             Size = UDim2.new(1, 0, 0, 30),
-            ZIndex = 3,
+            ZIndex = 2,
             Font = Enum.Font.Gotham,
             Text = title,
             TextColor3 = themes.TextColor,
             TextSize = 12,
-            TextTransparency = 0.10000000149012
+			TextTransparency = 0.10000000149012,
+			Image = "rbxassetid://5028857472",
+			ImageColor3 = themes.DarkContrast,
+			ScaleType = Enum.ScaleType.Slice,
+			SliceCenter = Rect.new(2, 2, 298, 298),
         })
     end
 	
