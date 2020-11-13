@@ -660,7 +660,7 @@ do
     end
     
     function section:addLabel(title)
-        utility:Create("TextLabel", {
+        local label = utility:Create("TextLabel", {
 			Name = "Title",
 			BackgroundColor3 = themes.DarkContrast,
 			BackgroundTransparency = 0,
@@ -672,7 +672,9 @@ do
             TextColor3 = themes.TextColor,
             TextSize = 12,
 			TextTransparency = 0.10000000149012,
-        })
+		})
+		
+		table.insert(self.modules, label)
     end
 	
 	function section:addButton(title, callback)
