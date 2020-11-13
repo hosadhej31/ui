@@ -662,6 +662,7 @@ do
     function section:addLabel(title)
         local label = utility:Create("TextLabel", {
 			Name = "Title",
+			Parent = self.container,
 			BackgroundColor3 = themes.DarkContrast,
 			BackgroundTransparency = 0,
 			BorderSizePixel = 0,
