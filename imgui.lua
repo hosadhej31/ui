@@ -2002,6 +2002,72 @@ function library:AddWindow(title, options)
 
 				return tab_data, new_tab
 			end
+
+			function window_data:UpdateColor(color)
+				options.main_color = color
+
+				local Bar = Window:FindFirstChild("Bar")
+				local Base = Bar:FindFirstChild("Base")
+				local Top = Bar:FindFirstChild("Top")
+				local SplitFrame = Window:FindFirstChild("TabSelection"):FindFirstChild("Frame")
+
+				Bar.BackgroundColor3 = options.main_color
+				Base.BackgroundColor3 = options.main_color
+				Base.ImageColor3 = options.main_color
+				Top.ImageColor3 = options.main_color
+				SplitFrame.BackgroundColor3 = options.main_color
+			end
+		end
+	end
+
+	do
+		for i, v in next, Window:GetDescendants() do
+			if hasprop(v, "ZIndex") then
+				v.ZIndex = v.ZIndex + (windows * 10)
+			end
+		end
+	end
+
+	return window_data, Window
+end
+
+return library	objects.Visible = true
+							end
+
+							open = not open
+						end)
+
+						spawn(function()
+							while true do
+								Resize(folder, {Size = UDim2.new(1, 0, 0, (open and gFolderLen() or 20))}, options.tween_time)
+								wait()
+							end
+						end)
+
+						for i,v in next, tab_data do
+							folder_data[i] = function(...)
+								local data, object
+								local ret = {v(...)}
+								if typeof(ret[1]) == "table" then
+									data = ret[1]
+									object = ret[2]
+									object.Parent = objects
+									return data, object
+								else
+									object = ret[1]
+									object.Parent = objects
+									return object
+								end
+							end
+						end
+
+						return folder_data, folder
+					end
+
+				end
+
+				return tab_data, new_tab
+			end
 		end
 	end
 
