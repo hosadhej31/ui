@@ -4,6 +4,11 @@ ui's for my hub/scripts or a place to store my ui libs ive created.
 # Luminosity
 Alot of people like this lib and i like it too
 
+## TODO
+- [ ] Fixed sliders
+- [ ] Add Custom Tab Icons
+- [ ] Add Dropdowns
+
 ## Luminosity: Example
 ```lua
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/ui/main/luminosity.lua", true))()
