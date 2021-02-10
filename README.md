@@ -73,3 +73,9 @@ Library:CreateWindow(<table> options [Name, Version])
       <void> GetValue()
       <void> SetValue(<number> value)
 ```
+
+## Luminosity: Updates
+```
+- V1.0:
+[+] Released
+```
