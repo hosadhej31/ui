@@ -6,6 +6,8 @@ Alot of people like this lib and i like it too
 
 ## Luminosity: Example
 ```lua
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/ui/main/luminosity.lua", true))()
+
 local window = library:CreateWindow({
     Name = "SOLARWIND",
     Version = "9.4.2"
