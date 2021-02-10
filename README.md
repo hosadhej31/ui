@@ -4,7 +4,7 @@ ui's for my hub/scripts or a place to store my ui libs ive created.
 # Luminosity
 Alot of people like this lib and i like it too
 
-## Luminsity: Example
+## Luminosity: Example
 ```lua
 local window = library:CreateWindow({
     Name = "SOLARWIND",
@@ -52,7 +52,7 @@ end)
 tab:CreateSeperator()
 ```
 
-## Luminsity: Docs
+## Luminosity: Docs
 ```lua
 Library:CreateWindow(<table> options [Name, Version])
   <table> Window:CreateTab(<string> name)
