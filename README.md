@@ -75,7 +75,7 @@ Library:CreateWindow(<table> options [Name, Version])
 ```
 
 ## Luminosity: Updates
+### V1.0
 ```
-- V1.0:
 [+] Released
 ```
