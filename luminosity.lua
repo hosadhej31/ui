@@ -528,3 +528,5 @@ function library:CreateWindow(winopts)
 
     return WinTypes
 end
+
+return library
