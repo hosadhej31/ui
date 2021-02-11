@@ -1,12 +1,15 @@
+-- made by sipergameingbro#8529
+
 local library = {}
 
 function library:CreateWindow(winopts)
     winopts = winopts or {
         Name = "luminosity",
-        Version = "1.0.0"
+        Version = "1.0.0",
+        Highlight = Color3.fromRGB(189, 84, 80)
     }
     local WinTypes = {}
-    local windowdrag, sliderdrag = false, false
+    local windowdrag, sliderdrag = true, false
 
     local Luminosity = Instance.new("ScreenGui")
     local core = Instance.new("Frame")
@@ -21,13 +24,13 @@ function library:CreateWindow(winopts)
     local glow = Instance.new("ImageLabel")
 
     Luminosity.Enabled = true
-    Luminosity.Name = game:GetService("HttpService"):GenerateGUID()
+    Luminosity.Name = game:GetService("HttpService"):GenerateGUID(false)
     Luminosity.Parent = game.CoreGui
     Luminosity.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     core.Name = "core"
     core.Parent = Luminosity
-    core.BackgroundColor3 = Color3.fromRGB(20, 18, 44)
+    core.BackgroundColor3 = Color3.fromRGB(15,15,15)
     core.BorderColor3 = Color3.fromRGB(66, 66, 66)
     core.BorderSizePixel = 0
     core.Position = UDim2.new(0.3111251, 0, 0.281828105, 0)
@@ -35,7 +38,7 @@ function library:CreateWindow(winopts)
 
     sidebar.Name = "sidebar"
     sidebar.Parent = core
-    sidebar.BackgroundColor3 = Color3.fromRGB(31, 28, 58)
+    sidebar.BackgroundColor3 = Color3.fromRGB(25,25,25)
     sidebar.BorderSizePixel = 0
     sidebar.Size = UDim2.new(0, 50, 0, 400)
 
@@ -50,7 +53,7 @@ function library:CreateWindow(winopts)
     title.Size = UDim2.new(0, 200, 0, 25)
     title.Font = Enum.Font.GothamBold
     title.Text = winopts.Name:upper()
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.TextColor3 = winopts.Highlight
     title.TextSize = 20.000
     title.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -68,7 +71,7 @@ function library:CreateWindow(winopts)
 
     main.Name = "main"
     main.Parent = core
-    main.BackgroundColor3 = Color3.fromRGB(24, 21, 48)
+    main.BackgroundColor3 = Color3.fromRGB(25,25,25)
     main.BorderColor3 = Color3.fromRGB(66, 66, 66)
     main.BorderSizePixel = 0
     main.Position = UDim2.new(0.125, 0, 0.125, 0)
@@ -76,7 +79,7 @@ function library:CreateWindow(winopts)
 
     searchbar.Name = "searchbar"
     searchbar.Parent = core
-    searchbar.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+    searchbar.BackgroundColor3 = Color3.fromRGB(35,35,35)
     searchbar.BorderSizePixel = 0
     searchbar.Position = UDim2.new(0.349999994, 0, 0.0250000004, 0)
     searchbar.Size = UDim2.new(0, 365, 0, 25)
@@ -86,6 +89,7 @@ function library:CreateWindow(winopts)
     searchbar.Text = ""
     searchbar.TextColor3 = Color3.fromRGB(255, 255, 255)
     searchbar.TextSize = 14.000
+    searchbar.Visible = false
 
     linebar.Name = "linebar"
     linebar.Parent = core
@@ -113,21 +117,18 @@ function library:CreateWindow(winopts)
 
     local tweenservice = game:GetService("TweenService")
     local userinputservice = game:GetService("UserInputService")
-    local dragInput, dragStart, startPos = nil, false, nil
+    local dragInput, dragStart, startPos = nil, nil, nil
 
     core.InputBegan:Connect(function(input)
         if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and userinputservice:GetFocusedTextBox() == nil then
             dragStart = input.Position
             startPos = core.Position
             windowdrag = true
-        end
-    end)
-
-    core.InputEnded:Connect(function(input)
-        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and userinputservice:GetFocusedTextBox() == nil then
-            dragStart = input.Position
-            startPos = core.Position
-            windowdrag = false
+            input.Changed:Connect(function()
+                if (input.UserInputState == Enum.UserInputState.End) then
+                    windowdrag = false
+                end
+            end)
         end
     end)
 
@@ -145,8 +146,9 @@ function library:CreateWindow(winopts)
         end
     end)
 
-    function WinTypes:CreateTab(Name)
+    function WinTypes:CreateTab(Name, Icon)
         Name = Name or "NewTab"
+        Icon = Icon or "5012544693"
         local TabTypes = {}
         local tab_select = Instance.new("TextButton")
         local icon = Instance.new("ImageLabel")
@@ -168,9 +170,9 @@ function library:CreateWindow(winopts)
         icon.Parent = tab_select
         icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         icon.BackgroundTransparency = 1.000
-        icon.Position = UDim2.new(0.339999974, 0, 0.280000001, 0)
-        icon.Size = UDim2.new(0, 16, 0, 16)
-        icon.Image = "rbxassetid://5012544693"
+        icon.Position = UDim2.new(0.299999974, 0, 0.230000001, 0)
+        icon.Size = UDim2.new(0, 24, 0, 24)
+        icon.Image = "rbxassetid://" .. Icon
         icon.ImageColor3 = Color3.fromRGB(178, 178, 178)
 
         tab_container.Name = "tab_"..Name.."_container"
@@ -203,7 +205,7 @@ function library:CreateWindow(winopts)
             for i,v in pairs(sidebar:GetChildren()) do
                 if (v:IsA("TextButton")) then
                     if (v.Name:find("tab_" .. Name .. "_select")) then
-                        v.icon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+                        v.icon.ImageColor3 = winopts.Highlight
                     else
                         v.icon.ImageColor3 = Color3.fromRGB(178, 178, 178)
                     end
@@ -212,7 +214,8 @@ function library:CreateWindow(winopts)
         end)
 
         local function Resize()
-            tab_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 30)
+            local Y = UIListLayout_2.AbsoluteContentSize.Y + 30
+            tab_container.CanvasSize = UDim2.new(0, 0, 0, Y)
         end
 
         function TabTypes:SelectTab()
@@ -226,7 +229,7 @@ function library:CreateWindow(winopts)
             for i,v in pairs(sidebar:GetChildren()) do
                 if (v:IsA("TextButton")) then
                     if (v.Name:find("tab_" .. Name .. "_select")) then
-                        v.icon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+                        v.icon.ImageColor3 = winopts.Highlight
                     else
                         v.icon.ImageColor3 = Color3.fromRGB(178, 178, 178)
                     end
@@ -249,14 +252,14 @@ function library:CreateWindow(winopts)
 
             toggle.Name = "toggle"
             toggle.Parent = tab_container
-            toggle.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            toggle.BackgroundColor3 = Color3.fromRGB(30,30,30)
             toggle.BorderSizePixel = 0
             toggle.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             toggle.Size = UDim2.new(0, 470, 0, 40)
 
             main_2.Name = "main"
             main_2.Parent = toggle
-            main_2.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_2.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             main_2.BorderSizePixel = 0
             main_2.Position = UDim2.new(0.93599999, 0, 0.286000013, 0)
             main_2.Size = UDim2.new(0, 20, 0, 20)
@@ -267,11 +270,12 @@ function library:CreateWindow(winopts)
 
             icon_2.Name = "icon"
             icon_2.Parent = main_2
-            icon_2.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            icon_2.BackgroundColor3 = Color3.fromRGB(35,35,35)
             icon_2.BackgroundTransparency = 1.000
             icon_2.ImageTransparency = 1.000
             icon_2.Size = UDim2.new(0, 20, 0, 20)
             icon_2.Image = "rbxassetid://6065476353"
+            icon_2.ImageColor3 = winopts.Highlight
 
             title_2.Name = "title"
             title_2.Parent = toggle
@@ -311,17 +315,6 @@ function library:CreateWindow(winopts)
 
             function ToggleTypes:SetState(state)
                 toggled = state
-                if (state) then
-                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                        ImageTransparency = 0,
-                        Rotation = 360
-                    }):Play()
-                else
-                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                        ImageTransparency = 1,
-                        Rotation = 0
-                    }):Play()
-                end
             end
 
             Resize()
@@ -340,14 +333,14 @@ function library:CreateWindow(winopts)
 
             button.Name = "button"
             button.Parent = tab_container
-            button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            button.BackgroundColor3 = Color3.fromRGB(30,30,30)
             button.BorderSizePixel = 0
             button.Position = UDim2.new(0.0299999993, 0, 0.215384617, 0)
             button.Size = UDim2.new(0, 470, 0, 40)
 
             main_3.Name = "main"
             main_3.Parent = button
-            main_3.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_3.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             main_3.BorderSizePixel = 0
             main_3.Position = UDim2.new(0.0120000308, 0, 0.100000001, 0)
             main_3.Size = UDim2.new(0, 459, 0, 31)
@@ -382,7 +375,7 @@ function library:CreateWindow(winopts)
 
             seperator.Name = "seperator"
             seperator.Parent = tab_container
-            seperator.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            seperator.BackgroundColor3 = Color3.fromRGB(35,35,35)
             seperator.BorderSizePixel = 0
             seperator.Position = UDim2.new(0.0299999993, 0, 0.584615409, 0)
             seperator.Size = UDim2.new(0, 470, 0, 1)
@@ -398,7 +391,7 @@ function library:CreateWindow(winopts)
             local title_5 = Instance.new("TextLabel")
             label.Name = "label"
             label.Parent = tab_container
-            label.BackgroundColor3 = Color3.fromRGB(20, 17, 44)
+            label.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             label.BorderSizePixel = 0
             label.Position = UDim2.new(0.0299999993, 0, 0.215384617, 0)
             label.Size = UDim2.new(0, 470, 0, 25)
@@ -446,7 +439,7 @@ function library:CreateWindow(winopts)
 
             slider.Name = "slider"
             slider.Parent = tab_container
-            slider.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            slider.BackgroundColor3 = Color3.fromRGB(30,30,30)
             slider.BorderSizePixel = 0
             slider.Position = UDim2.new(0.0299999993, 0, 0.384615391, 0)
             slider.Size = UDim2.new(0, 470, 0, 50)
@@ -465,14 +458,14 @@ function library:CreateWindow(winopts)
 
             main_4.Name = "main"
             main_4.Parent = slider
-            main_4.BackgroundColor3 = Color3.fromRGB(195, 195, 195)
+            main_4.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             main_4.BorderSizePixel = 0
             main_4.Position = UDim2.new(0.0425531901, 0, 0.685000002, 0)
             main_4.Size = UDim2.new(0, 439, 0, 5)
 
             bar.Name = "bar"
             bar.Parent = main_4
-            bar.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
+            bar.BackgroundColor3 = winopts.Highlight
             bar.BorderSizePixel = 0
             bar.Size = UDim2.new(0, 0, 0, 5)
 
@@ -501,7 +494,6 @@ function library:CreateWindow(winopts)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
                     slide(input)
                     dragging = true
-                    windowdrag = false
                     sliderdrag = true
                 end
             end)
@@ -509,7 +501,6 @@ function library:CreateWindow(winopts)
             main_4.InputEnded:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
                     dragging = false
-                    windowdrag = true
                     sliderdrag = false
                 end
             end)
