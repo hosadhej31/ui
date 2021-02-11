@@ -8,7 +8,7 @@ function library:CreateWindow(winopts)
         Version = "1.0.0"
     }
     local WinTypes = {}
-    local windowdrag = true 
+    local windowdrag, sliderdrag = true, true
 
     local Luminosity = Instance.new("ScreenGui")
     local core = Instance.new("Frame")
@@ -115,13 +115,7 @@ function library:CreateWindow(winopts)
 
     local tweenservice = game:GetService("TweenService")
     local userinputservice = game:GetService("UserInputService")
-    local dragInput, dragStart, startPos = nil, false, nil
-
-    function updateInput(input)
-        local Delta = input.Position - dragStart
-        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-        tweenservice:Create(core, TweenInfo.new(0.100), {Position = Position}):Play()
-    end
+    local dragInput, dragStart, startPos = nil, nil, nil
 
     core.InputBegan:Connect(function(input)
         if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and userinputservice:GetFocusedTextBox() == nil then
@@ -146,8 +140,10 @@ function library:CreateWindow(winopts)
     end)
 
     userinputservice.InputChanged:Connect(function(input)
-        if input == dragInput and windowdrag then
-            updateInput(input)
+        if input == dragInput and windowdrag and not sliderdrag then
+            local Delta = input.Position - dragStart
+            local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+            tweenservice:Create(core, TweenInfo.new(0.100), {Position = Position}):Play()
         end
     end)
 
@@ -497,6 +493,7 @@ function library:CreateWindow(winopts)
                     slide(input)
                     dragging = true
                     windowdrag = false
+                    sliderdrag = true
                 end
             end)
 
@@ -504,6 +501,7 @@ function library:CreateWindow(winopts)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
                     dragging = false
                     windowdrag = true
+                    sliderdrag = false
                 end
             end)
 
