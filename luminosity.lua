@@ -1,5 +1,3 @@
--- made by sipergameingbro#8529
-
 local library = {}
 
 function library:CreateWindow(winopts)
@@ -8,7 +6,7 @@ function library:CreateWindow(winopts)
         Version = "1.0.0"
     }
     local WinTypes = {}
-    local windowdrag, sliderdrag = true, true
+    local windowdrag, sliderdrag = false, false
 
     local Luminosity = Instance.new("ScreenGui")
     local core = Instance.new("Frame")
@@ -115,7 +113,7 @@ function library:CreateWindow(winopts)
 
     local tweenservice = game:GetService("TweenService")
     local userinputservice = game:GetService("UserInputService")
-    local dragInput, dragStart, startPos = nil, nil, nil
+    local dragInput, dragStart, startPos = nil, false, nil
 
     core.InputBegan:Connect(function(input)
         if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and userinputservice:GetFocusedTextBox() == nil then
@@ -214,7 +212,7 @@ function library:CreateWindow(winopts)
         end)
 
         local function Resize()
-            tab_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.X)
+            tab_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 30)
         end
 
         function TabTypes:SelectTab()
@@ -313,6 +311,17 @@ function library:CreateWindow(winopts)
 
             function ToggleTypes:SetState(state)
                 toggled = state
+                if (state) then
+                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                        ImageTransparency = 0,
+                        Rotation = 360
+                    }):Play()
+                else
+                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                        ImageTransparency = 1,
+                        Rotation = 0
+                    }):Play()
+                end
             end
 
             Resize()
@@ -528,5 +537,3 @@ function library:CreateWindow(winopts)
 
     return WinTypes
 end
-
-return library
