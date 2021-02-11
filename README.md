@@ -90,7 +90,7 @@ Library:CreateWindow(<table> options [Name, Version])
 [*] Updated/Fixed Sliders
 ```
 
-## V1.2
+### V1.2
 ```
 [+] Added custom tab icons
 [+] Added highlight color option in window options
