@@ -10,7 +10,8 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidM
 
 local window = library:CreateWindow({
     Name = "SOLARWIND",
-    Version = "9.4.2"
+    Version = "9.4.2",
+    Highlight = Color3.fromRGB(0, 125, 255)
 })
 
 local tab = window:CreateTab("Tab1")
