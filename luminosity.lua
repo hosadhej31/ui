@@ -9,7 +9,7 @@ function library:CreateWindow(winopts)
         Highlight = Color3.fromRGB(189, 84, 80)
     }
     local WinTypes = {}
-    local windowdrag, sliderdrag = true, false
+    local windowdrag, sliderdrag, tabcolor = true, false, winopts.Highlight
 
     local Luminosity = Instance.new("ScreenGui")
     local core = Instance.new("Frame")
@@ -115,6 +115,13 @@ function library:CreateWindow(winopts)
     glow.ScaleType = Enum.ScaleType.Slice
     glow.SliceCenter = Rect.new(20, 20, 280, 280)
 
+    spawn(function()
+        while true do
+            title.BackgroundColor3 = winopts.Highlight
+            wait(0.02)
+        end
+    end)
+
     local tweenservice = game:GetService("TweenService")
     local userinputservice = game:GetService("UserInputService")
     local dragInput, dragStart, startPos = nil, nil, nil
@@ -205,7 +212,7 @@ function library:CreateWindow(winopts)
             for i,v in pairs(sidebar:GetChildren()) do
                 if (v:IsA("TextButton")) then
                     if (v.Name:find("tab_" .. Name .. "_select")) then
-                        v.icon.ImageColor3 = winopts.Highlight
+                        v.icon.ImageColor3 = tabcolor
                     else
                         v.icon.ImageColor3 = Color3.fromRGB(178, 178, 178)
                     end
@@ -229,13 +236,20 @@ function library:CreateWindow(winopts)
             for i,v in pairs(sidebar:GetChildren()) do
                 if (v:IsA("TextButton")) then
                     if (v.Name:find("tab_" .. Name .. "_select")) then
-                        v.icon.ImageColor3 = winopts.Highlight
+                        v.icon.ImageColor3 = tabcolor
                     else
                         v.icon.ImageColor3 = Color3.fromRGB(178, 178, 178)
                     end
                 end
             end
         end
+
+        spawn(function()
+            while true do
+                tabcolor = winopts.Highlight
+                wait(0.02)
+            end
+        end)
 
         function TabTypes:CreateToggle(Name, Callback)
             local toggled = false
@@ -288,6 +302,13 @@ function library:CreateWindow(winopts)
             title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
             title_2.TextSize = 14.000
             title_2.TextXAlignment = Enum.TextXAlignment.Left
+
+            spawn(function()
+                while true do
+                    icon_2.BackgroundColor3 = winopts.Highlight
+                    wait(0.02)
+                end
+            end)
 
             main_2.MouseButton1Click:Connect(function()
                 toggled = not toggled
@@ -481,6 +502,13 @@ function library:CreateWindow(winopts)
             value.TextSize = 14.000
             value.TextXAlignment = Enum.TextXAlignment.Right
 
+            spawn(function()
+                while true do
+                    bar.BackgroundColor3 = winopts.Highlight
+                    wait(0.02)
+                end
+            end)
+
             local function slide(input)
 				local pos = UDim2.new(math.clamp((input.Position.X - main_4.AbsolutePosition.X) / main_4.AbsoluteSize.X, 0, 1), 0, 1, 0)
                 tweenservice:Create(bar, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { Size = pos }):Play()
@@ -524,6 +552,10 @@ function library:CreateWindow(winopts)
         end
 
         return TabTypes
+    end
+
+    function WinTypes:UpdateHighlight(color)
+        winopts.Highlight = color
     end
 
     return WinTypes
