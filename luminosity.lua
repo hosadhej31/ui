@@ -634,7 +634,7 @@ function library:CreateWindow(winopts)
                 item.Name = "item_" .. NameOp
                 item.Parent = dropdown_frame
                 item.BackgroundColor3 = Color3.fromRGB(30,30,30)
-                item.BackgroundTransparency = 0.000
+                item.BorderSizePixel = 0
                 item.Size = UDim2.new(0, 470, 0, 30)
                 item.Font = Enum.Font.Gotham
                 item.Text = NameOp:upper()
