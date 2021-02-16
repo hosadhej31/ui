@@ -603,7 +603,7 @@ function library:CreateWindow(winopts)
 
             main_6.Name = "main"
             main_6.Parent = dropdown_button
-            main_6.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            main_6.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
             main_6.BorderSizePixel = 0
             main_6.Position = UDim2.new(0.92051065, 0, 0.100000001, 0)
             main_6.Size = UDim2.new(0, 31, 0, 31)
