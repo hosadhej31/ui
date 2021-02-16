@@ -569,6 +569,105 @@ function library:CreateWindow(winopts)
             return SliderTypes
         end
 
+        function TabTypes:CreateDropdown(Name, Options, Callback)
+            local DropdownTypes = {}
+            local SelectedItem = ""
+            Name = Name or "Dropdown"
+            Callback = Callback or function(value)
+                print("Selected Item:",value)
+            end
+
+            local dropdown_button = Instance.new("Frame")
+            local title_6 = Instance.new("TextLabel")
+            local main_6 = Instance.new("TextButton")
+            local dropdown_frame = Instance.new("Frame")
+            local UIListLayout_3 = Instance.new("UIListLayout")
+
+            dropdown_button.Name = "dropdown_button"
+            dropdown_button.Parent = tab1_container
+            dropdown_button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            dropdown_button.BorderSizePixel = 0
+            dropdown_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
+            dropdown_button.Size = UDim2.new(0, 470, 0, 40)
+
+            title_6.Name = "title"
+            title_6.Parent = dropdown_button
+            title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_6.BackgroundTransparency = 1.000
+            title_6.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_6.Size = UDim2.new(0, 412, 0, 40)
+            title_6.Font = Enum.Font.Gotham
+            title_6.Text = Name:upper()
+            title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_6.TextSize = 14.000
+            title_6.TextXAlignment = Enum.TextXAlignment.Left
+
+            main_6.Name = "main"
+            main_6.Parent = dropdown_button
+            main_6.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_6.BorderSizePixel = 0
+            main_6.Position = UDim2.new(0.92051065, 0, 0.100000001, 0)
+            main_6.Size = UDim2.new(0, 31, 0, 31)
+            main_6.Font = Enum.Font.Gotham
+            main_6.Text = "V"
+            main_6.Rotation = 90
+            main_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+            main_6.TextSize = 14.000
+
+            dropdown_frame.Name = "dropdown_frame"
+            dropdown_frame.Parent = tab1_container
+            dropdown_frame.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            dropdown_frame.BorderSizePixel = 0
+            dropdown_frame.Position = UDim2.new(0.0299999993, 0, 0.00307692308, 0)
+            dropdown_frame.Size = UDim2.new(0, 470, 0, 100)
+            dropdown_frame.Visible = false
+
+            UIListLayout_3.Parent = dropdown_frame
+            UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+
+            local function ResizeList()
+                dropdown_frame.Size = Udim2.new(0, 470, 0, UIListLayout_3.AbsoluteContentSize.Y + 10)
+            end
+
+            local function CreateItem(Name)
+                local item = Instance.new("TextButton")
+
+                item.Name = "item"
+                item.Parent = dropdown_frame
+                item.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                item.BackgroundTransparency = 1.000
+                item.Size = UDim2.new(0, 470, 0, 25)
+                item.Font = Enum.Font.Gotham
+                item.Text = Name:upper()
+                item.TextColor3 = Color3.fromRGB(255, 255, 255)
+                item.TextSize = 12.000
+
+                item.MouseButton1Click:Connect(function()
+                    if (Callback) then
+                        Callback(SelectedItem)
+                    end
+                end)
+
+                ResizeList()
+            end
+
+            if (Options ~= nil) then
+                if (#Options > 0) then
+                    for i,v in pairs(Options) do
+                        CreateItem(v)
+                    end
+                end
+            end
+
+            function DropdownTypes:Add(Name)
+                CreateItem(Name)
+            end
+
+            Resize()
+            ResizeList()
+            return DropdownTypes
+        end
+
         return TabTypes
     end
 
