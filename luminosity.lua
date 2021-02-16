@@ -23,8 +23,6 @@ function library:CreateWindow(winopts)
     local UIGradient = Instance.new("UIGradient")
     local glow = Instance.new("ImageLabel")
 
-    syn.protect_gui(Luminosity)
-
     Luminosity.Enabled = true
     Luminosity.Name = game:GetService("HttpService"):GenerateGUID(false)
     Luminosity.Parent = game.CoreGui
@@ -590,7 +588,6 @@ function library:CreateWindow(winopts)
             dropdown_button.BorderSizePixel = 0
             dropdown_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             dropdown_button.Size = UDim2.new(0, 470, 0, 40)
-            dropdown_button.Visible = true
 
             title_6.Name = "title"
             title_6.Parent = dropdown_button
@@ -603,7 +600,6 @@ function library:CreateWindow(winopts)
             title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
             title_6.TextSize = 14.000
             title_6.TextXAlignment = Enum.TextXAlignment.Left
-            title_6.Visible = true
 
             main_6.Name = "main"
             main_6.Parent = dropdown_button
@@ -616,7 +612,6 @@ function library:CreateWindow(winopts)
             main_6.Rotation = 90
             main_6.TextColor3 = Color3.fromRGB(255, 255, 255)
             main_6.TextSize = 14.000
-            main_6.Visible = true
 
             dropdown_frame.Name = "dropdown_frame"
             dropdown_frame.Parent = tab_container
