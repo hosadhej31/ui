@@ -626,7 +626,7 @@ function library:CreateWindow(winopts)
             UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
 
             local function ResizeList()
-                dropdown_frame.Size = Udim2.new(0, 470, 0, UIListLayout_3.AbsoluteContentSize.Y + 10)
+                dropdown_frame.Size = UDim2.new(0, 470, 0, UIListLayout_3.AbsoluteContentSize.Y + 10)
             end
 
             local function CreateItem(Name)
@@ -644,7 +644,7 @@ function library:CreateWindow(winopts)
 
                 item.MouseButton1Click:Connect(function()
                     SelectedItem = Name
-                    
+
                     if (Callback) then
                         Callback(SelectedItem)
                     end
