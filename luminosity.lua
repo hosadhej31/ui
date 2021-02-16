@@ -155,6 +155,12 @@ function library:CreateWindow(winopts)
         end
     end)
 
+    userinputservice.InputBegan:connect(function(input)
+        if input.KeyCode == Enum.KeyCode.RightControl then
+            Luminosity.Enabled = false
+        end
+    end)
+
     function WinTypes:CreateTab(Name, Icon)
         Name = Name or "NewTab"
         Icon = Icon or "6022668898"
