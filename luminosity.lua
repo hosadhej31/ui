@@ -628,25 +628,26 @@ function library:CreateWindow(winopts)
                 dropdown_frame.Size = UDim2.new(0, 470, 0, UIListLayout_3.AbsoluteContentSize.Y + 10)
             end
 
-            local function CreateItem(Name)
+            local function CreateItem(NameOp)
                 local item = Instance.new("TextButton")
 
-                item.Name = "item"
+                item.Name = "item_" .. NameOp
                 item.Parent = dropdown_frame
                 item.BackgroundColor3 = Color3.fromRGB(30,30,30)
                 item.BackgroundTransparency = 0.000
                 item.Size = UDim2.new(0, 470, 0, 30)
                 item.Font = Enum.Font.Gotham
-                item.Text = Name:upper()
+                item.Text = NameOp:upper()
                 item.TextColor3 = Color3.fromRGB(255, 255, 255)
                 item.TextSize = 14.000
 
                 item.MouseButton1Click:Connect(function()
-                    SelectedItem = Name
+                    SelectedItem = NameOp
+                    title_6.Text = Name:upper() .. ": " .. NameOp:upper()
 
                     for i,v in pairs(dropdown_frame:GetChildren()) do
                         if (v:IsA("TextButton")) then
-                            if (v.Name == Name) then
+                            if (v.Name == "item_" .. NameOp) then
                                 tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
                                     BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                                     TextColor3 = winopts.Highlight
