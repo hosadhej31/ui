@@ -9,7 +9,7 @@ function library:CreateWindow(winopts)
         Highlight = Color3.fromRGB(189, 84, 80)
     }
     local WinTypes = {}
-    local windowdrag, sliderdrag, tabcolor = true, false, winopts.Highlight
+    local windowdrag, sliderdrag, tabcolor = false, false, winopts.Highlight
 
     local Luminosity = Instance.new("ScreenGui")
     local core = Instance.new("Frame")
@@ -190,7 +190,7 @@ function library:CreateWindow(winopts)
         tab_container.BackgroundTransparency = 1.000
         tab_container.BorderSizePixel = 0
         tab_container.Size = UDim2.new(0, 500, 0, 325)
-        tab_container.CanvasSize = UDim2.new(0, 0, 1.75, 0)
+        tab_container.CanvasSize = UDim2.new(0, 0, 0, 0)
         tab_container.ScrollBarThickness = 1
 
         UIPadding.Parent = tab_container
@@ -218,7 +218,7 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
-            title.Text = title.Text .. ": " .. Name:upper()
+            title.Text = winopts.Name:upper() .. ": " .. Name:upper()
         end)
 
         local function Resize()
@@ -243,7 +243,7 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
-            title.Text = title.Text .. ": " .. Name:upper()
+            title.Text = winopts.Name:upper() .. ": " .. Name:upper()
         end
 
         spawn(function()
