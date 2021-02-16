@@ -698,7 +698,7 @@ function library:CreateWindow(winopts)
             end)
 
             function DropdownTypes:Add(Name)
-                local Item = CreateItem(Name)
+                CreateItem(Name)
                 ResizeList()
             end
 
