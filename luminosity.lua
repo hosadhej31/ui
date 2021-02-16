@@ -218,7 +218,7 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
-            title = title .. ": " .. Name:upper()
+            title.Text = title.Text .. ": " .. Name:upper()
         end)
 
         local function Resize()
