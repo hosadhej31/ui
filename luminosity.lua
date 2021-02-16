@@ -2,46 +2,6 @@
 
 local library = {}
 
-local function Ripple(obj)
-	spawn(
-		function()
-			local Mouse = game.Players.LocalPlayer:GetMouse()
-			local Circle = Instance.new("ImageLabel")
-			Circle.Name = "Circle"
-			Circle.Parent = obj
-			Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Circle.BackgroundTransparency = 1.000
-			Circle.ZIndex = 10
-			Circle.Image = "rbxassetid://266543268"
-			Circle.ImageColor3 = Color3.fromRGB(211, 211, 211)
-			Circle.ImageTransparency = 0.6
-			local NewX, NewY = Mouse.X - Circle.AbsolutePosition.X, Mouse.Y - Circle.AbsolutePosition.Y
-			Circle.Position = UDim2.new(0, NewX, 0, NewY)
-			local Size = 0
-			if obj.AbsoluteSize.X > obj.AbsoluteSize.Y then
-				Size = obj.AbsoluteSize.X * 1
-			elseif obj.AbsoluteSize.X < obj.AbsoluteSize.Y then
-				Size = obj.AbsoluteSize.Y * 1
-			elseif obj.AbsoluteSize.X == obj.AbsoluteSize.Y then
-				Size = obj.AbsoluteSize.X * 1
-			end
-			Circle:TweenSizeAndPosition(
-				UDim2.new(0, Size, 0, Size),
-				UDim2.new(0.5, -Size / 2, 0.5, -Size / 2),
-				"Out",
-				"Quad",
-				0.2,
-				false
-			)
-			for i = 1, 15 do
-				Circle.ImageTransparency = Circle.ImageTransparency + 0.05
-				wait()
-			end
-			Circle:Destroy()
-		end
-	)
-end
-
 function library:CreateWindow(winopts)
     winopts = winopts or {
         Name = "luminosity",
@@ -197,7 +157,7 @@ function library:CreateWindow(winopts)
 
     userinputservice.InputBegan:connect(function(input)
         if input.KeyCode == Enum.KeyCode.RightControl then
-            Luminosity.Enabled = false
+            Luminosity.Enabled = not Luminosity.Enabled
         end
     end)
 
@@ -420,13 +380,20 @@ function library:CreateWindow(winopts)
             main_3.TextColor3 = Color3.fromRGB(255, 255, 255)
             main_3.TextSize = 14.000
 
+            spawn(function()
+                while true do
+                    main_3.TextColor3 = winopts.Highlight
+                    wait(0.02)
+                end
+            end)
+
             main_3.MouseButton1Click:Connect(function()
                 tweenservice:Create(main_3, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 10}):Play()
+                wait(0.01)
                 tweenservice:Create(main_3, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 14}):Play()
 
                 if (Callback) then
                     Callback()
-                    Ripple(main)
                 end
             end)
 
