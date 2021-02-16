@@ -584,7 +584,7 @@ function library:CreateWindow(winopts)
             local UIListLayout_3 = Instance.new("UIListLayout")
 
             dropdown_button.Name = "dropdown_button"
-            dropdown_button.Parent = tab1_container
+            dropdown_button.Parent = tab_container
             dropdown_button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
             dropdown_button.BorderSizePixel = 0
             dropdown_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
