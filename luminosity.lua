@@ -572,6 +572,7 @@ function library:CreateWindow(winopts)
         function TabTypes:CreateDropdown(Name, Options, Callback)
             local DropdownTypes = {}
             local SelectedItem = ""
+            local toggled = false
             Name = Name or "Dropdown"
             Callback = Callback or function(value)
                 print("Selected Item:",value)
@@ -585,7 +586,7 @@ function library:CreateWindow(winopts)
 
             dropdown_button.Name = "dropdown_button"
             dropdown_button.Parent = tab_container
-            dropdown_button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            dropdown_button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
             dropdown_button.BorderSizePixel = 0
             dropdown_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             dropdown_button.Size = UDim2.new(0, 470, 0, 40)
@@ -606,7 +607,7 @@ function library:CreateWindow(winopts)
 
             main_6.Name = "main"
             main_6.Parent = dropdown_button
-            main_6.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_6.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             main_6.BorderSizePixel = 0
             main_6.Position = UDim2.new(0.92051065, 0, 0.100000001, 0)
             main_6.Size = UDim2.new(0, 31, 0, 31)
@@ -619,7 +620,7 @@ function library:CreateWindow(winopts)
 
             dropdown_frame.Name = "dropdown_frame"
             dropdown_frame.Parent = tab1_container
-            dropdown_frame.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            dropdown_frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
             dropdown_frame.BorderSizePixel = 0
             dropdown_frame.Position = UDim2.new(0.0299999993, 0, 0.00307692308, 0)
             dropdown_frame.Size = UDim2.new(0, 470, 0, 100)
@@ -663,6 +664,18 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
+
+            main_6.MouseButton1Click:Connect(function()
+                toggled = not toggled
+
+                if (toggled) then
+                    main_6.Rotation = 0
+                    dropdown_frame.Visible = true
+                else
+                    main_6.Rotation = 90
+                    dropdown_frame.Visible = false
+                end
+            end)
 
             function DropdownTypes:Add(Name)
                 CreateItem(Name)
