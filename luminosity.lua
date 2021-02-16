@@ -23,6 +23,8 @@ function library:CreateWindow(winopts)
     local UIGradient = Instance.new("UIGradient")
     local glow = Instance.new("ImageLabel")
 
+    syn.protect_gui(Luminosity)
+
     Luminosity.Enabled = true
     Luminosity.Name = game:GetService("HttpService"):GenerateGUID(false)
     Luminosity.Parent = game.CoreGui
