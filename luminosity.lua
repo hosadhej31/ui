@@ -699,22 +699,7 @@ function library:CreateWindow(winopts)
 
             function DropdownTypes:Add(Name)
                 local Item = CreateItem(Name)
-                table.insert(items, Name, Item)
                 ResizeList()
-            end
-
-            function DropdownTypes:Remove(Name)
-                if (Options ~= nil) then
-                    if (#Options > 0) then
-                        for i,v in pairs(Options) do
-                            if (v == Name) then
-                                local selecteditem = items[Name]
-                                selecteditem:Destroy()
-                                table.remove(items, Name)
-                            end
-                        end
-                    end
-                end
             end
 
             function DropdownTypes:SetItem(NameOp)
