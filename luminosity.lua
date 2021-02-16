@@ -643,6 +643,8 @@ function library:CreateWindow(winopts)
                 item.TextSize = 12.000
 
                 item.MouseButton1Click:Connect(function()
+                    SelectedItem = Name
+                    
                     if (Callback) then
                         Callback(SelectedItem)
                     end
@@ -661,6 +663,10 @@ function library:CreateWindow(winopts)
 
             function DropdownTypes:Add(Name)
                 CreateItem(Name)
+            end
+
+            function DropdownTypes:Get()
+                return SelectedItem
             end
 
             Resize()
