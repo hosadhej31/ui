@@ -2,6 +2,46 @@
 
 local library = {}
 
+local function Ripple(obj)
+	spawn(
+		function()
+			local Mouse = game.Players.LocalPlayer:GetMouse()
+			local Circle = Instance.new("ImageLabel")
+			Circle.Name = "Circle"
+			Circle.Parent = obj
+			Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Circle.BackgroundTransparency = 1.000
+			Circle.ZIndex = 10
+			Circle.Image = "rbxassetid://266543268"
+			Circle.ImageColor3 = Color3.fromRGB(211, 211, 211)
+			Circle.ImageTransparency = 0.6
+			local NewX, NewY = Mouse.X - Circle.AbsolutePosition.X, Mouse.Y - Circle.AbsolutePosition.Y
+			Circle.Position = UDim2.new(0, NewX, 0, NewY)
+			local Size = 0
+			if obj.AbsoluteSize.X > obj.AbsoluteSize.Y then
+				Size = obj.AbsoluteSize.X * 1
+			elseif obj.AbsoluteSize.X < obj.AbsoluteSize.Y then
+				Size = obj.AbsoluteSize.Y * 1
+			elseif obj.AbsoluteSize.X == obj.AbsoluteSize.Y then
+				Size = obj.AbsoluteSize.X * 1
+			end
+			Circle:TweenSizeAndPosition(
+				UDim2.new(0, Size, 0, Size),
+				UDim2.new(0.5, -Size / 2, 0.5, -Size / 2),
+				"Out",
+				"Quad",
+				0.2,
+				false
+			)
+			for i = 1, 15 do
+				Circle.ImageTransparency = Circle.ImageTransparency + 0.05
+				wait()
+			end
+			Circle:Destroy()
+		end
+	)
+end
+
 function library:CreateWindow(winopts)
     winopts = winopts or {
         Name = "luminosity",
@@ -386,6 +426,7 @@ function library:CreateWindow(winopts)
 
                 if (Callback) then
                     Callback()
+                    Ripple(main)
                 end
             end)
 
