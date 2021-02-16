@@ -571,6 +571,7 @@ function library:CreateWindow(winopts)
             local DropdownTypes = {}
             local SelectedItem = ""
             local toggled = false
+            local items = {}
             Name = Name or "Dropdown"
             Callback = Callback or function(value)
                 print("Selected Item:",value)
@@ -648,13 +649,12 @@ function library:CreateWindow(winopts)
                     for i,v in pairs(dropdown_frame:GetChildren()) do
                         if (v:IsA("TextButton")) then
                             if (v.Name == "item_" .. NameOp) then
-                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
                                     BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                                     TextColor3 = winopts.Highlight
                                 }):Play()
-                                wait(0.01)
                             else
-                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
                                     BackgroundColor3 = Color3.fromRGB(30, 30, 30),
                                     TextColor3 = Color3.fromRGB(255, 255, 255)
                                 }):Play()
@@ -673,12 +673,14 @@ function library:CreateWindow(winopts)
                 end)
 
                 ResizeList()
+                return item
             end
 
             if (Options ~= nil) then
                 if (#Options > 0) then
                     for i,v in pairs(Options) do
-                        CreateItem(v)
+                        local Item = CreateItem(v)
+                        table.insert(items, v, Item)
                     end
                 end
             end
@@ -696,11 +698,39 @@ function library:CreateWindow(winopts)
             end)
 
             function DropdownTypes:Add(Name)
-                CreateItem(Name)
+                local Item = CreateItem(Name)
+                table.insert(items, Name, Item)
                 ResizeList()
             end
 
-            function DropdownTypes:Get()
+            function DropdownTypes:Remove(Name)
+                if (Options ~= nil) then
+                    if (#Options > 0) then
+                        for i,v in pairs(Options) do
+                            if (v == Name) then
+                                local selecteditem = items[Name]
+                                selecteditem:Destroy()
+                                table.remove(items, Name)
+                            end
+                        end
+                    end
+                end
+            end
+
+            function DropdownTypes:SetItem(NameOp)
+                if (Options ~= nil) then
+                    if (#Options > 0) then
+                        for i,v in pairs(Options) do
+                            if (v == NameOp) then
+                                SelectedItem = NameOp
+                                title_6.Text = Name:upper() .. ": " .. NameOp:upper()
+                            end
+                        end
+                    end
+                end
+            end
+
+            function DropdownTypes:GetItem()
                 return SelectedItem
             end
 
