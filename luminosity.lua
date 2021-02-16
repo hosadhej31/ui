@@ -155,7 +155,7 @@ function library:CreateWindow(winopts)
 
     function WinTypes:CreateTab(Name, Icon)
         Name = Name or "NewTab"
-        Icon = Icon or "5012544693"
+        Icon = Icon or "6022668898"
         local TabTypes = {}
         local tab_select = Instance.new("TextButton")
         local icon = Instance.new("ImageLabel")
