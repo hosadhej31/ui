@@ -117,7 +117,7 @@ function library:CreateWindow(winopts)
 
     spawn(function()
         while true do
-            title.BackgroundColor3 = winopts.Highlight
+            title.TextColor3 = winopts.Highlight
             wait(0.02)
         end
     end)
@@ -218,6 +218,7 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
+            title = title .. ": " .. Name:upper()
         end)
 
         local function Resize()
@@ -242,6 +243,7 @@ function library:CreateWindow(winopts)
                     end
                 end
             end
+            title = title .. ": " .. Name:upper()
         end
 
         spawn(function()
@@ -305,7 +307,7 @@ function library:CreateWindow(winopts)
 
             spawn(function()
                 while true do
-                    icon_2.BackgroundColor3 = winopts.Highlight
+                    icon_2.ImageColor3 = winopts.Highlight
                     wait(0.02)
                 end
             end)
