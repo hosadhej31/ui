@@ -679,6 +679,7 @@ function library:CreateWindow(winopts)
 
             function DropdownTypes:Add(Name)
                 CreateItem(Name)
+                ResizeList()
             end
 
             function DropdownTypes:Get()
