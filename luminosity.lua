@@ -619,7 +619,7 @@ function library:CreateWindow(winopts)
             main_6.Visible = true
 
             dropdown_frame.Name = "dropdown_frame"
-            dropdown_frame.Parent = tab1_container
+            dropdown_frame.Parent = tab_container
             dropdown_frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
             dropdown_frame.BorderSizePixel = 0
             dropdown_frame.Position = UDim2.new(0.0299999993, 0, 0.00307692308, 0)
