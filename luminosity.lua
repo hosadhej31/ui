@@ -643,6 +643,19 @@ function library:CreateWindow(winopts)
 
                 item.MouseButton1Click:Connect(function()
                     SelectedItem = Name
+                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 10}):Play()
+                    wait(0.01)
+                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 14}):Play()
+                    
+                    for i,v in pairs(dropdown_frame:GetChildren()) do
+                        if (v:IsA("TextButton")) then
+                            if (v.Name == Name) then
+                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextColor3 = winopts.Highlight}):Play()
+                            else
+                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextColor3 = Color3.new(1, 1, 1)}):Play()
+                            end
+                        end
+                    end
 
                     if (Callback) then
                         Callback(SelectedItem)
@@ -664,10 +677,10 @@ function library:CreateWindow(winopts)
                 toggled = not toggled
 
                 if (toggled) then
-                    main_6.Rotation = 0
+                    tweenservice:Create(main_6, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {Rotation = 0}):Play()
                     dropdown_frame.Visible = true
                 else
-                    main_6.Rotation = 90
+                    tweenservice:Create(main_6, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {Rotation = 90}):Play()
                     dropdown_frame.Visible = false
                 end
             end)
