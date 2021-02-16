@@ -633,29 +633,38 @@ function library:CreateWindow(winopts)
 
                 item.Name = "item"
                 item.Parent = dropdown_frame
-                item.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                item.BackgroundTransparency = 1.000
-                item.Size = UDim2.new(0, 470, 0, 25)
+                item.BackgroundColor3 = Color3.fromRGB(30,30,30)
+                item.BackgroundTransparency = 0.000
+                item.Size = UDim2.new(0, 470, 0, 30)
                 item.Font = Enum.Font.Gotham
                 item.Text = Name:upper()
                 item.TextColor3 = Color3.fromRGB(255, 255, 255)
-                item.TextSize = 12.000
+                item.TextSize = 14.000
 
                 item.MouseButton1Click:Connect(function()
                     SelectedItem = Name
-                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 10}):Play()
-                    wait(0.01)
-                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 14}):Play()
-                    
+
                     for i,v in pairs(dropdown_frame:GetChildren()) do
                         if (v:IsA("TextButton")) then
                             if (v.Name == Name) then
-                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextColor3 = winopts.Highlight}):Play()
+                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                    BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                                    TextColor3 = winopts.Highlight
+                                }):Play()
+                                wait(0.01)
                             else
-                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextColor3 = Color3.new(1, 1, 1)}):Play()
+                                tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                    BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+                                    TextColor3 = Color3.fromRGB(255, 255, 255)
+                                }):Play()
+                                wait(0.01)
                             end
                         end
                     end
+
+                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 10}):Play()
+                    wait(0.01)
+                    tweenservice:Create(item, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {TextSize = 14}):Play()
 
                     if (Callback) then
                         Callback(SelectedItem)
