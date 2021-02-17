@@ -709,6 +709,10 @@ function library:CreateWindow(winopts)
                             if (v == NameOp) then
                                 SelectedItem = NameOp
                                 title_6.Text = Name:upper() .. ": " .. NameOp:upper()
+                                
+                                if (Callback) then
+                                    Callback(SelectedItem)
+                                end
                             end
                         end
                     end
