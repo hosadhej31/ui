@@ -595,12 +595,65 @@ function library:CreateWindow(winopts)
             return SliderTypes
         end
 
+        function TabTypes:CreateTextbox(Name, Callback)
+            local current = ""
+            local old = ""
+            Name = Name or "TEXTBOX"
+            Callback = Callback or function(new,old)
+                print("New:",new,"Old:",old)
+            end
+
+            local textbox = Instance.new("Frame")
+            local title_4 = Instance.new("TextLabel")
+            local main_5 = Instance.new("TextBox")
+
+            textbox.Name = "textbox"
+            textbox.Parent = tab_container
+            textbox.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            textbox.BorderSizePixel = 0
+            textbox.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
+            textbox.Size = UDim2.new(0, 470, 0, 40)
+
+            title_4.Name = "title"
+            title_4.Parent = textbox
+            title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_4.BackgroundTransparency = 1.000
+            title_4.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_4.Size = UDim2.new(0, 200, 0, 40)
+            title_4.Font = Enum.Font.Gotham
+            title_4.Text = Name
+            title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_4.TextSize = 14.000
+            title_4.TextXAlignment = Enum.TextXAlignment.Left
+
+            main_5.Name = "main"
+            main_5.Parent = textbox
+            main_5.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_5.BorderSizePixel = 0
+            main_5.Position = UDim2.new(0.393617034, 0, 0.200000003, 0)
+            main_5.Size = UDim2.new(0, 279, 0, 25)
+            main_5.Font = Enum.Font.SourceSans
+            main_5.PlaceholderText = "Type something here ..."
+            main_5.Text = ""
+            main_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+            main_5.TextSize = 14.000
+
+            main_5.FocusLost:Connect(function()
+                old = current
+                current = main_5.Text
+
+                if (Callback) then
+                    Callback(current,old)
+                end
+            end)
+        end
+
         function TabTypes:CreateDropdown(Name, Options, Callback)
             local DropdownTypes = {}
             local SelectedItem = ""
             local toggled = false
             local items = {}
-            Name = Name or "Dropdown"
+            Name = Name or "DROP"
             Callback = Callback or function(value)
                 print("Selected Item:",value)
             end
