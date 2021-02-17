@@ -561,6 +561,10 @@ function library:CreateWindow(winopts)
 
             function SliderTypes:SetValue(svalue)
                 slvalue = svalue
+                tweenservice:Create(bar, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { 
+                    Size = UDim2.new(svalue / Options.Max, 0, 1, 0)
+                }):Play()
+                value.Text = tostring(slvalue) .. "/" .. Options.Max
             end
 
             Resize()
