@@ -344,6 +344,22 @@ function library:CreateWindow(winopts)
 
             function ToggleTypes:SetState(state)
                 toggled = state
+
+                if (Callback) then
+                    Callback(toggled)
+                end
+
+                if (toggled) then
+                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                        ImageTransparency = 0,
+                        Rotation = 360
+                    }):Play()
+                else
+                    tweenservice:Create(icon_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                        ImageTransparency = 1,
+                        Rotation = 0
+                    }):Play()
+                end
             end
 
             Resize()
@@ -531,7 +547,10 @@ function library:CreateWindow(winopts)
                 local s = math.floor(((pos.X.Scale * Options.Max) / Options.Max) * (Options.Max - Options.Min) + Options.Min)
                 slvalue = s
 				value.Text = tostring(s) .. "/" .. Options.Max
-				callback(s)
+
+				if (callback) then
+                    callback(s)
+                end
 			end
 
 			main_4.InputBegan:Connect(function(input)
@@ -561,10 +580,15 @@ function library:CreateWindow(winopts)
 
             function SliderTypes:SetValue(svalue)
                 slvalue = svalue
+
                 tweenservice:Create(bar, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { 
-                    Size = UDim2.new(svalue / Options.Max, 0, 1, 0)
+                    Size = UDim2.new(slvalue / Options.Max, 0, 1, 0)
                 }):Play()
                 value.Text = tostring(slvalue) .. "/" .. Options.Max
+
+                if (callback) then
+                    callback(slvalue)
+                end
             end
 
             Resize()
