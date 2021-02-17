@@ -609,7 +609,7 @@ function library:CreateWindow(winopts)
 
             textbox.Name = "textbox"
             textbox.Parent = tab_container
-            textbox.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            textbox.BackgroundColor3 = Color3.fromRGB(20,20,20)
             textbox.BorderSizePixel = 0
             textbox.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             textbox.Size = UDim2.new(0, 470, 0, 40)
@@ -628,7 +628,7 @@ function library:CreateWindow(winopts)
 
             main_5.Name = "main"
             main_5.Parent = textbox
-            main_5.BackgroundColor3 = Color3.fromRGB(38, 34, 62)
+            main_5.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
             main_5.BorderSizePixel = 0
             main_5.Position = UDim2.new(0.393617034, 0, 0.200000003, 0)
             main_5.Size = UDim2.new(0, 279, 0, 25)
