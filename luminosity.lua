@@ -609,7 +609,7 @@ function library:CreateWindow(winopts)
 
             textbox.Name = "textbox"
             textbox.Parent = tab_container
-            textbox.BackgroundColor3 = Color3.fromRGB(20,20,20)
+            textbox.BackgroundColor3 = Color3.fromRGB(30,30,30)
             textbox.BorderSizePixel = 0
             textbox.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             textbox.Size = UDim2.new(0, 470, 0, 40)
@@ -621,21 +621,21 @@ function library:CreateWindow(winopts)
             title_4.Position = UDim2.new(0.0425531901, 0, 0, 0)
             title_4.Size = UDim2.new(0, 200, 0, 40)
             title_4.Font = Enum.Font.Gotham
-            title_4.Text = Name
+            title_4.Text = Name:upper()
             title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
             title_4.TextSize = 14.000
             title_4.TextXAlignment = Enum.TextXAlignment.Left
 
             main_5.Name = "main"
             main_5.Parent = textbox
-            main_5.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            main_5.BackgroundColor3 = Color3.fromRGB(15,15,15)
             main_5.BorderSizePixel = 0
             main_5.Position = UDim2.new(0.393617034, 0, 0.200000003, 0)
             main_5.Size = UDim2.new(0, 279, 0, 25)
-            main_5.Font = Enum.Font.SourceSans
+            main_5.Font = Enum.Font.Gotham
             main_5.PlaceholderText = "Type something here ..."
             main_5.Text = ""
-            main_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+            main_5.TextColor3 = Color3.fromRGB(255,255,255)
             main_5.TextSize = 14.000
 
             main_5.FocusLost:Connect(function()
@@ -760,7 +760,7 @@ function library:CreateWindow(winopts)
                 if (#Options > 0) then
                     for i,v in pairs(Options) do
                         local Item = CreateItem(v)
-                        table.insert(items, v, Item)
+                        table.insert(items, #items, Item)
                     end
                 end
             end
@@ -778,8 +778,15 @@ function library:CreateWindow(winopts)
             end)
 
             function DropdownTypes:Add(Name)
-                CreateItem(Name)
+                local Item = CreateItem(Name)
+                table.insert(items, #items, Item)
                 ResizeList()
+            end
+
+            function DropdownTypes:RemoveAll()
+                for i,v in pairs(items) do
+                    v:Destroy()
+                end
             end
 
             function DropdownTypes:SetItem(NameOp)
