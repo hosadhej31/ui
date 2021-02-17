@@ -658,7 +658,6 @@ function library:CreateWindow(winopts)
                                     BackgroundColor3 = Color3.fromRGB(30, 30, 30),
                                     TextColor3 = Color3.fromRGB(255, 255, 255)
                                 }):Play()
-                                wait(0.01)
                             end
                         end
                     end
@@ -709,7 +708,23 @@ function library:CreateWindow(winopts)
                             if (v == NameOp) then
                                 SelectedItem = NameOp
                                 title_6.Text = Name:upper() .. ": " .. NameOp:upper()
-                                
+
+                                for i,v in pairs(dropdown_frame:GetChildren()) do
+                                    if (v:IsA("TextButton")) then
+                                        if (v.Name == "item_" .. NameOp) then
+                                            tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                                BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                                                TextColor3 = winopts.Highlight
+                                            }):Play()
+                                        else
+                                            tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
+                                                BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+                                                TextColor3 = Color3.fromRGB(255, 255, 255)
+                                            }):Play()
+                                        end
+                                    end
+                                end
+
                                 if (Callback) then
                                     Callback(SelectedItem)
                                 end
