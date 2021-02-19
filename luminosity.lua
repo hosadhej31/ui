@@ -1073,6 +1073,10 @@ function library:CreateWindow(winopts)
                     main_7.BackgroundColor3 = winopts.DarkAccent
                     main_8.BackgroundColor3 = winopts.DarkAccent
                     main_9.BackgroundColor3 = winopts.DarkAccent
+
+                    slider_1.BackgroundColor3 = winopts.Accent1
+                    slider_2.BackgroundColor3 = winopts.Accent1
+                    slider_3.BackgroundColor3 = winopts.Accent1
                     wait(0.02)
                 end
             end)
