@@ -6,8 +6,12 @@ function library:CreateWindow(winopts)
     winopts = winopts or {
         Name = "luminosity",
         Version = "1.0.0",
-        Highlight = Color3.fromRGB(189, 84, 80)
+        Highlight = Color3.fromRGB(189, 84, 80),
+        DarkAccent = Color3.fromRGB(15, 15, 15),
+        Accent1 = Color3.fromRGB(25, 25, 25),
+        Accent2 = Color3.fromRGB(30, 30, 30)
     }
+
     local WinTypes = {}
     local windowdrag, sliderdrag, tabcolor = false, false, winopts.Highlight
 
@@ -18,19 +22,25 @@ function library:CreateWindow(winopts)
     local title = Instance.new("TextLabel")
     local version = Instance.new("TextLabel")
     local main = Instance.new("Frame")
-    local searchbar = Instance.new("TextBox")
     local linebar = Instance.new("Frame")
     local UIGradient = Instance.new("UIGradient")
     local glow = Instance.new("ImageLabel")
 
+    if (syn.protect_gui) then
+        syn.protect_gui(Luminosity)
+    elseif (gethui) then
+        Luminosity.Parent = gethui()
+    else
+        Luminosity.Parent = game.CoreGui
+    end
+
     Luminosity.Enabled = true
     Luminosity.Name = game:GetService("HttpService"):GenerateGUID(false)
-    Luminosity.Parent = game.CoreGui
     Luminosity.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     core.Name = "core"
     core.Parent = Luminosity
-    core.BackgroundColor3 = Color3.fromRGB(15,15,15)
+    core.BackgroundColor3 = winopts.DarkAccent
     core.BorderColor3 = Color3.fromRGB(66, 66, 66)
     core.BorderSizePixel = 0
     core.Position = UDim2.new(0.3111251, 0, 0.281828105, 0)
@@ -38,7 +48,7 @@ function library:CreateWindow(winopts)
 
     sidebar.Name = "sidebar"
     sidebar.Parent = core
-    sidebar.BackgroundColor3 = Color3.fromRGB(25,25,25)
+    sidebar.BackgroundColor3 = winopts.Accent1
     sidebar.BorderSizePixel = 0
     sidebar.Size = UDim2.new(0, 50, 0, 400)
 
@@ -71,25 +81,11 @@ function library:CreateWindow(winopts)
 
     main.Name = "main"
     main.Parent = core
-    main.BackgroundColor3 = Color3.fromRGB(25,25,25)
+    main.BackgroundColor3 = winopts.Accent1
     main.BorderColor3 = Color3.fromRGB(66, 66, 66)
     main.BorderSizePixel = 0
     main.Position = UDim2.new(0.125, 0, 0.125, 0)
     main.Size = UDim2.new(0, 500, 0, 325)
-
-    searchbar.Name = "searchbar"
-    searchbar.Parent = core
-    searchbar.BackgroundColor3 = Color3.fromRGB(35,35,35)
-    searchbar.BorderSizePixel = 0
-    searchbar.Position = UDim2.new(0.349999994, 0, 0.0250000004, 0)
-    searchbar.Size = UDim2.new(0, 365, 0, 25)
-    searchbar.Font = Enum.Font.SourceSans
-    searchbar.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-    searchbar.PlaceholderText = "Search for something here ..."
-    searchbar.Text = ""
-    searchbar.TextColor3 = Color3.fromRGB(255, 255, 255)
-    searchbar.TextSize = 14.000
-    searchbar.Visible = false
 
     linebar.Name = "linebar"
     linebar.Parent = core
@@ -118,6 +114,7 @@ function library:CreateWindow(winopts)
     spawn(function()
         while true do
             title.TextColor3 = winopts.Highlight
+            core.BackgroundColor3 = winopts.DarkAccent
             wait(0.02)
         end
     end)
@@ -274,14 +271,14 @@ function library:CreateWindow(winopts)
 
             toggle.Name = "toggle"
             toggle.Parent = tab_container
-            toggle.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            toggle.BackgroundColor3 = winopts.Accent2
             toggle.BorderSizePixel = 0
             toggle.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             toggle.Size = UDim2.new(0, 470, 0, 40)
 
             main_2.Name = "main"
             main_2.Parent = toggle
-            main_2.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            main_2.BackgroundColor3 = winopts.DarkAccent
             main_2.BorderSizePixel = 0
             main_2.Position = UDim2.new(0.93599999, 0, 0.286000013, 0)
             main_2.Size = UDim2.new(0, 20, 0, 20)
@@ -314,6 +311,7 @@ function library:CreateWindow(winopts)
             spawn(function()
                 while true do
                     icon_2.ImageColor3 = winopts.Highlight
+                    main_2.BackgroundColor3 = winopts.DarkAccent
                     wait(0.02)
                 end
             end)
@@ -378,14 +376,14 @@ function library:CreateWindow(winopts)
 
             button.Name = "button"
             button.Parent = tab_container
-            button.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            button.BackgroundColor3 = winopts.Accent2
             button.BorderSizePixel = 0
             button.Position = UDim2.new(0.0299999993, 0, 0.215384617, 0)
             button.Size = UDim2.new(0, 470, 0, 40)
 
             main_3.Name = "main"
             main_3.Parent = button
-            main_3.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            main_3.BackgroundColor3 = winopts.DarkAccent
             main_3.BorderSizePixel = 0
             main_3.Position = UDim2.new(0.0120000308, 0, 0.100000001, 0)
             main_3.Size = UDim2.new(0, 459, 0, 31)
@@ -396,6 +394,7 @@ function library:CreateWindow(winopts)
 
             spawn(function()
                 while true do
+                    main_3.BackgroundColor3 = winopts.DarkAccent
                     main_3.TextColor3 = winopts.Highlight
                     wait(0.02)
                 end
@@ -442,9 +441,10 @@ function library:CreateWindow(winopts)
 
             local label = Instance.new("Frame")
             local title_5 = Instance.new("TextLabel")
+
             label.Name = "label"
             label.Parent = tab_container
-            label.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            label.BackgroundColor3 = winopts.DarkAccent
             label.BorderSizePixel = 0
             label.Position = UDim2.new(0.0299999993, 0, 0.215384617, 0)
             label.Size = UDim2.new(0, 470, 0, 25)
@@ -458,6 +458,13 @@ function library:CreateWindow(winopts)
             title_5.Text = Name
             title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
             title_5.TextSize = 14.000
+
+            spawn(function()
+                while true do
+                    label.BackgroundColor3 = winopts.DarkAccent
+                    wait(0.02)
+                end
+            end)
 
             function LabelTypes:GetText()
                 return title_5.Text
@@ -492,7 +499,7 @@ function library:CreateWindow(winopts)
 
             slider.Name = "slider"
             slider.Parent = tab_container
-            slider.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            slider.BackgroundColor3 = winopts.Accent2
             slider.BorderSizePixel = 0
             slider.Position = UDim2.new(0.0299999993, 0, 0.384615391, 0)
             slider.Size = UDim2.new(0, 470, 0, 50)
@@ -511,7 +518,7 @@ function library:CreateWindow(winopts)
 
             main_4.Name = "main"
             main_4.Parent = slider
-            main_4.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+            main_4.BackgroundColor3 = winopts.DarkAccent
             main_4.BorderSizePixel = 0
             main_4.Position = UDim2.new(0.0425531901, 0, 0.685000002, 0)
             main_4.Size = UDim2.new(0, 439, 0, 5)
@@ -537,6 +544,7 @@ function library:CreateWindow(winopts)
             spawn(function()
                 while true do
                     bar.BackgroundColor3 = winopts.Highlight
+                    main_4.BackgroundColor3 = winopts.DarkAccent
                     wait(0.02)
                 end
             end)
@@ -609,7 +617,7 @@ function library:CreateWindow(winopts)
 
             textbox.Name = "textbox"
             textbox.Parent = tab_container
-            textbox.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            textbox.BackgroundColor3 = winopts.Accent2
             textbox.BorderSizePixel = 0
             textbox.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             textbox.Size = UDim2.new(0, 470, 0, 40)
@@ -628,7 +636,7 @@ function library:CreateWindow(winopts)
 
             main_5.Name = "main"
             main_5.Parent = textbox
-            main_5.BackgroundColor3 = Color3.fromRGB(15,15,15)
+            main_5.BackgroundColor3 = winopts.DarkAccent
             main_5.BorderSizePixel = 0
             main_5.Position = UDim2.new(0.393617034, 0, 0.200000003, 0)
             main_5.Size = UDim2.new(0, 279, 0, 25)
@@ -637,6 +645,13 @@ function library:CreateWindow(winopts)
             main_5.Text = ""
             main_5.TextColor3 = Color3.fromRGB(255,255,255)
             main_5.TextSize = 14.000
+
+            spawn(function()
+                while true do
+                    main_5.BackgroundColor3 = winopts.DarkAccent
+                    wait(0.02)
+                end
+            end)
 
             main_5.FocusLost:Connect(function()
                 old = current
@@ -697,7 +712,7 @@ function library:CreateWindow(winopts)
 
             dropdown_frame.Name = "dropdown_frame"
             dropdown_frame.Parent = tab_container
-            dropdown_frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            dropdown_frame.BackgroundColor3 = winopts.Accent2
             dropdown_frame.BorderSizePixel = 0
             dropdown_frame.Position = UDim2.new(0.0299999993, 0, 0.00307692308, 0)
             dropdown_frame.Size = UDim2.new(0, 470, 0, 100)
@@ -715,7 +730,7 @@ function library:CreateWindow(winopts)
 
                 item.Name = "item_" .. NameOp
                 item.Parent = dropdown_frame
-                item.BackgroundColor3 = Color3.fromRGB(30,30,30)
+                item.BackgroundColor3 = winopts.Accent2
                 item.BorderSizePixel = 0
                 item.Size = UDim2.new(0, 470, 0, 30)
                 item.Font = Enum.Font.Gotham
@@ -731,12 +746,12 @@ function library:CreateWindow(winopts)
                         if (v:IsA("TextButton")) then
                             if (v.Name == "item_" .. NameOp) then
                                 tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                                    BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                                    BackgroundColor3 = winopts.DarkAccent,
                                     TextColor3 = winopts.Highlight
                                 }):Play()
                             else
                                 tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                                    BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+                                    BackgroundColor3 = winopts.Accent2,
                                     TextColor3 = Color3.fromRGB(255, 255, 255)
                                 }):Play()
                             end
@@ -801,12 +816,12 @@ function library:CreateWindow(winopts)
                                     if (v:IsA("TextButton")) then
                                         if (v.Name == "item_" .. NameOp) then
                                             tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                                                BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                                                BackgroundColor3 = winopts.DarkAccent,
                                                 TextColor3 = winopts.Highlight
                                             }):Play()
                                         else
                                             tweenservice:Create(v, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {
-                                                BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+                                                BackgroundColor3 = winopts.Accent2,
                                                 TextColor3 = Color3.fromRGB(255, 255, 255)
                                             }):Play()
                                         end
@@ -829,6 +844,345 @@ function library:CreateWindow(winopts)
             Resize()
             ResizeList()
             return DropdownTypes
+        end
+
+        function TabTypes:CreateColorpicker(Name, Callback)
+            local ColorpickerTypes = {}
+            Name = Name:upper() or "COLORPICKER"
+            Callback = function(color)
+                print("R:",color.R,"G:",color.G,"B:",color.B)
+            end
+            local dragging = false
+            local red = 255
+            local green = 255
+            local blue = 255
+
+            local colorpicker_button = Instance.new("Frame")
+            local title_6 = Instance.new("TextLabel")
+            local color = Instance.new("Frame")
+            local main_6 = Instance.new("TextButton")
+            local colorpicker_frame = Instance.new("Frame")
+            local slider_1 = Instance.new("Frame")
+            local title_7 = Instance.new("TextLabel")
+            local main_7 = Instance.new("Frame")
+            local bar_1 = Instance.new("Frame")
+            local value_1 = Instance.new("TextLabel")
+            local UIListLayout_4 = Instance.new("UIListLayout")
+            local slider_2 = Instance.new("Frame")
+            local title_8 = Instance.new("TextLabel")
+            local main_8 = Instance.new("Frame")
+            local bar_2 = Instance.new("Frame")
+            local value_2 = Instance.new("TextLabel")
+            local slider_3 = Instance.new("Frame")
+            local title_9 = Instance.new("TextLabel")
+            local main_9 = Instance.new("Frame")
+            local bar_3 = Instance.new("Frame")
+            local value_3 = Instance.new("TextLabel")
+
+            colorpicker_button.Name = "colorpicker_button"
+            colorpicker_button.Parent = tab_container
+            colorpicker_button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            colorpicker_button.BorderSizePixel = 0
+            colorpicker_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
+            colorpicker_button.Size = UDim2.new(0, 470, 0, 40)
+
+            title_6.Name = "title"
+            title_6.Parent = colorpicker_button
+            title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_6.BackgroundTransparency = 1.000
+            title_6.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_6.Size = UDim2.new(0, 412, 0, 40)
+            title_6.Font = Enum.Font.Gotham
+            title_6.Text = Name
+            title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_6.TextSize = 14.000
+            title_6.TextXAlignment = Enum.TextXAlignment.Left
+
+            color.Name = "color"
+            color.Parent = colorpicker_button
+            color.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            color.Position = UDim2.new(0.925531924, 0, 0.200000003, 0)
+            color.Size = UDim2.new(0, 24, 0, 24)
+
+            main_6.Name = "main"
+            main_6.Parent = color
+            main_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            main_6.BackgroundTransparency = 1.000
+            main_6.Size = UDim2.new(0, 24, 0, 24)
+            main_6.Font = Enum.Font.SourceSans
+            main_6.Text = ""
+            main_6.TextColor3 = Color3.fromRGB(0, 0, 0)
+            main_6.TextSize = 14.000
+
+            colorpicker_frame.Name = "colorpicker_frame"
+            colorpicker_frame.Parent = tab_container
+            colorpicker_frame.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            colorpicker_frame.BorderSizePixel = 0
+            colorpicker_frame.Position = UDim2.new(0.0299999993, 0, 0.184615478, 0)
+            colorpicker_frame.Size = UDim2.new(0, 470, 0, 150)
+            colorpicker_frame.Visible = false
+
+            -- First Slider
+            slider_1.Name = "slider"
+            slider_1.Parent = colorpicker_frame
+            slider_1.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            slider_1.BorderSizePixel = 0
+            slider_1.Position = UDim2.new(0.0299999993, 0, 0.384615391, 0)
+            slider_1.Size = UDim2.new(0, 470, 0, 50)
+
+            title_7.Name = "title"
+            title_7.Parent = slider_1
+            title_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_7.BackgroundTransparency = 1.000
+            title_7.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_7.Size = UDim2.new(0, 289, 0, 34)
+            title_7.Font = Enum.Font.Gotham
+            title_7.Text = "RED"
+            title_7.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_7.TextSize = 14.000
+            title_7.TextXAlignment = Enum.TextXAlignment.Left
+
+            main_7.Name = "main"
+            main_7.Parent = slider_1
+            main_7.BackgroundColor3 = Color3.fromRGB(195, 195, 195)
+            main_7.BorderSizePixel = 0
+            main_7.Position = UDim2.new(0.0425531901, 0, 0.685000002, 0)
+            main_7.Size = UDim2.new(0, 439, 0, 5)
+
+            bar_1.Name = "bar"
+            bar_1.Parent = main_7
+            bar_1.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
+            bar_1.BorderSizePixel = 0
+            bar_1.Size = UDim2.new(0, 100, 0, 5)
+
+            value_1.Name = "value"
+            value_1.Parent = slider_1
+            value_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            value_1.BackgroundTransparency = 1.000
+            value_1.Position = UDim2.new(0.657446802, 0, 0, 0)
+            value_1.Size = UDim2.new(0, 150, 0, 34)
+            value_1.Font = Enum.Font.Gotham
+            value_1.Text = "0/255"
+            value_1.TextColor3 = Color3.fromRGB(255, 255, 255)
+            value_1.TextSize = 14.000
+            value_1.TextXAlignment = Enum.TextXAlignment.Right
+
+            UIListLayout_4.Parent = colorpicker_frame
+            UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+
+            -- Seocnd Slider
+            slider_2.Name = "slider"
+            slider_2.Parent = colorpicker_frame
+            slider_2.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            slider_2.BorderSizePixel = 0
+            slider_2.Position = UDim2.new(0.0299999993, 0, 0.384615391, 0)
+            slider_2.Size = UDim2.new(0, 470, 0, 50)
+
+            title_8.Name = "title"
+            title_8.Parent = slider_2
+            title_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_8.BackgroundTransparency = 1.000
+            title_8.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_8.Size = UDim2.new(0, 289, 0, 34)
+            title_8.Font = Enum.Font.Gotham
+            title_8.Text = "GREEN"
+            title_8.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_8.TextSize = 14.000
+            title_8.TextXAlignment = Enum.TextXAlignment.Left
+
+            main_8.Name = "main"
+            main_8.Parent = slider_2
+            main_8.BackgroundColor3 = Color3.fromRGB(195, 195, 195)
+            main_8.BorderSizePixel = 0
+            main_8.Position = UDim2.new(0.0425531901, 0, 0.685000002, 0)
+            main_8.Size = UDim2.new(0, 439, 0, 5)
+
+            bar_2.Name = "bar"
+            bar_2.Parent = main_8
+            bar_2.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
+            bar_2.BorderSizePixel = 0
+            bar_2.Size = UDim2.new(0, 100, 0, 5)
+
+            value_2.Name = "value"
+            value_2.Parent = slider_2
+            value_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            value_2.BackgroundTransparency = 1.000
+            value_2.Position = UDim2.new(0.657446802, 0, 0, 0)
+            value_2.Size = UDim2.new(0, 150, 0, 34)
+            value_2.Font = Enum.Font.Gotham
+            value_2.Text = "0/255"
+            value_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+            value_2.TextSize = 14.000
+            value_2.TextXAlignment = Enum.TextXAlignment.Right
+
+            -- Third Second
+            slider_3.Name = "slider"
+            slider_3.Parent = colorpicker_frame
+            slider_3.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            slider_3.BorderSizePixel = 0
+            slider_3.Position = UDim2.new(0.0299999993, 0, 0.384615391, 0)
+            slider_3.Size = UDim2.new(0, 470, 0, 50)
+
+            title_9.Name = "title"
+            title_9.Parent = slider_3
+            title_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            title_9.BackgroundTransparency = 1.000
+            title_9.Position = UDim2.new(0.0425531901, 0, 0, 0)
+            title_9.Size = UDim2.new(0, 289, 0, 34)
+            title_9.Font = Enum.Font.Gotham
+            title_9.Text = "BLUE"
+            title_9.TextColor3 = Color3.fromRGB(255, 255, 255)
+            title_9.TextSize = 14.000
+            title_9.TextXAlignment = Enum.TextXAlignment.Left
+
+            main_9.Name = "main"
+            main_9.Parent = slider_3
+            main_9.BackgroundColor3 = Color3.fromRGB(195, 195, 195)
+            main_9.BorderSizePixel = 0
+            main_9.Position = UDim2.new(0.0425531901, 0, 0.685000002, 0)
+            main_9.Size = UDim2.new(0, 439, 0, 5)
+
+            bar_3.Name = "bar"
+            bar_3.Parent = main_9
+            bar_3.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
+            bar_3.BorderSizePixel = 0
+            bar_3.Size = UDim2.new(0, 100, 0, 5)
+
+            value_3.Name = "value"
+            value_3.Parent = slider_3
+            value_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            value_3.BackgroundTransparency = 1.000
+            value_3.Position = UDim2.new(0.657446802, 0, 0, 0)
+            value_3.Size = UDim2.new(0, 150, 0, 34)
+            value_3.Font = Enum.Font.Gotham
+            value_3.Text = "0/255"
+            value_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+            value_3.TextSize = 14.000
+            value_3.TextXAlignment = Enum.TextXAlignment.Right
+
+            spawn(function()
+                while true do
+                    color.BackgroundColor3 = Color3.fromRGB(red,green,blue)
+
+                    bar_1.BackgroundColor3 = Color3.fromRGB(red,green,blue)
+                    bar_2.BackgroundColor3 = Color3.fromRGB(red,green,blue)
+                    bar_3.BackgroundColor3 = Color3.fromRGB(red,green,blue)
+                    
+                    main_7.BackgroundColor3 = winopts.DarkAccent
+                    main_8.BackgroundColor3 = winopts.DarkAccent
+                    main_9.BackgroundColor3 = winopts.DarkAccent
+                    wait(0.02)
+                end
+            end)
+
+            -- Button
+            main_6.MouseButton1Click:Connect(function()
+                colorpicker_frame.Visible = not colorpicker_frame.Visible
+            end)
+
+            -- Sliders
+            local function slide(input,i)
+				if (i == 1) then
+                    local pos = UDim2.new(math.clamp((input.Position.X - main_7.AbsolutePosition.X) / main_7.AbsoluteSize.X, 0, 1), 0, 1, 0)
+                    tweenservice:Create(bar_1, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { Size = pos }):Play()
+                    local s = math.floor(((pos.X.Scale * 255) / 255) * (255 - 0) + 0)
+                    red = s
+                    value_1.Text = tostring(s) .. "/255"
+
+                    if (Callback) then
+                        Callback(Color3.fromRGB(red,green,blue))
+                    end
+                elseif (i == 2) then
+                    local pos = UDim2.new(math.clamp((input.Position.X - main_8.AbsolutePosition.X) / main_8.AbsoluteSize.X, 0, 1), 0, 1, 0)
+                    tweenservice:Create(bar_2, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { Size = pos }):Play()
+                    local s = math.floor(((pos.X.Scale * 255) / 255) * (255 - 0) + 0)
+                    green = s
+                    value_2.Text = tostring(s) .. "/255"
+
+                    if (Callback) then
+                        Callback(Color3.fromRGB(red,green,blue))
+                    end
+                elseif (i == 3) then
+                    local pos = UDim2.new(math.clamp((input.Position.X - main_9.AbsolutePosition.X) / main_9.AbsoluteSize.X, 0, 1), 0, 1, 0)
+                    tweenservice:Create(bar_3, TweenInfo.new(0.250, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), { Size = pos }):Play()
+                    local s = math.floor(((pos.X.Scale * 255) / 255) * (255 - 0) + 0)
+                    blue = s
+                    value_3.Text = tostring(s) .. "/255"
+
+                    if (Callback) then
+                        Callback(Color3.fromRGB(red,green,blue))
+                    end
+                end
+			end
+
+			main_7.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    slide(input,1)
+                    dragging = true
+                    sliderdrag = true
+                end
+            end)
+
+            main_8.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    slide(input,2)
+                    dragging = true
+                    sliderdrag = true
+                end
+            end)
+
+            main_9.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    slide(input,3)
+                    dragging = true
+                    sliderdrag = true
+                end
+            end)
+
+            main_7.InputChanged:Connect(function(input)
+                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    slide(input,1)
+                end
+            end)
+
+            main_8.InputChanged:Connect(function(input)
+                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    slide(input,2)
+                end
+            end)
+
+            main_9.InputChanged:Connect(function(input)
+                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    slide(input,3)
+                end
+            end)
+
+            main_7.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    dragging = false
+                    sliderdrag = false
+                end
+            end)
+
+            main_8.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    dragging = false
+                    sliderdrag = false
+                end
+            end)
+
+            main_9.InputEnded:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    dragging = false
+                    sliderdrag = false
+                end
+            end)
+
+            function ColorpickerTypes:SetColor()
+
+            end
+
+            return ColorpickerTypes
         end
 
         return TabTypes
