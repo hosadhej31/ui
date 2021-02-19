@@ -855,6 +855,7 @@ function library:CreateWindow(winopts)
                 print("R:",color.R,"G:",color.G,"B:",color.B)
             end
             local dragging = false
+            local iselected = 1
             local red = 255
             local green = 255
             local blue = 255
@@ -883,7 +884,7 @@ function library:CreateWindow(winopts)
 
             colorpicker_button.Name = "colorpicker_button"
             colorpicker_button.Parent = tab_container
-            colorpicker_button.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            colorpicker_button.BackgroundColor3 = winopts.Accent1
             colorpicker_button.BorderSizePixel = 0
             colorpicker_button.Position = UDim2.new(0.0299999993, 0, 0.0461538471, 0)
             colorpicker_button.Size = UDim2.new(0, 470, 0, 40)
@@ -918,7 +919,7 @@ function library:CreateWindow(winopts)
 
             colorpicker_frame.Name = "colorpicker_frame"
             colorpicker_frame.Parent = tab_container
-            colorpicker_frame.BackgroundColor3 = Color3.fromRGB(29, 26, 53)
+            colorpicker_frame.BackgroundColor3 = winopts.Accent1
             colorpicker_frame.BorderSizePixel = 0
             colorpicker_frame.Position = UDim2.new(0.0299999993, 0, 0.184615478, 0)
             colorpicker_frame.Size = UDim2.new(0, 470, 0, 150)
@@ -955,7 +956,7 @@ function library:CreateWindow(winopts)
             bar_1.Parent = main_7
             bar_1.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_1.BorderSizePixel = 0
-            bar_1.Size = UDim2.new(0, 100, 0, 5)
+            bar_1.Size = UDim2.new(0, 0, 0, 5)
 
             value_1.Name = "value"
             value_1.Parent = slider_1
@@ -1003,7 +1004,7 @@ function library:CreateWindow(winopts)
             bar_2.Parent = main_8
             bar_2.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_2.BorderSizePixel = 0
-            bar_2.Size = UDim2.new(0, 100, 0, 5)
+            bar_2.Size = UDim2.new(0, 0, 0, 5)
 
             value_2.Name = "value"
             value_2.Parent = slider_2
@@ -1048,7 +1049,7 @@ function library:CreateWindow(winopts)
             bar_3.Parent = main_9
             bar_3.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_3.BorderSizePixel = 0
-            bar_3.Size = UDim2.new(0, 100, 0, 5)
+            bar_3.Size = UDim2.new(0, 0, 0, 5)
 
             value_3.Name = "value"
             value_3.Parent = slider_3
@@ -1125,7 +1126,8 @@ function library:CreateWindow(winopts)
 
 			main_7.InputBegan:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    slide(input,1)
+                    iselected = 1
+                    slide(input,iselected)
                     dragging = true
                     sliderdrag = true
                 end
@@ -1133,7 +1135,8 @@ function library:CreateWindow(winopts)
 
             main_8.InputBegan:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    slide(input,2)
+                    iselected = 2
+                    slide(input,iselected)
                     dragging = true
                     sliderdrag = true
                 end
@@ -1141,27 +1144,10 @@ function library:CreateWindow(winopts)
 
             main_9.InputBegan:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    slide(input,3)
+                    iselected = 3
+                    slide(input,iselected)
                     dragging = true
                     sliderdrag = true
-                end
-            end)
-
-            main_7.InputChanged:Connect(function(input)
-                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-                    slide(input,1)
-                end
-            end)
-
-            main_8.InputChanged:Connect(function(input)
-                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-                    slide(input,2)
-                end
-            end)
-
-            main_9.InputChanged:Connect(function(input)
-                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-                    slide(input,3)
                 end
             end)
 
@@ -1183,6 +1169,12 @@ function library:CreateWindow(winopts)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
                     dragging = false
                     sliderdrag = false
+                end
+            end)
+
+            userinputservice.InputChanged:Connect(function(input)
+                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    slide(input,iselected)
                 end
             end)
 
