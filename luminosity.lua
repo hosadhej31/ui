@@ -26,8 +26,10 @@ function library:CreateWindow(winopts)
     local UIGradient = Instance.new("UIGradient")
     local glow = Instance.new("ImageLabel")
 
-    if (syn.protect_gui) then
-        syn.protect_gui(Luminosity)
+    if (syn) then
+        if (syn.protect_gui) then
+            syn.protect_gui(Luminosity)
+        end
     elseif (gethui) then
         Luminosity.Parent = gethui()
     else
