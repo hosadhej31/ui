@@ -844,7 +844,7 @@ function library:CreateWindow(winopts)
         function TabTypes:CreateColorpicker(Name, Callback)
             local ColorpickerTypes = {}
             Name = Name:upper() or "COLORPICKER"
-            Callback = function(color)
+            Callback = Callback or function(color)
                 print("R:",color.R,"G:",color.G,"B:",color.B)
             end
             local dragging = false
@@ -1080,6 +1080,7 @@ function library:CreateWindow(winopts)
             -- Button
             main_6.MouseButton1Click:Connect(function()
                 colorpicker_frame.Visible = not colorpicker_frame.Visible
+                Resize()
             end)
 
             -- Sliders
