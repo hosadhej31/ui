@@ -949,7 +949,7 @@ function library:CreateWindow(winopts)
             bar_1.Parent = main_7
             bar_1.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_1.BorderSizePixel = 0
-            bar_1.Size = UDim2.new(0, 0, 0, 5)
+            bar_1.Size = UDim2.new(0, 439, 0, 5)
 
             value_1.Name = "value"
             value_1.Parent = slider_1
@@ -997,7 +997,7 @@ function library:CreateWindow(winopts)
             bar_2.Parent = main_8
             bar_2.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_2.BorderSizePixel = 0
-            bar_2.Size = UDim2.new(0, 0, 0, 5)
+            bar_2.Size = UDim2.new(0, 439, 0, 5)
 
             value_2.Name = "value"
             value_2.Parent = slider_2
@@ -1042,7 +1042,7 @@ function library:CreateWindow(winopts)
             bar_3.Parent = main_9
             bar_3.BackgroundColor3 = Color3.fromRGB(52, 47, 86)
             bar_3.BorderSizePixel = 0
-            bar_3.Size = UDim2.new(0, 0, 0, 5)
+            bar_3.Size = UDim2.new(0, 439, 0, 5)
 
             value_3.Name = "value"
             value_3.Parent = slider_3
@@ -1172,7 +1172,7 @@ function library:CreateWindow(winopts)
                 end
             end)
 
-            function ColorpickerTypes:SetColor()
+            function ColorpickerTypes:SetColor(Color)
 
             end
 
