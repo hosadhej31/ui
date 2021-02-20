@@ -779,9 +779,11 @@ function library:CreateWindow(winopts)
                 if (toggled) then
                     tweenservice:Create(main_6, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {Rotation = 0}):Play()
                     dropdown_frame.Visible = true
+                    Resize()
                 else
                     tweenservice:Create(main_6, TweenInfo.new(0.250, Enum.EasingStyle.Quint), {Rotation = 90}):Play()
                     dropdown_frame.Visible = false
+                    Resize()
                 end
             end)
 
@@ -1057,8 +1059,8 @@ function library:CreateWindow(winopts)
             spawn(function()
                 while true do
                     color.BackgroundColor3 = Color3.fromRGB(red,green,blue)
-                    colorpicker_button.BackgroundColor3 = winopts.Accent1
-                    colorpicker_frame.BackgroundColor3 = winopts.Accent1
+                    colorpicker_button.BackgroundColor3 = winopts.Accent2
+                    colorpicker_frame.BackgroundColor3 = winopts.Accent2
 
                     bar_1.BackgroundColor3 = Color3.fromRGB(red,green,blue)
                     bar_2.BackgroundColor3 = Color3.fromRGB(red,green,blue)
