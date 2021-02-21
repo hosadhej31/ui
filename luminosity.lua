@@ -1186,6 +1186,10 @@ function library:CreateWindow(winopts)
         winopts.Highlight = color
     end
 
+    function WinTypes:ToggleMenu()
+        Luminosity.Enabled = not Luminosity.Enabled
+    end
+
     return WinTypes
 end
 
