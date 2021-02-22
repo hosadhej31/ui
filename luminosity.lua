@@ -1182,6 +1182,17 @@ function library:CreateWindow(winopts)
         return TabTypes
     end
 
+    function WinTypes:CreateDivider()
+        local seperator = Instance.new("Frame")
+
+        seperator.Name = "divider"
+        seperator.Parent = sidebar
+        seperator.BackgroundColor3 = winopts.Accent2
+        seperator.BorderSizePixel = 0
+        seperator.Position = UDim2.new(0, 0, 0, 0)
+        seperator.Size = UDim2.new(0, 50, 0, 1)
+    end
+
     function WinTypes:UpdateHighlight(color)
         winopts.Highlight = color
     end
