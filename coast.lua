@@ -318,7 +318,7 @@ function Library:CreateTab(name)
     Title.ZIndex = 2
     Title.Font = Library.Theme.TextFont
     Title.Text =  name
-    Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextSize = 15.000
 
     SectionLayout.Name = "SectionLayout"
