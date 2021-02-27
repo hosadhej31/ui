@@ -12,8 +12,8 @@ ContentProvider:PreloadAsync({"rbxassetid://3570695787", "rbxassetid://270889159
 
 local Library = {
     Theme = {
-        MainColor = Color3.fromRGB(255, 75, 75),
-        BackgroundColor = Color3.fromRGB(35, 35, 35),
+        MainColor = Color3.fromRGB(255, 0, 175),
+        BackgroundColor = Color3.fromRGB(0,0,0),
         UIToggleKey = Enum.KeyCode.RightControl,
         TextFont = Enum.Font.SourceSansBold,
         EasingStyle = Enum.EasingStyle.Quart
@@ -122,6 +122,9 @@ local TabButtons = Instance.new("ImageLabel")
 local TabButtonLayout = Instance.new("UIListLayout")
 
 UILibrary.Name = HttpService:GenerateGUID(false)
+if syn then
+	syn.protect_gui(UILibrary)
+end
 UILibrary.Parent = CoreGui
 UILibrary.DisplayOrder = 1
 UILibrary.ZIndexBehavior = Enum.ZIndexBehavior.Global
@@ -131,7 +134,7 @@ Main.Parent = UILibrary
 Main.BackgroundColor3 = Library.Theme.BackgroundColor
 Main.BackgroundTransparency = 1.000
 Main.Position = UDim2.new(0.590086579, 0, 0.563882053, 0)
-Main.Size = UDim2.new(0, 450, 0, 0)
+Main.Size = UDim2.new(0, 800, 0, 0)
 Main.ZIndex = 2
 Main.Image = "rbxassetid://3570695787"
 Main.ImageColor3 = Library.Theme.BackgroundColor
@@ -156,7 +159,7 @@ Topbar.Name = "Topbar"
 Topbar.Parent = Main
 Topbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Topbar.BackgroundTransparency = 1.000
-Topbar.Size = UDim2.new(0, 450, 0, 15)
+Topbar.Size = UDim2.new(0, 675, 0, 15)
 Topbar.ZIndex = 2
 
 UITabs.Name = "UITabs"
@@ -171,7 +174,7 @@ Tabs.Parent = UITabs
 Tabs.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Tabs.BackgroundTransparency = 1.000
 Tabs.Position = UDim2.new(0, 13, 0, 41)
-Tabs.Size = UDim2.new(0, 421, 0, 209)
+Tabs.Size = UDim2.new(0, 496, 0, 209)
 Tabs.ZIndex = 2
 
 TabButtons.Name = "TabButtons"
@@ -179,7 +182,7 @@ TabButtons.Parent = UITabs
 TabButtons.BackgroundColor3 = Library.Theme.MainColor
 TabButtons.BackgroundTransparency = 1.000
 TabButtons.Position = UDim2.new(0, 14, 0, 16)
-TabButtons.Size = UDim2.new(0, 419, 0, 25)
+TabButtons.Size = UDim2.new(0, 644, 0, 25)
 TabButtons.ZIndex = 2
 TabButtons.Image = "rbxassetid://3570695787"
 TabButtons.ImageColor3 = Library.Theme.MainColor
@@ -193,7 +196,7 @@ TabButtonLayout.Parent = TabButtons
 TabButtonLayout.FillDirection = Enum.FillDirection.Horizontal
 TabButtonLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, 250)}):Play()
+TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 675, 0, 450)}):Play()
 TweenService:Create(Border, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
 
 table.insert(Library.LibraryColorTable, Border)
@@ -242,13 +245,21 @@ local function ToggleUI()
     Library.UIOpen = not Library.UIOpen
             
     if Library.UIOpen then
-        TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, 0)}):Play()
+        TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 675, 0, 0)}):Play()
         TweenService:Create(Border, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
     elseif not Library.UIOpen then
-        TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, 250)}):Play()
+        TweenService:Create(Main, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 675, 0, 450)}):Play()
         TweenService:Create(Border, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
     end
 end
+
+UserInputService.InputBegan:Connect(function(x,c)
+    if not c then
+        if x.KeyCode==Enum.KeyCode.P or x.KeyCode==Enum.KeyCode.RightShift then
+            ToggleUI()
+        end
+    end
+end)
 
 coroutine.wrap(function()
     while wait() do
@@ -351,7 +362,7 @@ function Library:CreateTab(name)
         NameSection.BackgroundColor3 = Library.Theme.MainColor
         NameSection.BackgroundTransparency = 1.000
         NameSection.Position = UDim2.new(0, 0, 0.0574162677, 0)
-        NameSection.Size = UDim2.new(0, 197, 0, 181)
+        NameSection.Size = UDim2.new(0, 197, 0, 375)
         NameSection.ZIndex = 4
         NameSection.Image = "rbxassetid://3570695787"
         NameSection.ImageColor3 = Library.Theme.BackgroundColor
