@@ -43,7 +43,7 @@ local function SetUIAccent(color)
         end
 
         if HasProperty(v, "TextColor3") then
-            if v.TextColor3 ~= Color3.fromRGB(255, 255, 255) then
+            if v.TextColor3 ~= Color3.fromRGB(0, 0, 0) then
                 v.TextColor3 = color
             end
         end
@@ -56,7 +56,7 @@ local function RippleEffect(object)
 
         Ripple.Name = "Ripple"
         Ripple.Parent = object
-        Ripple.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Ripple.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         Ripple.BackgroundTransparency = 1.000
         Ripple.ZIndex = 8
         Ripple.Image = "rbxassetid://2708891598"
@@ -157,21 +157,21 @@ Border.ImageTransparency = 1
 
 Topbar.Name = "Topbar"
 Topbar.Parent = Main
-Topbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Topbar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Topbar.BackgroundTransparency = 1.000
 Topbar.Size = UDim2.new(0, 675, 0, 15)
 Topbar.ZIndex = 2
 
 UITabs.Name = "UITabs"
 UITabs.Parent = Main
-UITabs.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UITabs.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 UITabs.BackgroundTransparency = 1.000
 UITabs.ClipsDescendants = true
 UITabs.Size = UDim2.new(1, 0, 1, 0)
 
 Tabs.Name = "Tabs"
 Tabs.Parent = UITabs
-Tabs.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tabs.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Tabs.BackgroundTransparency = 1.000
 Tabs.Position = UDim2.new(0, 13, 0, 41)
 Tabs.Size = UDim2.new(0, 496, 0, 209)
@@ -293,14 +293,14 @@ function Library:CreateTab(name)
 
     NameTab.Name = (name .. "Tab")
     NameTab.Parent = Tabs
-    NameTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    NameTab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     NameTab.BackgroundTransparency = 1.000
     NameTab.Size = UDim2.new(1, 0, 1, 0)
     NameTab.ZIndex = 2
 
     NameTabButton.Name = (name .. "TabButton")
     NameTabButton.Parent = TabButtons
-    NameTabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    NameTabButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     NameTabButton.BackgroundTransparency = 1.000
     NameTabButton.Size = UDim2.new(0, 84, 0, 25)
     NameTabButton.ZIndex = 2
@@ -312,13 +312,13 @@ function Library:CreateTab(name)
     
     Title.Name = "Title"
     Title.Parent = NameTabButton
-    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     Title.BackgroundTransparency = 1.000
     Title.Size = UDim2.new(1, 0, 1, 0)
     Title.ZIndex = 2
     Title.Font = Library.Theme.TextFont
     Title.Text =  name
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextColor3 = Color3.fromRGB(0, 0, 0)
     Title.TextSize = 15.000
 
     SectionLayout.Name = "SectionLayout"
@@ -392,13 +392,13 @@ function Library:CreateTab(name)
         SectionTitle.Size = UDim2.new(0, SectionTitle.TextBounds.X + 5, 0, 22)
         SectionTitle.ZIndex = 4
         SectionTitle.Font = Library.Theme.TextFont
-        SectionTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        SectionTitle.TextColor3 = Color3.fromRGB(0, 0, 0)
         SectionTitle.TextSize = 14.000
         
         SectionContent.Name = "SectionContent"
         SectionContent.Parent = NameSection
         SectionContent.Active = true
-        SectionContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SectionContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
         SectionContent.BackgroundTransparency = 1.000
         SectionContent.BorderColor3 = Color3.fromRGB(27, 42, 53)
         SectionContent.BorderSizePixel = 0
@@ -424,13 +424,13 @@ function Library:CreateTab(name)
 
             NameLabel.Name = (name .. "Label")
             NameLabel.Parent = SectionContent
-            NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameLabel.BackgroundTransparency = 1.000
             NameLabel.Text = text
             NameLabel.Size = UDim2.new(0, 197, 0, NameLabel.TextBounds.Y)
             NameLabel.ZIndex = 5
             NameLabel.Font = Library.Theme.TextFont
-            NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            NameLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
             NameLabel.TextSize = 15.000
 
             local function ChangeText(newtext)
@@ -457,7 +457,7 @@ function Library:CreateTab(name)
 
             NameButton.Name = (name .. "Button")
             NameButton.Parent = SectionContent
-            NameButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameButton.BackgroundTransparency = 1.000
             NameButton.Size = UDim2.new(0, 197, 0, 35)
             NameButton.ZIndex = 5
@@ -472,7 +472,7 @@ function Library:CreateTab(name)
             Button.ZIndex = 6
             Button.Font = Library.Theme.TextFont
             Button.Text = name
-            Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
             Button.TextSize = 15.000
             Button.ClipsDescendants = true
 
@@ -480,7 +480,7 @@ function Library:CreateTab(name)
             ButtonRounded.Parent = Button
             ButtonRounded.Active = true
             ButtonRounded.AnchorPoint = Vector2.new(0.5, 0.5)
-            ButtonRounded.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ButtonRounded.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ButtonRounded.BackgroundTransparency = 1.000
             ButtonRounded.Position = UDim2.new(0.5, 0, 0.5, 0)
             ButtonRounded.Selectable = true
@@ -524,14 +524,14 @@ function Library:CreateTab(name)
 
             NameToggle.Name = (name .. "Toggle")
             NameToggle.Parent = SectionContent
-            NameToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameToggle.BackgroundTransparency = 1.000
             NameToggle.Size = UDim2.new(0, 197, 0, 35)
             NameToggle.ZIndex = 5
             
             Title.Name = "Title"
             Title.Parent = NameToggle
-            Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Title.BackgroundTransparency = 1.000
             Title.Position = UDim2.new(0, 13, 0, 0)
             Title.Size = UDim2.new(0, 149, 0, 35)
@@ -544,7 +544,7 @@ function Library:CreateTab(name)
 
             Toggle.Name = "Toggle"
             Toggle.Parent = NameToggle
-            Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Toggle.BackgroundTransparency = 1.000
             Toggle.Position = UDim2.new(0, 161, 0, 7)
             Toggle.Size = UDim2.new(0, 20, 0, 20)
@@ -552,12 +552,12 @@ function Library:CreateTab(name)
             Toggle.AutoButtonColor = false
             Toggle.Font = Library.Theme.TextFont
             Toggle.Text = ""
-            Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
             Toggle.TextSize = 14.000
 
             CheckboxOutline.Name = "CheckboxOutline"
             CheckboxOutline.Parent = Toggle
-            CheckboxOutline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            CheckboxOutline.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             CheckboxOutline.BackgroundTransparency = 1.000
             CheckboxOutline.Position = UDim2.new(0.5, -12, 0.5, -12)
             CheckboxOutline.Size = UDim2.new(0, 24, 0, 24)
@@ -567,7 +567,7 @@ function Library:CreateTab(name)
 
             CheckboxTicked.Name = "CheckboxTicked"
             CheckboxTicked.Parent = Toggle
-            CheckboxTicked.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            CheckboxTicked.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             CheckboxTicked.BackgroundTransparency = 1.000
             CheckboxTicked.Position = UDim2.new(0.5, -12, 0.5, -12)
             CheckboxTicked.Size = UDim2.new(0, 24, 0, 24)
@@ -585,7 +585,7 @@ function Library:CreateTab(name)
 
             local function SetState(state)
                 if state then
-                    TweenService:Create(Title, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                    TweenService:Create(Title, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
                     TweenService:Create(TickCover, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 0, 0, 0)}):Play()
                     TweenService:Create(CheckboxOutline, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {ImageColor3 = Library.Theme.MainColor}):Play()
                     TweenService:Create(CheckboxTicked, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {ImageColor3 = Library.Theme.MainColor}):Play()
@@ -630,7 +630,7 @@ function Library:CreateTab(name)
 
             NameSlider.Name = (name .. "Slider")
             NameSlider.Parent = SectionContent
-            NameSlider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameSlider.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameSlider.BackgroundTransparency = 1.000
             NameSlider.Position = UDim2.new(0, 0, 0.497237563, 0)
             NameSlider.Size = UDim2.new(0, 197, 0, 50)
@@ -638,7 +638,7 @@ function Library:CreateTab(name)
             
             Title.Name = "Title"
             Title.Parent = NameSlider
-            Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Title.BackgroundTransparency = 1.000
             Title.BorderColor3 = Color3.fromRGB(27, 42, 53)
             Title.Position = UDim2.new(0, 12, 0, 0)
@@ -646,7 +646,7 @@ function Library:CreateTab(name)
             Title.ZIndex = 5
             Title.Font = Library.Theme.TextFont
             Title.Text = name
-            Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Title.TextColor3 = Color3.fromRGB(0, 0, 0)
             Title.TextSize = 15.000
             Title.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -677,7 +677,7 @@ function Library:CreateTab(name)
             
             CircleSelector.Name = "CircleSelector"
             CircleSelector.Parent = SliderIndicator
-            CircleSelector.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            CircleSelector.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             CircleSelector.BackgroundTransparency = 1.000
             CircleSelector.Position = UDim2.new(0.986565471, -7, 0.75, -7)
             CircleSelector.Size = UDim2.new(0, 12, 0, 12)
@@ -699,13 +699,13 @@ function Library:CreateTab(name)
             
             Value.Name = "Value"
             Value.Parent = SliderValue
-            Value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Value.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Value.BackgroundTransparency = 1.000
             Value.Size = UDim2.new(1, 0, 1, 0)
             Value.ZIndex = 5
             Value.Font = Library.Theme.TextFont
             Value.Text = tostring(StartingValue or precisevalue and tonumber(string.format("%.2f", StartingValue)))
-            Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Value.TextColor3 = Color3.fromRGB(0, 0, 0)
             Value.TextSize = 14.000
 
             local function Sliding(input)
@@ -810,7 +810,7 @@ function Library:CreateTab(name)
 
             NameColorPicker.Name = (name .. "ColorPicker")
             NameColorPicker.Parent = SectionContent
-            NameColorPicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameColorPicker.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameColorPicker.BackgroundTransparency = 1.000
             NameColorPicker.Position = UDim2.new(0, 0, 0.138121545, 0)
             NameColorPicker.Size = UDim2.new(0, 197, 0, 32)
@@ -818,20 +818,20 @@ function Library:CreateTab(name)
 
             Title.Name = "Title"
             Title.Parent = NameColorPicker
-            Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Title.BackgroundTransparency = 1.000
             Title.Position = UDim2.new(0, 13, 0, 0)
             Title.Size = UDim2.new(0, 151, 0, 30)
             Title.ZIndex = 5
             Title.Font = Library.Theme.TextFont
             Title.Text = name
-            Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Title.TextColor3 = Color3.fromRGB(0, 0, 0)
             Title.TextSize = 15.000
             Title.TextXAlignment = Enum.TextXAlignment.Left
             
             ColorPickerToggle.Name = "ColorPickerToggle"
             ColorPickerToggle.Parent = NameColorPicker
-            ColorPickerToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ColorPickerToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerToggle.BackgroundTransparency = 1.000
             ColorPickerToggle.Position = UDim2.new(0, 139, 0, 5)
             ColorPickerToggle.Size = UDim2.new(0, 42, 0, 20)
@@ -868,7 +868,7 @@ function Library:CreateTab(name)
             
             ColorRound.Name = "ColorRound"
             ColorRound.Parent = Color
-            ColorRound.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ColorRound.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ColorRound.BackgroundTransparency = 1.000
             ColorRound.ClipsDescendants = true
             ColorRound.Size = UDim2.new(1, 0, 1, 0)
@@ -882,7 +882,7 @@ function Library:CreateTab(name)
             ColorSelection.Name = "ColorSelection"
             ColorSelection.Parent = Color
             ColorSelection.AnchorPoint = Vector2.new(0.5, 0.5)
-            ColorSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ColorSelection.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ColorSelection.BackgroundTransparency = 1.000
             ColorSelection.Position = UDim2.new(presetcolor and select(3, Color3.toHSV(presetcolor)))
             ColorSelection.Size = UDim2.new(0, 18, 0, 18)
@@ -905,13 +905,13 @@ function Library:CreateTab(name)
             
             ValueR.Name = "ValueR"
             ValueR.Parent = RValue
-            ValueR.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ValueR.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ValueR.BackgroundTransparency = 1.000
             ValueR.Size = UDim2.new(1, 0, 1, 0)
             ValueR.ZIndex = 11
             ValueR.Font = Library.Theme.TextFont
             ValueR.Text = "R: 255"
-            ValueR.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ValueR.TextColor3 = Color3.fromRGB(0, 0, 0)
             ValueR.TextSize = 14.000
             
             GValue.Name = "GValue"
@@ -929,13 +929,13 @@ function Library:CreateTab(name)
             
             ValueG.Name = "ValueG"
             ValueG.Parent = GValue
-            ValueG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ValueG.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ValueG.BackgroundTransparency = 1.000
             ValueG.Size = UDim2.new(1, 0, 1, 0)
             ValueG.ZIndex = 11
             ValueG.Font = Library.Theme.TextFont
             ValueG.Text = "G: 255"
-            ValueG.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ValueG.TextColor3 = Color3.fromRGB(0, 0, 0)
             ValueG.TextSize = 14.000
             
             BValue.Name = "BValue"
@@ -953,18 +953,18 @@ function Library:CreateTab(name)
             
             ValueB.Name = "ValueB"
             ValueB.Parent = BValue
-            ValueB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ValueB.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             ValueB.BackgroundTransparency = 1.000
             ValueB.Size = UDim2.new(1, 0, 1, 0)
             ValueB.ZIndex = 11
             ValueB.Font = Library.Theme.TextFont
             ValueB.Text = "B: 255"
-            ValueB.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ValueB.TextColor3 = Color3.fromRGB(0, 0, 0)
             ValueB.TextSize = 14.000
             
             RainbowToggle.Name = "RainbowToggle"
             RainbowToggle.Parent = ColorPicker
-            RainbowToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            RainbowToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             RainbowToggle.BackgroundTransparency = 1.000
             RainbowToggle.Position = UDim2.new(0, 10, 0, 143)
             RainbowToggle.Size = UDim2.new(0, 160, 0, 35)
@@ -972,7 +972,7 @@ function Library:CreateTab(name)
             
             RainbowToggleTitle.Name = "RainbowToggleTitle"
             RainbowToggleTitle.Parent = RainbowToggle
-            RainbowToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            RainbowToggleTitle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             RainbowToggleTitle.BackgroundTransparency = 1.000
             RainbowToggleTitle.Size = UDim2.new(0, 124, 0, 30)
             RainbowToggleTitle.ZIndex = 10
@@ -984,7 +984,7 @@ function Library:CreateTab(name)
             
             Toggle.Name = "Toggle"
             Toggle.Parent = RainbowToggle
-            Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Toggle.BackgroundTransparency = 1.000
             Toggle.Position = UDim2.new(0, 131, 0, 5)
             Toggle.Size = UDim2.new(0, 20, 0, 20)
@@ -997,7 +997,7 @@ function Library:CreateTab(name)
             
             CheckboxOutline.Name = "CheckboxOutline"
             CheckboxOutline.Parent = Toggle
-            CheckboxOutline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            CheckboxOutline.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             CheckboxOutline.BackgroundTransparency = 1.000
             CheckboxOutline.Position = UDim2.new(0.5, -12, 0.5, -12)
             CheckboxOutline.Size = UDim2.new(0, 24, 0, 24)
@@ -1007,7 +1007,7 @@ function Library:CreateTab(name)
             
             CheckboxTicked.Name = "CheckboxTicked"
             CheckboxTicked.Parent = Toggle
-            CheckboxTicked.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            CheckboxTicked.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             CheckboxTicked.BackgroundTransparency = 1.000
             CheckboxTicked.Position = UDim2.new(0.5, -12, 0.5, -12)
             CheckboxTicked.Size = UDim2.new(0, 24, 0, 24)
@@ -1025,7 +1025,7 @@ function Library:CreateTab(name)
             
             Hue.Name = "Hue"
             Hue.Parent = ColorPicker
-            Hue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Hue.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Hue.BackgroundTransparency = 1.000
             Hue.Position = UDim2.new(0, 136, 0, 10)
             Hue.Size = UDim2.new(0, 25, 0, 105)
@@ -1042,7 +1042,7 @@ function Library:CreateTab(name)
             HueSelection.Name = "HueSelection"
             HueSelection.Parent = Hue
             HueSelection.AnchorPoint = Vector2.new(0.5, 0.5)
-            HueSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            HueSelection.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             HueSelection.BackgroundTransparency = 1.000
             HueSelection.Position = UDim2.new(0.48, 0, 1 - select(1, Color3.toHSV(presetcolor)))
             HueSelection.Size = UDim2.new(0, 18, 0, 18)
@@ -1141,7 +1141,7 @@ function Library:CreateTab(name)
                 end
     
                 if RainbowColorPicker then              
-                    TweenService:Create(RainbowToggleTitle, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                    TweenService:Create(RainbowToggleTitle, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
                     TweenService:Create(TickCover, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 0, 0, 0)}):Play()
                     TweenService:Create(CheckboxOutline, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {ImageColor3 = Library.Theme.MainColor}):Play()
                     TweenService:Create(CheckboxTicked, TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {ImageColor3 = Library.Theme.MainColor}):Play()
@@ -1206,7 +1206,7 @@ function Library:CreateTab(name)
 
             NameDropdown.Name = (name .. "Dropdown")
             NameDropdown.Parent = SectionContent
-            NameDropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameDropdown.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameDropdown.BackgroundTransparency = 1.000
             NameDropdown.Position = UDim2.new(0, 0, 0.773480654, 0)
             NameDropdown.Size = UDim2.new(0, 197, 0, 35)
@@ -1215,7 +1215,7 @@ function Library:CreateTab(name)
             TitleToggle.Archivable = false
             TitleToggle.Name = "TitleToggle"
             TitleToggle.Parent = NameDropdown
-            TitleToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TitleToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             TitleToggle.BackgroundTransparency = 1.000
             TitleToggle.BorderSizePixel = 0
             TitleToggle.Position = UDim2.new(0, 13, 0, 0)
@@ -1223,7 +1223,7 @@ function Library:CreateTab(name)
             TitleToggle.ZIndex = 7
             TitleToggle.Font = Library.Theme.TextFont
             TitleToggle.Text = (name .. " - " .. SelectedOption)
-            TitleToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TitleToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
             TitleToggle.TextSize = 15.000
             TitleToggle.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1248,7 +1248,7 @@ function Library:CreateTab(name)
             local function ResetAllDropdownItems()
                 for i, v in pairs(Dropdown:GetChildren()) do
                     if v:IsA("TextButton") then
-                        TweenService:Create(v, TweenInfo.new(0.25, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                        TweenService:Create(v, TweenInfo.new(0.25, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
                     end
                 end
             end
@@ -1261,7 +1261,7 @@ function Library:CreateTab(name)
                 end
 
                 DropdownToggled = true
-                TweenService:Create(TitleToggle, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                TweenService:Create(TitleToggle, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
                 TweenService:Create(NameDropdown, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 197, 0, 35)}):Play()
                 TweenService:Create(Dropdown, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 165, 0, 0)}):Play()
             end
@@ -1271,7 +1271,7 @@ function Library:CreateTab(name)
 
                 NameButton.Name = (v .. "DropdownButton")
                 NameButton.Parent = Dropdown
-                NameButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                NameButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
                 NameButton.BackgroundTransparency = 1.000
                 NameButton.BorderSizePixel = 0
                 NameButton.Size = UDim2.new(0, 165, 0, 25)
@@ -1279,7 +1279,7 @@ function Library:CreateTab(name)
                 NameButton.AutoButtonColor = false
                 NameButton.Font = Library.Theme.TextFont
                 NameButton.Text = v
-                NameButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                NameButton.TextColor3 = Color3.fromRGB(0, 0, 0)
                 NameButton.TextSize = 15.000
 
                 table.insert(Library.LibraryColorTable, NameButton)
@@ -1313,7 +1313,7 @@ function Library:CreateTab(name)
                 DropdownToggled = not DropdownToggled
             
                 if DropdownToggled then
-                    TweenService:Create(TitleToggle, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                    TweenService:Create(TitleToggle, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
                     TweenService:Create(NameDropdown, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 197, 0, 35)}):Play()
                     TweenService:Create(Dropdown, TweenInfo.new(0.5, Library.Theme.EasingStyle, Enum.EasingDirection.Out), {Size = UDim2.new(0, 165, 0, 0)}):Play()
                 elseif not DropdownToggled then
@@ -1334,7 +1334,7 @@ function Library:CreateTab(name)
     
                     NameButton.Name = (v .. "Button")
                     NameButton.Parent = Dropdown
-                    NameButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                    NameButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
                     NameButton.BackgroundTransparency = 1.000
                     NameButton.BorderSizePixel = 0
                     NameButton.Size = UDim2.new(0, 165, 0, 25)
@@ -1342,7 +1342,7 @@ function Library:CreateTab(name)
                     NameButton.AutoButtonColor = false
                     NameButton.Font = Library.Theme.TextFont
                     NameButton.Text = v
-                    NameButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    NameButton.TextColor3 = Color3.fromRGB(0, 0, 0)
                     NameButton.TextSize = 15.000
     
                     if v == SelectedOption then
@@ -1451,21 +1451,21 @@ function Library:CreateTab(name)
 
             NameKeybind.Name = (name .. "Keybind")
             NameKeybind.Parent = SectionContent
-            NameKeybind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            NameKeybind.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             NameKeybind.BackgroundTransparency = 1.000
             NameKeybind.Position = UDim2.new(0, 0, 0.138121545, 0)
             NameKeybind.Size = UDim2.new(0, 197, 0, 35)
 
             Title.Name = "Title"
             Title.Parent = NameKeybind
-            Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             Title.BackgroundTransparency = 1.000
             Title.Position = UDim2.new(0, 13, 0, 0)
             Title.Size = UDim2.new(0, 151, 0, 30)
             Title.ZIndex = 5
             Title.Font = Library.Theme.TextFont
             Title.Text = name
-            Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Title.TextColor3 = Color3.fromRGB(0, 0, 0)
             Title.TextSize = 15.000
             Title.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -1484,13 +1484,13 @@ function Library:CreateTab(name)
 
             KeybindButton.Name = "KeybindButton"
             KeybindButton.Parent = KeybindButtonBorder
-            KeybindButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            KeybindButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
             KeybindButton.BackgroundTransparency = 1.000
             KeybindButton.Size = UDim2.new(1, 0, 1, 0)
             KeybindButton.ZIndex = 5
             KeybindButton.Font = Library.Theme.TextFont
             KeybindButton.Text = (ShortenedNames[presetbind.Name] or ShortenedNames[presetbind] or presetbind.Name or "None")
-            KeybindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            KeybindButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             KeybindButton.TextSize = 15.000
             KeybindButton.TextWrapped = true
             
