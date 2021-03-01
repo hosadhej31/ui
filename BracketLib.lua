@@ -472,16 +472,16 @@ function Library:CreateWindow(Name)
                         item.Position = UDim2.new(0, 0, 0.808080792, 0)
                         item.Size = UDim2.new(0, 249, 0, 20)
                         item.Font = Enum.Font.SourceSans
-                        item.Text = i
+                        item.Text = v
                         item.TextColor3 = Color3.fromRGB(255, 255, 255)
                         item.TextSize = 16.000
 
                         item.MouseButton1Click:Connect(function()
-                            SelectedItem = i
+                            SelectedItem = v
                             title_5.Text = Name .. ": " .. SelectedItem
 
                             if (Callback) then
-                                Callback(i)
+                                Callback(v)
                             end
                         end)
 
