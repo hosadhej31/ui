@@ -65,7 +65,6 @@ function Library:CreateWindow(Name)
     containers.Size = UDim2.new(0, 580, 0, 330)
 
     local userinputservice = game:GetService("UserInputService")
-    local TweenService = game:GetService("TweenService")
     local dragInput, dragStart, startPos = nil, nil, nil
 
     core.InputBegan:Connect(function(input)
@@ -290,6 +289,210 @@ function Library:CreateWindow(Name)
                     if (Callback) then
                         Callback()
                     end
+                end)
+
+                groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
+            end
+
+            function GroupTypes:CreateSlider(Name, Options, Callback)
+                Name = Name or "Slider"
+                Options = Options or {
+                    Min = 0,
+                    Max = 100
+                }
+                Callback = Callback or function(e)
+                    print(e)
+                end
+                local SliderValue = 0
+                local Dragging = false
+
+                local slider = Instance.new("Frame")
+                local main_2 = Instance.new("Frame")
+                local value = Instance.new("TextLabel")
+                local title_4 = Instance.new("TextLabel")
+
+                slider.Name = "slider"
+                slider.Parent = groupbox_container
+                slider.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                slider.Position = UDim2.new(0.0370370373, 0, 0.122807018, 0)
+                slider.Size = UDim2.new(0, 134, 0, 10)
+
+                main_2.Name = "main"
+                main_2.Parent = slider
+                main_2.BackgroundColor3 = Color3.fromRGB(0, 85, 127)
+                main_2.BorderSizePixel = 0
+                main_2.Size = UDim2.new(0, 1, 0, 10)
+
+                value.Name = "value"
+                value.Parent = slider
+                value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                value.BackgroundTransparency = 1.000
+                value.BorderSizePixel = 0
+                value.Position = UDim2.new(0.0370370373, 0, 0.122807018, 0)
+                value.Size = UDim2.new(0, 134, 0, 10)
+                value.Font = Enum.Font.SourceSans
+                value.Text = Options.Min .. "/" .. Options.Max
+                value.TextColor3 = Color3.fromRGB(255, 255, 255)
+                value.TextSize = 16.000
+
+                title_4.Name = "title"
+                title_4.Parent = slider
+                title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                title_4.BackgroundTransparency = 1.000
+                title_4.BorderSizePixel = 0
+                title_4.Position = UDim2.new(1.07751286, 0, 0, 0)
+                title_4.Size = UDim2.new(0, 105, 0, 10)
+                title_4.Font = Enum.Font.SourceSans
+                title_4.Text = Name
+                title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+                title_4.TextSize = 16.000
+                title_4.TextXAlignment = Enum.TextXAlignment.Left
+
+                local function slide(input)
+                    local pos = UDim2.new(math.clamp((input.Position.X - slider.AbsolutePosition.X) / slider.AbsoluteSize.X, 0, 1), 0, 1, 0)
+                    local s = math.floor(((pos.X.Scale * Options.Max) / Options.Max) * (Options.Max - Options.Min) + Options.Min)
+                    main_2.Size = pos
+                    SliderValue = s
+                    value.Text = tostring(s) .. "/" .. Options.Max
+    
+                    if (Callback) then
+                        Callback(s)
+                    end
+                end
+
+                slider.InputBegan:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        slide(input)
+                        Dragging = true
+                        sliderdrag = true
+                    end
+                end)
+    
+                slider.InputEnded:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        Dragging = false
+                        sliderdrag = false
+                    end
+                end)
+    
+                userinputservice.InputChanged:Connect(function(input)
+                    if Dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                        slide(input)
+                    end
+                end)
+
+                groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
+            end
+
+            function GroupTypes:CreateLabel(Name)
+                Name = Name or "Label"
+
+                local label = Instance.new("TextLabel")
+
+                label.Name = "label"
+
+                label.Parent = groupbox_container
+                label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                label.BackgroundTransparency = 1.000
+                label.Position = UDim2.new(0.0370370373, 0, 0.280701756, 0)
+                label.Size = UDim2.new(0, 250, 0, 15)
+                label.Font = Enum.Font.SourceSans
+                label.Text = Name
+                label.TextColor3 = Color3.fromRGB(255, 255, 255)
+                label.TextSize = 16.000
+
+                groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
+            end
+
+            function GroupTypes:CreateDropdown(Name, Options, Callback)
+                Name = Name or "Dropdown"
+                Callback = Callback or function(e)
+                    print(e)
+                end
+                local SelectedItem = ""
+
+                local dropdown_button = Instance.new("Frame")
+                local title_5 = Instance.new("TextLabel")
+                local drop = Instance.new("TextButton")
+                local dropdown_frame = Instance.new("Frame")
+                local UIListLayout_3 = Instance.new("UIListLayout")
+
+                dropdown_button.Name = "dropdown_button"
+                dropdown_button.Parent = groupbox_container
+                dropdown_button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                dropdown_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                dropdown_button.Position = UDim2.new(0.0370370373, 0, 0.368421048, 0)
+                dropdown_button.Size = UDim2.new(0, 249, 0, 20)
+
+                title_5.Name = "title"
+                title_5.Parent = dropdown_button
+                title_5.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                title_5.BackgroundTransparency = 1.000
+                title_5.BorderSizePixel = 0
+                title_5.Position = UDim2.new(0.0319999494, 0, 0, 0)
+                title_5.Size = UDim2.new(0, 220, 0, 20)
+                title_5.Font = Enum.Font.SourceSans
+                title_5.Text = Name
+                title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+                title_5.TextSize = 16.000
+                title_5.TextXAlignment = Enum.TextXAlignment.Left
+
+                drop.Name = "drop"
+                drop.Parent = dropdown_button
+                drop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                drop.BackgroundTransparency = 1.000
+                drop.Position = UDim2.new(0.918902159, 0, 0, 0)
+                drop.Size = UDim2.new(0, 20, 0, 20)
+                drop.Font = Enum.Font.SourceSans
+                drop.Rotation = 180
+                drop.Text = "V"
+                drop.TextColor3 = Color3.fromRGB(255, 255, 255)
+                drop.TextSize = 16.000
+
+                dropdown_frame.Name = "dropdown_frame"
+                dropdown_frame.Parent = groupbox_container
+                dropdown_frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                dropdown_frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                dropdown_frame.Position = UDim2.new(0.0370370373, 0, 0.473684222, 0)
+                dropdown_frame.Size = UDim2.new(0, 249, 0, 99)
+                dropdown_frame.Visible = false
+
+                UIListLayout_3.Parent = dropdown_frame
+                UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+
+                if (#Options > 0) then
+                    for i,v in pairs(Options) do
+                        local item = Instance.new("TextButton")
+
+                        item.Name = "item"
+                        item.Parent = dropdown_frame
+                        item.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+                        item.BorderColor3 = Color3.fromRGB(0, 0, 0)
+                        item.Position = UDim2.new(0, 0, 0.808080792, 0)
+                        item.Size = UDim2.new(0, 249, 0, 20)
+                        item.Font = Enum.Font.SourceSans
+                        item.Text = i
+                        item.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        item.TextSize = 16.000
+
+                        item.MouseButton1Click:Connect(function()
+                            SelectedItem = i
+                            title_5.Text = Name .. ": " .. SelectedItem
+
+                            if (Callback) then
+                                Callback(i)
+                            end
+                        end)
+
+                        dropdown_frame.Size = UDim2.new(0, 249, 0, UIListLayout_3.AbsoluteContentSize.Y)
+                    end
+                end
+
+                drop.MouseButton1Click:Connect(function()
+                    dropdown_frame.Visible = not dropdown_frame.Visible
+                    drop.Rotation = drop.Rotation - 180
+                    groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
                 end)
 
                 groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
