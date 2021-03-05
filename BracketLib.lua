@@ -1,7 +1,8 @@
 local Library = {}
 
-function Library:CreateWindow(Name)
-    Name = Name or "Bracket Lib"
+function Library:CreateWindow(Options)
+    Options.Name = Options.Name or "Bracket Lib"
+    Options.Color = Options.Color or Color3.fromRGB(0, 85, 127)
     local WinTypes = {}
     local windowdrag = false
     local sliderdrag = false
@@ -22,15 +23,15 @@ function Library:CreateWindow(Name)
     core.Parent = BracketLib
     core.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     core.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    core.Position = UDim2.new(0.280864209, 0, 0.243572399, 0)
-    core.Size = UDim2.new(0, 600, 0, 399)
+    core.Position = UDim2.new(0.280864209, 0, 0.133572399, 0)
+    core.Size = UDim2.new(0, 600, 0, 629)
 
     innercore.Name = "innercore"
     innercore.Parent = core
     innercore.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     innercore.BorderColor3 = Color3.fromRGB(3, 3, 3)
-    innercore.Position = UDim2.new(0.0166666675, 0, 0.0726817027, 0)
-    innercore.Size = UDim2.new(0, 580, 0, 360)
+    innercore.Position = UDim2.new(0.0166666675, 0, 0.0526817027, 0)
+    innercore.Size = UDim2.new(0, 580, 0, 585)
 
     title.Name = "title"
     title.Parent = core
@@ -40,7 +41,7 @@ function Library:CreateWindow(Name)
     title.Position = UDim2.new(0.0166666675, 0, 0, 0)
     title.Size = UDim2.new(0, 580, 0, 29)
     title.Font = Enum.Font.SourceSans
-    title.Text = Name
+    title.Text = Options.Name
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
     title.TextSize = 18.000
     title.TextXAlignment = Enum.TextXAlignment.Left
@@ -49,7 +50,7 @@ function Library:CreateWindow(Name)
     tabs.Parent = core
     tabs.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
     tabs.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    tabs.Position = UDim2.new(0.0166666675, 0, 0.0726817027, 0)
+    tabs.Position = UDim2.new(0.0166666675, 0, 0.0526817027, 0)
     tabs.Size = UDim2.new(0, 580, 0, 30)
 
     UIListLayout.Parent = tabs
@@ -61,8 +62,8 @@ function Library:CreateWindow(Name)
     containers.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     containers.BackgroundTransparency = 1.000
     containers.BorderSizePixel = 0
-    containers.Position = UDim2.new(0.0166666675, 0, 0.147869676, 0)
-    containers.Size = UDim2.new(0, 580, 0, 330)
+    containers.Position = UDim2.new(0.0166666675, 0, 0.087869676, 0)
+    containers.Size = UDim2.new(0, 580, 0, 531)
 
     local userinputservice = game:GetService("UserInputService")
     local dragInput, dragStart, startPos = nil, nil, nil
@@ -108,7 +109,7 @@ function Library:CreateWindow(Name)
         local container = Instance.new("Frame")
         local UIGridLayout = Instance.new("UIGridLayout")
         local UIPadding = Instance.new("UIPadding")
-        
+
         tab.Name = "tab_" .. Name
         tab.Parent = tabs
         tab.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -130,12 +131,12 @@ function Library:CreateWindow(Name)
         UIGridLayout.Parent = container
         UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
         UIGridLayout.CellPadding = UDim2.new(0, 20, 0, 0)
-        UIGridLayout.CellSize = UDim2.new(0, 270, 0, 310)
+        UIGridLayout.CellSize = UDim2.new(0, 270, 0, 256)
         UIGridLayout.FillDirectionMaxCells = 2
 
         UIPadding.Parent = container
         UIPadding.PaddingLeft = UDim.new(0, 10)
-        UIPadding.PaddingTop = UDim.new(0, 10)
+        UIPadding.PaddingTop = UDim.new(0, 20)
 
         for i,v in pairs(tabs:GetChildren()) do
             if (v.Name:find("tab") and v.Name ~= "tab_" .. Name) then
@@ -298,11 +299,13 @@ function Library:CreateWindow(Name)
                 Name = Name or "Slider"
                 Options = Options or {
                     Min = 0,
-                    Max = 100
+                    Max = 100,
+                    Increments = 1
                 }
                 Callback = Callback or function(e)
                     print(e)
                 end
+                local SliderTypes = {}
                 local SliderValue = 0
                 local Dragging = false
 
@@ -350,14 +353,21 @@ function Library:CreateWindow(Name)
                 title_4.TextXAlignment = Enum.TextXAlignment.Left
 
                 local function slide(input)
-                    local pos = UDim2.new(math.clamp((input.Position.X - slider.AbsolutePosition.X) / slider.AbsoluteSize.X, 0, 1), 0, 1, 0)
-                    local s = math.floor(((pos.X.Scale * Options.Max) / Options.Max) * (Options.Max - Options.Min) + Options.Min)
-                    main_2.Size = pos
+                    local XSize = math.clamp((input.Position.X - slider.AbsolutePosition.X) / slider.AbsoluteSize.X, 0, 1)
+                    local Size = UDim2.new(XSize, 0, 1, 0)
+                    local Increment = Options.Increments and 
+                    (Options.Max / ((Options.Max - Options.Min) / (Options.Increments * 4))) or 
+                    (Options.Max >= 50 and Options.Max / ((Options.Max - Options.Min) / 4)) or 
+                    (Options.Max >= 25 and Options.Max / ((Options.Max - Options.Min) / 2)) or 
+                    (Options.Max / (Options.Max - Options.Min))
+                    local SizeRounded = UDim2.new((math.floor(Size.X.Scale * ((Options.Max / Increment) * 4)) / ((Options.Max / Increment) * 4)), 0, 1, 0)
+                    local s = ((SizeRounded.X.Scale * Options.Max) / Options.Max) * (Options.Max - Options.Min) + Options.Min
+                    main_2.Size = SizeRounded
                     SliderValue = s
                     value.Text = tostring(s) .. "/" .. Options.Max
     
                     if (Callback) then
-                        Callback(s)
+                        Callback(SliderValue)
                     end
                 end
 
@@ -382,7 +392,22 @@ function Library:CreateWindow(Name)
                     end
                 end)
 
+                function SliderTypes:SetValue(Value)
+                    SliderValue = Value
+
+                    main_2.Size = UDim2.new(SliderValue / Options.Max, 0, 1, 0)
+
+                    if (Callback) then
+                        Callback(SliderValue)
+                    end
+                end
+
+                function SliderTypes:GetValue()
+                    return SliderValue
+                end
+
                 groupbox_container.CanvasSize = UDim2.new(0, 0, 0, UIListLayout_2.AbsoluteContentSize.Y + 20)
+                return SliderTypes
             end
 
             function GroupTypes:CreateLabel(Name)
