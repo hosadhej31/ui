@@ -1,8 +1,8 @@
 local Library = {}
 
-function Library:CreateWindow(Options)
-    Options.Name = Options.Name or "Bracket Lib"
-    Options.Color = Options.Color or Color3.fromRGB(0, 85, 127)
+function Library:CreateWindow(WOptions)
+    WOptions.Name = WOptions.Name or "Bracket Lib"
+    WOptions.Color = WOptions.Color or Color3.fromRGB(0, 85, 127)
     local WinTypes = {}
     local windowdrag = false
     local sliderdrag = false
@@ -146,7 +146,7 @@ function Library:CreateWindow(Options)
 
         tab.MouseButton1Click:Connect(function()
             container.Visible = true
-            tab.BackgroundColor3 = Options.Color
+            tab.BackgroundColor3 = WOptions.Color
 
             for i,v in pairs(containers:GetChildren()) do
                 if (v.Name:find("container") and v.Name ~= "container_" .. Name) then
@@ -239,7 +239,7 @@ function Library:CreateWindow(Options)
 
                 checkbox.Name = "checkbox"
                 checkbox.Parent = toggle
-                checkbox.BackgroundColor3 = Options.Color
+                checkbox.BackgroundColor3 = WOptions.Color
                 checkbox.BorderSizePixel = 0
                 checkbox.Size = UDim2.new(0, 15, 0, 15)
                 checkbox.Visible = false
@@ -323,7 +323,7 @@ function Library:CreateWindow(Options)
 
                 main_2.Name = "main"
                 main_2.Parent = slider
-                main_2.BackgroundColor3 = Options.Color
+                main_2.BackgroundColor3 = WOptions.Color
                 main_2.BorderSizePixel = 0
                 main_2.Size = UDim2.new(0, 1, 0, 10)
 
