@@ -146,7 +146,7 @@ function Library:CreateWindow(Options)
 
         tab.MouseButton1Click:Connect(function()
             container.Visible = true
-            tab.BackgroundColor3 = Color3.fromRGB(0, 85, 127)
+            tab.BackgroundColor3 = Options.Color
 
             for i,v in pairs(containers:GetChildren()) do
                 if (v.Name:find("container") and v.Name ~= "container_" .. Name) then
@@ -193,7 +193,7 @@ function Library:CreateWindow(Options)
             groupbox_container.BackgroundTransparency = 1.000
             groupbox_container.BorderSizePixel = 0
             groupbox_container.Position = UDim2.new(0, 0, 0.0806451589, 0)
-            groupbox_container.Size = UDim2.new(0, 270, 0, 285)
+            groupbox_container.Size = UDim2.new(0, 270, 0, 256)
             groupbox_container.BottomImage = ""
             groupbox_container.CanvasSize = UDim2.new(0, 0, 0, 0)
             groupbox_container.ScrollBarThickness = 3
@@ -239,7 +239,7 @@ function Library:CreateWindow(Options)
 
                 checkbox.Name = "checkbox"
                 checkbox.Parent = toggle
-                checkbox.BackgroundColor3 = Color3.fromRGB(0, 85, 127)
+                checkbox.BackgroundColor3 = Options.Color
                 checkbox.BorderSizePixel = 0
                 checkbox.Size = UDim2.new(0, 15, 0, 15)
                 checkbox.Visible = false
@@ -323,7 +323,7 @@ function Library:CreateWindow(Options)
 
                 main_2.Name = "main"
                 main_2.Parent = slider
-                main_2.BackgroundColor3 = Color3.fromRGB(0, 85, 127)
+                main_2.BackgroundColor3 = Options.Color
                 main_2.BorderSizePixel = 0
                 main_2.Size = UDim2.new(0, 1, 0, 10)
 
