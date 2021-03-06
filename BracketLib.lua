@@ -41,7 +41,7 @@ function Library:CreateWindow(WOptions)
     title.Position = UDim2.new(0.0166666675, 0, 0, 0)
     title.Size = UDim2.new(0, 580, 0, 29)
     title.Font = Enum.Font.SourceSans
-    title.Text = Options.Name
+    title.Text = WOptions.Name
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
     title.TextSize = 18.000
     title.TextXAlignment = Enum.TextXAlignment.Left
