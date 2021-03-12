@@ -47,7 +47,7 @@ local Themes = {
 
 		TabDefault = Color3.fromRGB(125, 125, 125),
 		TabHovered = Color3.fromRGB(190, 190, 190),
-		TabSelected = Color3.fromRGB(255, 255, 255),
+		TabSelected = Color3.fromRGB(58, 85, 125),
 
 		DividerBackground = Color3.fromRGB(40, 40, 40),
 		DividerText = Color3.fromRGB(255, 255, 255),
@@ -59,8 +59,8 @@ local Themes = {
 		OptionDescription = Color3.fromRGB(205, 205, 205),
 		OptionImage = Color3.fromRGB(255, 255, 255),
 
-		ToggleTrue = Color3.fromRGB(125, 230, 155),
-		ToggleFalse = Color3.fromRGB(205, 95, 95),
+		ToggleTrue = Color3.fromRGB(58, 85, 125),
+		ToggleFalse = Color3.fromRGB(50, 50, 50),
 		ToggleIndicator = Color3.fromRGB(255, 255, 255),
 
 		DropdownOptionsBackground = Color3.fromRGB(50, 50, 50),
@@ -126,7 +126,7 @@ local Objects = {
 	}
 }
 
-Library.Object = function(Type, Properties)
+Library.Object = function(_, Type, Properties)
 	local Object = nil
 	if Objects[Type] and type(Objects[Type]) == "table" then
 		Object = Instance.new(Objects[Type].Type)
@@ -188,7 +188,7 @@ local AddDragger = function(Frame)
 	end
 end
 
-Library.Create = function(LibraryOptions)
+Library.Create = function(_, LibraryOptions)
 	local self = Library
 
 	self.Dropdowns = {}
@@ -331,7 +331,7 @@ Library.Create = function(LibraryOptions)
 
 	local TabsLibrary = {}
 
-	TabsLibrary.Quit = function(QuitOptions)
+	TabsLibrary.Quit = function(_, QuitOptions)
 		QuitOptions = QuitOptions or {}
 		QuitOptions.Message = QuitOptions.Message or "Goodbye..."
 		QuitOptions.Length = QuitOptions.Length or 1
@@ -377,7 +377,7 @@ Library.Create = function(LibraryOptions)
 		Gui:Destroy()
 	end
 
-	TabsLibrary.Tab = function(TabOptions)
+	TabsLibrary.Tab = function(_, TabOptions)
 		local Initial = (self.Count == 0 and true) or false
 		TabOptions = TabOptions or {}
 		TabOptions.Name = TabOptions.Name or "Tab"
@@ -476,7 +476,7 @@ Library.Create = function(LibraryOptions)
 
 		local DividerLibrary = {}
 
-		DividerLibrary.Divider = function(DividerOptions)
+		DividerLibrary.Divider = function(_, DividerOptions)
 			DividerOptions = DividerOptions or {}
 			DividerOptions.Name = DividerOptions.Name or ""
 
@@ -572,7 +572,7 @@ Library.Create = function(LibraryOptions)
 
 			local OptionLibrary = {}
 
-			OptionLibrary.Button = function(ButtonOptions)
+			OptionLibrary.Button = function(_, ButtonOptions)
 				ButtonOptions = ButtonOptions or {}
 				ButtonOptions.Name = ButtonOptions.Name or "Button"
 				ButtonOptions.Callback = ButtonOptions.Callback or function() end
@@ -642,7 +642,7 @@ Library.Create = function(LibraryOptions)
 				return ButtonLibrary
 			end
 
-			OptionLibrary.Toggle = function(ToggleOptions)
+			OptionLibrary.Toggle = function(_, ToggleOptions)
 				ToggleOptions = ToggleOptions or {}
 				ToggleOptions.Name = ToggleOptions.Name or "Toggle"
 				ToggleOptions.Style = ToggleOptions.Style or 1
@@ -802,7 +802,7 @@ Library.Create = function(LibraryOptions)
 					ToggleFunction(ToggleOptions.State)
 				end
 
-				ToggleLibrary.SetState = function(State)
+				ToggleLibrary.SetState = function(_, State)
 					ToggleFunction(State)
 					ToggleOptions.State = State					
 				end
@@ -824,7 +824,7 @@ Library.Create = function(LibraryOptions)
 				return ToggleLibrary
 			end
 			
-			OptionLibrary.ToggleDropdown = function(ToggleDropdownOptions)
+			OptionLibrary.ToggleDropdown = function(_, ToggleDropdownOptions)
 				ToggleDropdownOptions = ToggleDropdownOptions or {}
 				ToggleDropdownOptions.Name = ToggleDropdownOptions.Name or "Toggle"
 				ToggleDropdownOptions.Style = ToggleDropdownOptions.Style or 1
@@ -983,7 +983,7 @@ Library.Create = function(LibraryOptions)
 					ToggleFunction(ToggleDropdownOptions.State)
 				end
 
-				ToggleLibrary.SetState = function(State)
+				ToggleLibrary.SetState = function(_, State)
 					ToggleFunction(State)
 					ToggleDropdownOptions.State = State					
 				end
@@ -1005,7 +1005,7 @@ Library.Create = function(LibraryOptions)
 				return ToggleLibrary
 			end
 
-			OptionLibrary.Dropdown = function(DropdownOptions)
+			OptionLibrary.Dropdown = function(_, DropdownOptions)
 				DropdownOptions = DropdownOptions or {}
 				DropdownOptions.Name = DropdownOptions.Name or "Dropdown"
 				DropdownOptions.Options = DropdownOptions.Options or {}
@@ -1136,7 +1136,7 @@ Library.Create = function(LibraryOptions)
 					table.insert(DropdownButtons, {Name = tostring(Name), Button = Button})
 				end
 
-				table.foreach(DropdownOptions.Options, function(Name)
+				table.foreach(DropdownOptions.Options, function(_, Name)
 					AddDropdownButton(Name)
 				end)
 
@@ -1163,12 +1163,12 @@ Library.Create = function(LibraryOptions)
 				Dropdown.MouseButton1Click:connect(function()
 					State = not State
 					if State then
-						table.foreach(self.Dropdowns, function(ResetFunction)
+						table.foreach(self.Dropdowns, function(_, ResetFunction)
 							if ResetFunction ~= Reset then
 								ResetFunction()
 							end
 						end)
-						table.foreach(self.ColourPickers, function(ResetFunction)
+						table.foreach(self.ColourPickers, function(_, ResetFunction)
 							if ResetFunction[2] ~= Reset then
 								ResetFunction[2]()
 								ResetFunction[1]:Play()
@@ -1197,17 +1197,17 @@ Library.Create = function(LibraryOptions)
 					return Value
 				end
 
-				DropdownLibrary.SetValue = function(LocalValue)
+				DropdownLibrary.SetValue = function(_, LocalValue)
 					Value = LocalValue
 					DropdownLabel.Text = DropdownOptions.Name .. [[ \ ]] .. tostring(LocalValue)
 				end
 
-				DropdownLibrary.AddOption = function(Option)
+				DropdownLibrary.AddOption = function(_, Option)
 					AddDropdownButton(Option)
 				end
 
-				DropdownLibrary.RemoveOption = function(Option)
-					table.foreach(DropdownButtons, function(Button)
+				DropdownLibrary.RemoveOption = function(_, Option)
+					table.foreach(DropdownButtons, function(_, Button)
 						if Button.Name == tostring(Option) then
 							Button.Button:Destroy()
 							return true
@@ -1230,7 +1230,7 @@ Library.Create = function(LibraryOptions)
 
 			end
 
-			OptionLibrary.ColorPicker = function(ColourPickerOptions)
+			OptionLibrary.ColorPicker = function(_, ColourPickerOptions)
 				ColourPickerOptions = ColourPickerOptions or {}
 				ColourPickerOptions.Name = ColourPickerOptions.Name or "Colour Picker"
 				ColourPickerOptions.Default = ColourPickerOptions.Default or Color3.fromRGB(0, 255, 255)
@@ -1438,12 +1438,12 @@ Library.Create = function(LibraryOptions)
 					State = not State
 					if State then
 						ColourPickerContainer.Visible = true
-						table.foreach(self.Dropdowns, function(ResetFunction)
+						table.foreach(self.Dropdowns, function(_, ResetFunction)
 							if ResetFunction ~= Reset then
 								ResetFunction()
 							end
 						end)
-						table.foreach(self.ColourPickers, function(ResetFunction)
+						table.foreach(self.ColourPickers, function(_, ResetFunction)
 							if ResetFunction[2] ~= Reset then
 								ResetFunction[2]()
 								ResetFunction[1]:Play()
@@ -1480,7 +1480,7 @@ Library.Create = function(LibraryOptions)
 				return ColourPickerLibrary
 			end
 			
-			OptionLibrary.Box = function(BoxOptions)
+			OptionLibrary.Box = function(_, BoxOptions)
 				BoxOptions = BoxOptions or {}
 				BoxOptions.Name = BoxOptions.Name or "Box"
 				BoxOptions.ClearText = BoxOptions.ClearText or true
@@ -1609,7 +1609,7 @@ Library.Create = function(LibraryOptions)
 					DividerRefresh()
 				end
 				
-				BoxLibrary.SetText = function(Text)
+				BoxLibrary.SetText = function(_, Text)
 					InputBox.Text = Text
 				end
 				
@@ -1619,7 +1619,7 @@ Library.Create = function(LibraryOptions)
 				return BoxLibrary
 			end
 			
-			OptionLibrary.SearchDropdown = function(SearchDropdownOptions)
+			OptionLibrary.SearchDropdown = function(_, SearchDropdownOptions)
 				SearchDropdownOptions = SearchDropdownOptions or {}
 				SearchDropdownOptions.Name = SearchDropdownOptions.Name or "Search Dropdown"
 				SearchDropdownOptions.Options = SearchDropdownOptions.Options or {}
@@ -1795,12 +1795,12 @@ Library.Create = function(LibraryOptions)
 					table.insert(DropdownButtons, {Name = tostring(Name), Button = Button})
 				end
 
-				table.foreach(SearchDropdownOptions.Options, function(Name)
+				table.foreach(SearchDropdownOptions.Options, function(_, Name)
 					AddDropdownButton(Name)
 				end)
 				
 				InputBox:GetPropertyChangedSignal("Text"):connect(function()
-					table.foreach(DropdownButtons, function(OptionButton)
+					table.foreach(DropdownButtons, function(_, OptionButton)
 						if string.find(OptionButton.Name, InputBox.Text) then
 							OptionButton.Button.Visible = true
 						else
@@ -1841,12 +1841,12 @@ Library.Create = function(LibraryOptions)
 				
 				InputBox.Focused:connect(function()
 					FocusedState = not FocusedState
-					table.foreach(self.Dropdowns, function(ResetFunction)
+					table.foreach(self.Dropdowns, function(_, ResetFunction)
 						if ResetFunction ~= Reset then
 							ResetFunction()
 						end
 					end)
-					table.foreach(self.ColourPickers, function(ResetFunction)
+					table.foreach(self.ColourPickers, function(_, ResetFunction)
 						if ResetFunction[2] ~= Reset then
 							ResetFunction[2]()
 							ResetFunction[1]:Play()
