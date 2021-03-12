@@ -198,9 +198,11 @@ Library.Create = function(_, LibraryOptions)
 	LibraryOptions.Theme = LibraryOptions.Theme or "Dark"
 	LibraryOptions.Name = LibraryOptions.Name or "UI Library"
 	LibraryOptions.Size = LibraryOptions.Size or UDim2.new(0, 555, 0, 400)
+	LibraryOptions.Highlight = LibraryOptions.Highlight or Color3.fromRGB(215, 78, 31)
 	LibraryOptions.Developer = LibraryOptions.Developer or false
 
 	local Theme = Themes[LibraryOptions.Theme] or Themes["Dark"]
+	Theme.Highlight = LibraryOptions.Highlight
 
 	local Gui = self:Object("ScreenGui", {
 		Name = "UILibrary",
