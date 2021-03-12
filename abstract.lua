@@ -40,6 +40,8 @@ local Themes = {
 		BoxPlaceholder = Color3.fromRGB(225, 225, 225)
 	},
 	Dark = {
+		Highlight = Color3.fromRGB(58, 85, 125),
+
 		Main = Color3.fromRGB(30, 30, 30),
 		TabsBackground = Color3.fromRGB(22, 22, 22),
 		ScrollBar = Color3.fromRGB(150, 150, 150),
@@ -59,8 +61,7 @@ local Themes = {
 		OptionDescription = Color3.fromRGB(205, 205, 205),
 		OptionImage = Color3.fromRGB(255, 255, 255),
 
-		ToggleTrue = Color3.fromRGB(58, 85, 125),
-		ToggleFalse = Color3.fromRGB(50, 50, 50),
+		ToggleFalse = Color3.fromRGB(65, 65, 65),
 		ToggleIndicator = Color3.fromRGB(255, 255, 255),
 
 		DropdownOptionsBackground = Color3.fromRGB(50, 50, 50),
@@ -684,7 +685,7 @@ Library.Create = function(_, LibraryOptions)
 						Name = "Colour",
 						Parent = Toggle,
 						AnchorPoint = Vector2.new(1, 0),
-						BackgroundColor3 = (ToggleOptions.State and Theme.ToggleTrue) or Theme.ToggleFalse,
+						BackgroundColor3 = (ToggleOptions.State and Theme.Highlight) or Theme.ToggleFalse,
 						Position = UDim2.new(1, -4, 0, 4),
 						Size = UDim2.new(0, 40, 0, 22)
 					})
@@ -705,7 +706,7 @@ Library.Create = function(_, LibraryOptions)
 					local SlidingToFalse = TS:Create(Sliding, TI(0.15), {Position = UDim2.new(0, 2, 0.5, 0)})
 					local ColourToFalse = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleFalse})
 					local SlidingToTrue = TS:Create(Sliding, TI(0.15), {Position = UDim2.new(1, -20, 0.5, 0)})
-					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleTrue})
+					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.Highlight})
 
 					ToggleFunction = function(State)
 						spawn(function()
@@ -730,7 +731,7 @@ Library.Create = function(_, LibraryOptions)
 						Name = "Colour",
 						Parent = Toggle,
 						AnchorPoint = Vector2.new(1, 0),
-						BackgroundColor3 = ToggleOptions.State and Theme.ToggleTrue or Theme.ToggleFalse,
+						BackgroundColor3 = ToggleOptions.State and Theme.Highlight or Theme.ToggleFalse,
 						Position = UDim2.new(1, -4, 0, 4),
 						Size = UDim2.new(0, Toggle.AbsoluteSize.Y - 8, 0, 22)
 					})
@@ -764,7 +765,7 @@ Library.Create = function(_, LibraryOptions)
 					Frame2Round.CornerRadius = UDim.new(0, 2)
 
 					local ColourToFalse = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleFalse})
-					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleTrue})
+					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.Highlight})
 					local Frame1ToFalse = TS:Create(Frame1, TI(0.15), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 18)})
 					local Frame2ToFalse = TS:Create(Frame2, TI(0.15), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 18)})
 					local Frame1ToTrue = TS:Create(Frame1, TI(0.15), {Position = UDim2.new(0.65, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 16)})
@@ -866,7 +867,7 @@ Library.Create = function(_, LibraryOptions)
 						Name = "Colour",
 						Parent = Toggle,
 						AnchorPoint = Vector2.new(1, 0),
-						BackgroundColor3 = (ToggleDropdownOptions.State and Theme.ToggleTrue) or Theme.ToggleFalse,
+						BackgroundColor3 = (ToggleDropdownOptions.State and Theme.Highlight) or Theme.ToggleFalse,
 						Position = UDim2.new(1, -4, 0, 4),
 						Size = UDim2.new(0, 40, 0, 22)
 					})
@@ -887,7 +888,7 @@ Library.Create = function(_, LibraryOptions)
 					local SlidingToFalse = TS:Create(Sliding, TI(0.15), {Position = UDim2.new(0, 2, 0.5, 0)})
 					local ColourToFalse = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleFalse})
 					local SlidingToTrue = TS:Create(Sliding, TI(0.15), {Position = UDim2.new(1, -20, 0.5, 0)})
-					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleTrue})
+					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.Highlight})
 
 					ToggleFunction = function(State)
 						spawn(function()
@@ -911,7 +912,7 @@ Library.Create = function(_, LibraryOptions)
 						Name = "Colour",
 						Parent = Toggle,
 						AnchorPoint = Vector2.new(1, 0),
-						BackgroundColor3 = ToggleDropdownOptions.State and Theme.ToggleTrue or Theme.ToggleFalse,
+						BackgroundColor3 = ToggleDropdownOptions.State and Theme.Highlight or Theme.ToggleFalse,
 						Position = UDim2.new(1, -4, 0, 4),
 						Size = UDim2.new(0, Toggle.AbsoluteSize.Y - 8, 0, 22)
 					})
@@ -945,7 +946,7 @@ Library.Create = function(_, LibraryOptions)
 					Frame2Round.CornerRadius = UDim.new(0, 2)
 
 					local ColourToFalse = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleFalse})
-					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.ToggleTrue})
+					local ColourToTrue = TS:Create(Colour, TI(0.15), {BackgroundColor3 = Theme.Highlight})
 					local Frame1ToFalse = TS:Create(Frame1, TI(0.15), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 18)})
 					local Frame2ToFalse = TS:Create(Frame2, TI(0.15), {Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 18)})
 					local Frame1ToTrue = TS:Create(Frame1, TI(0.15), {Position = UDim2.new(0.65, 0, 0.5, 0), Size = UDim2.new(0, 5, 0, 16)})
