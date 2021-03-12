@@ -49,7 +49,6 @@ local Themes = {
 
 		TabDefault = Color3.fromRGB(125, 125, 125),
 		TabHovered = Color3.fromRGB(190, 190, 190),
-		TabSelected = Color3.fromRGB(58, 85, 125),
 
 		DividerBackground = Color3.fromRGB(40, 40, 40),
 		DividerText = Color3.fromRGB(255, 255, 255),
@@ -405,7 +404,7 @@ Library.Create = function(_, LibraryOptions)
 			Position = UDim2.new(0, 6, 0, 0),
 			Size = UDim2.new(1, 0, 1, 0),
 			Font = Enum.Font.SourceSansSemibold,
-			TextColor3 = (Initial and Theme.TabSelected) or Theme.TabDefault,
+			TextColor3 = (Initial and Theme.Highlight) or Theme.TabDefault,
 			TextSize = 18,
 			TextTransparency = 1,
 			TextXAlignment = Enum.TextXAlignment.Left,
@@ -468,7 +467,7 @@ Library.Create = function(_, LibraryOptions)
 					TS:Create(v.NameLabel, TI(0.1), {TextColor3 = Theme.TabDefault}):Play()
 				end
 			end
-			TS:Create(Label, TI(0.1), {TextColor3 = Theme.TabSelected}):Play()
+			TS:Create(Label, TI(0.1), {TextColor3 = Theme.Highlight}):Play()
 			self.Selected = Tab
 			FunctionsContainer.Visible = true
 		end)
