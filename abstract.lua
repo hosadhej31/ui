@@ -1600,6 +1600,8 @@ Library.Create = function(_, LibraryOptions)
 				end)
 				
 				local BoxLibrary = {}
+
+				DividerRefresh()
 				
 				BoxLibrary.HideElement = function()
 					Box.Visible = false
