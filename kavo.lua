@@ -302,13 +302,11 @@ function Kavo.CreateLib(kavName, themeList)
     infoContainer.Position = UDim2.new(0.299047619, 0, 0.874213815, 0)
     infoContainer.Size = UDim2.new(0, 368, 0, 33)
 
-	input.InputBegan:Connect(function(input)
-		if input.KeyCode == Enum.KeyCode.RightControl then
-			ScreenGui.Enabled = not ScreenGui.Enabled
-		end
-	end)
-
     local Tabs = {}
+
+    function Tabs:ToggleMenu()
+        ScreenGui.Enabled = not ScreenGui.Enabled
+    end
 
     function Tabs:NewTab(tabName)
         tabName = tabName or "Tab"
