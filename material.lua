@@ -168,39 +168,7 @@ local Themes = {
 		ColorPickerAccent = Color3.fromRGB(219, 68, 103),
 		TextField = Color3.fromRGB(175,175,175),
 		TextFieldAccent = Color3.fromRGB(255,255,255),
-	},
-    Blue = {
-		MainFrame = Color3.fromRGB(30,30,30),
-		Minimise = Color3.fromRGB(255,106,0),
-		MinimiseAccent = Color3.fromRGB(147,59,0),
-		Maximise = Color3.fromRGB(25,255,0),
-		MaximiseAccent = Color3.fromRGB(0,255,110),
-		NavBar = Color3.fromRGB(0,255,77),
-		NavBarAccent = Color3.fromRGB(255,255,255),
-		NavBarInvert = Color3.fromRGB(235,235,235),
-		TitleBar = Color3.fromRGB(0,255,77),
-		TitleBarAccent = Color3.fromRGB(255,255,255),
-		Overlay = Color3.fromRGB(175,175,175),
-		Banner = Color3.fromRGB(0,255,77),
-		BannerAccent = Color3.fromRGB(255,255,255),
-		Content = Color3.fromRGB(85,85,85),
-		Button = Color3.fromRGB(85,85,85),
-		ButtonAccent = Color3.fromRGB(255,255,255),
-		ChipSet = Color3.fromRGB(235,235,235),
-		ChipSetAccent = Color3.fromRGB(85,85,85),
-		DataTable = Color3.fromRGB(235,235,235),
-		DataTableAccent = Color3.fromRGB(85,85,85),
-		Slider = Color3.fromRGB(85,85,85),
-		SliderAccent = Color3.fromRGB(235,235,235),
-		Toggle = Color3.fromRGB(205,205,205),
-		ToggleAccent = Color3.fromRGB(125,125,125),
-		Dropdown = Color3.fromRGB(85,85,85),
-		DropdownAccent = Color3.fromRGB(235,235,235),
-		ColorPicker = Color3.fromRGB(85,85,85),
-		ColorPickerAccent = Color3.fromRGB(235,235,235),
-		TextField = Color3.fromRGB(175,175,175),
-		TextFieldAccent = Color3.fromRGB(255,255,255),
-    }
+	}
 }
 
 local Types = {
@@ -732,8 +700,6 @@ function CreateNewButton(ButtonConfig, Parent)
 	return Button, ButtonLabel
 end
 
-local TargetParent = RunService:IsStudio() and Player.PlayerGui or CoreGuiService
-
 function Material.Load(Config)
 	local Style = (Config.Style and math.clamp(Config.Style, 1, 3)) or 1
 	local Title = Config.Title or "MaterialLua"
@@ -751,15 +717,36 @@ function Material.Load(Config)
 		ThisTheme[KeyOverride] = ValueOverride
 	end
 
-	local OldInstance = TargetParent:FindFirstChild(Title)
+	pcall(function() OldInstance:Destroy() end);
 
-	if OldInstance then
-		OldInstance:Destroy()
-	end
+    local function GetExploit()
+        local Table = {};
+        Table.Synapse = syn;
+        Table.ProtoSmasher = pebc_create;
+        Table.Sentinel = issentinelclosure;
+        Table.ScriptWare = getexecutorname;
+    
+        for ExploitName, ExploitFunction in next, Table do
+            if (ExploitFunction) then
+                return ExploitName;
+            end;
+        end;
+        
+        return "Undefined";
+    end;
+
+    local ProtectFunctions = {};
+    ProtectFunctions.Synapse = function(GuiObject) syn.protect_gui(GuiObject); GuiObject.Parent = CoreGuiService; end;
+    ProtectFunctions.ProtoSmasher = function(GuiObject) GuiObject.Parent = get_hidden_gui(); end;
+    ProtectFunctions.Sentinel = function(GuiObject) GuiObject.Parent = CoreGuiService; end;
+    ProtectFunctions.ScriptWare = function(GuiObject) GuiObject.Parent = gethui(); end;
+    ProtectFunctions.Undefined = function(GuiObject) GuiObject.Parent = CoreGuiService; end;
 
 	local NewInstance = Objects.new("ScreenGui")
 	NewInstance.Name = Title
-	NewInstance.Parent = TargetParent
+    ProtectFunctions[GetExploit()](NewInstance);
+
+    getgenv().OldInstance = NewInstance;
 
 	MainGUI = NewInstance
 
