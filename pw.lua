@@ -1143,6 +1143,8 @@ do
 					connect(button.MouseButton1Click, callback);
 					
 					offsets[section] = offsets[section] + 25;
+					last[section] = "button";
+					parent.CanvasSize = udim2(0, 0, 0, offsets[section]);
 				elseif type == "colors" then
 					local colors = {};
 					colors.collection = {};
