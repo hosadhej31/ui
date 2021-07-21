@@ -1098,7 +1098,7 @@ do
 					callback = callback or function() end
 
 					local template2 = module.templates.roundlabel:Clone();
-					template2.Position = udim2(0, 0, 0, offset + 5);
+					template2.Position = udim2(0, 0, 0, offset);
 					template2.Size = udim2(0, 172, 0, 16);
 					template2.ImageColor3 = lowlightgrey;
 					template2.SliceScale = 0.1;
@@ -1138,7 +1138,7 @@ do
 					applyeffect(templatebutton);
 
 					connect(templatebutton.MouseButton1Click, callback);
-					
+
 					offsets[section] = offsets[section] + 25;
 					last[section] = "button";
 					parent.CanvasSize = udim2(0, 0, 0, offsets[section]);
