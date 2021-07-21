@@ -1098,8 +1098,11 @@ do
 					callback = callback or function() end
 
 					local template2 = module.templates.roundlabel:Clone();
+					template2.Position = udim2(0, 0, 0, offset + 5);
+					template2.Size = udim2(0, 172, 0, 16);
 					template2.ImageColor3 = lowlightgrey;
 					template2.SliceScale = 0.1;
+					template2.Parent = parent;
 
 					local templatechild = module.templates.roundlabel:Clone();
 					templatechild.Position = udim2(0, 1, 0, 1);
@@ -1114,6 +1117,8 @@ do
 						Font = gotham,
 						TextColor3 = lightgrey,
 						TextSize = 12,
+						Text = name,
+						Parent = template2
 					});
 
 					local function applyeffect(button)
@@ -1130,17 +1135,9 @@ do
 						end);
 					end
 
-					local create = template2:Clone();
-					create.Position = udim2(0, 0, 0, offset + 5);
-					create.Size = udim2(0, 172, 0, 16);
-					create.Parent = parent;
+					applyeffect(templatebutton);
 
-					local button = templatebutton:Clone()
-					button.Text = name;
-					button.Parent = create;
-					applyeffect(button);
-
-					connect(button.MouseButton1Click, callback);
+					connect(templatebutton.MouseButton1Click, callback);
 					
 					offsets[section] = offsets[section] + 25;
 					last[section] = "button";
