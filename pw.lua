@@ -1132,7 +1132,7 @@ do
 
 					local create = template2:Clone();
 					create.Position = udim2(0, 0, 0, offset + 5);
-					create.Size = udim2(0.5, -15, 0, 16);
+					create.Size = udim2(0, 172, 0, 16);
 					create.Parent = parent;
 
 					local button = templatebutton:Clone()
