@@ -1149,7 +1149,7 @@ do
 					module.contents.colorpickers = colors;
 
 					local background = module.templates.roundlabel:Clone();
-					background.Position = udim2(0, 10, 0, 10);
+					background.Position = udim2(0, 10, 0, offset);
 					background.Size = udim2(1, -20, 0, 210);
 					background.ImageColor3 = lowlightgrey;
 					background.SliceScale = 0.1;
@@ -1175,6 +1175,8 @@ do
 						Parent = buttoncontainer
 					});
 
+					offsets[section] = offsets[section] + 25;
+
 					local template = module:create("TextButton", {
 						AutoButtonColor = false,
 						BackgroundColor3 = grey,
@@ -1191,12 +1193,12 @@ do
 						AutoButtonColor = false,
 						BackgroundColor3 = white,
 						BorderSizePixel = 0,
-						Position = udim2(0, 10, 0, 10),
+						Position = udim2(0, 10, 0, offset),
 						Size = udim2(0, 230, 0, 210),
 						ClipsDescendants = true,
 						Image = "http://www.roblox.com/asset/?id=4805274903",
 						ImageColor3 = white,
-						Parent = category.section2
+						Parent = category.section1
 					});
 
 					local colorindicator = module:create("ImageLabel", {
@@ -1210,10 +1212,10 @@ do
 
 					local huebox = module:create("ImageButton", {
 						BackgroundTransparency = 1,
-						Position = udim2(0, 245, 0, 10),
+						Position = udim2(0, 245, 0, offset),
 						Size = udim2(0, 20, 0, 210),
 						Image = "http://www.roblox.com/asset/?id=2845339072",
-						Parent = category.section2
+						Parent = category.section1
 					});
 
 					local hueindicator = module:create("ImageLabel", {
@@ -1369,6 +1371,7 @@ do
 						end
 					end
 
+					offsets[section] = offsets[section] + 25;
 					return colors;
 				end
 
