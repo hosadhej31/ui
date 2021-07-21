@@ -1131,7 +1131,7 @@ do
 					end
 
 					local create = template2:Clone();
-					create.Position = udim2(1, 0, 0, offset);
+					create.Position = udim2(0, 0, 0, offset);
 					create.Size = udim2(0.5, -15, 0, 16);
 					create.Parent = parent;
 
