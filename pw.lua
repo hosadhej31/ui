@@ -1098,7 +1098,7 @@ do
 					callback = callback or function() end
 
 					local template2 = module.templates.roundlabel:Clone();
-					template2.Position = udim2(0, 0, 0, offset);
+					template2.Position = udim2(0, 0, 0, offset + 5);
 					template2.Size = udim2(0, 172, 0, 16);
 					template2.ImageColor3 = lowlightgrey;
 					template2.SliceScale = 0.1;
@@ -1138,7 +1138,7 @@ do
 					applyeffect(templatebutton);
 
 					connect(templatebutton.MouseButton1Click, callback);
-
+					
 					offsets[section] = offsets[section] + 25;
 					last[section] = "button";
 					parent.CanvasSize = udim2(0, 0, 0, offsets[section]);
@@ -1149,7 +1149,7 @@ do
 					module.contents.colorpickers = colors;
 
 					local background = module.templates.roundlabel:Clone();
-					background.Position = udim2(0, 10, 0, offset);
+					background.Position = udim2(0, 10, 0, 10);
 					background.Size = udim2(1, -20, 0, 210);
 					background.ImageColor3 = lowlightgrey;
 					background.SliceScale = 0.1;
@@ -1175,8 +1175,6 @@ do
 						Parent = buttoncontainer
 					});
 
-					offsets[section] = offsets[section] + 25;
-
 					local template = module:create("TextButton", {
 						AutoButtonColor = false,
 						BackgroundColor3 = grey,
@@ -1193,12 +1191,12 @@ do
 						AutoButtonColor = false,
 						BackgroundColor3 = white,
 						BorderSizePixel = 0,
-						Position = udim2(0, 10, 0, offset),
+						Position = udim2(0, 10, 0, 10),
 						Size = udim2(0, 230, 0, 210),
 						ClipsDescendants = true,
 						Image = "http://www.roblox.com/asset/?id=4805274903",
 						ImageColor3 = white,
-						Parent = category.section1
+						Parent = category.section2
 					});
 
 					local colorindicator = module:create("ImageLabel", {
@@ -1212,10 +1210,10 @@ do
 
 					local huebox = module:create("ImageButton", {
 						BackgroundTransparency = 1,
-						Position = udim2(0, 245, 0, offset),
+						Position = udim2(0, 245, 0, 10),
 						Size = udim2(0, 20, 0, 210),
 						Image = "http://www.roblox.com/asset/?id=2845339072",
-						Parent = category.section1
+						Parent = category.section2
 					});
 
 					local hueindicator = module:create("ImageLabel", {
@@ -1371,7 +1369,6 @@ do
 						end
 					end
 
-					offsets[section] = offsets[section] + 25;
 					return colors;
 				end
 
