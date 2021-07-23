@@ -1098,7 +1098,7 @@ do
 					callback = callback or function() end
 
 					local template2 = module.templates.roundlabel:Clone();
-					template2.Position = udim2(0.04, 0, 0, offset + 5);
+					template2.Position = udim2(0.035, 0, 0, offset + 5);
 					template2.Size = udim2(0, 172, 0, 16);
 					template2.ImageColor3 = lowlightgrey;
 					template2.SliceScale = 0.1;
