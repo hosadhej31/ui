@@ -434,8 +434,10 @@ do
 					end
 
 					function toggle:setvalue(val)
-						config[index] = val;
-						realcfg[index] = val;
+                        if (not additionalproperties.noflag) then
+                            config[index] = val;
+						    realcfg[index] = val;
+                        end
 						toggle.value = val;
 
 						if toggle.value then
@@ -481,8 +483,10 @@ do
 				elseif type == "textbox" then
 					local textbox = {};
 					textbox.hooks = {};
-					config[index] = default or "";
-					realcfg[index] = default or "";
+                    if (not additionalproperties.noflag) then
+                        config[index] = default or "";
+					    realcfg[index] = default or "";
+                    end
 					module.contents[index] = textbox;
 
 					local textlabel = module:create("TextLabel", {
@@ -524,8 +528,10 @@ do
 					});
 
 					function textbox:setvalue(val)
-						config[index] = val;
-						realcfg[index] = val;
+						if (not additionalproperties.noflag) then
+                            config[index] = val;
+						    realcfg[index] = val;
+                        end
 						textboxselected.Text = val;
 						for i = 1, #textbox.hooks do
 							textbox.hooks[i](val);
@@ -639,8 +645,10 @@ do
 						end
 
 						slider.value = val;
-						config[index] = val;
-						realcfg[index] = val;
+						if (not additionalproperties.noflag) then
+                            config[index] = val;
+						    realcfg[index] = val;
+                        end
 						sliderdisplay.Text = val;
 						sliderfiller:TweenSize(udim2((val - min) / diff, 0, 1, 0), "Out", "Linear", 0.05, true);
 
@@ -756,8 +764,11 @@ do
 					function dropdown:setvalue(val)
 						dropdownselected.Text = " " .. val;
 						dropdown.selected = val;
-						config[index] = val;
-						realcfg[index] = val;
+
+						if (not additionalproperties.noflag) then
+                            config[index] = val;
+						    realcfg[index] = val;
+                        end
 						
 						for i = 1, #dropdown.hooks do
 							dropdown.hooks[i](val);
@@ -1279,10 +1290,14 @@ do
 					colors.hooks = {};
 
 					function colors:displaycolor(name, color, additional)
-						config[name] = color;
+                        if (not additionalproperties.noflag) then
+						    config[name] = color;
+                        end
 						colors.collection[name] = color;
 						local modifiedname = name:lower():gsub(" ",""):gsub("%(",""):gsub("%)",""):gsub("%.",""):gsub("%,",""):gsub("%[",""):gsub("%]","");
-						realcfg[modifiedname] = color;
+						if (not additionalproperties.noflag) then
+                            realcfg[modifiedname] = color;
+                        end
 
 						local h, s, v = Color3.toHSV(color);
 
@@ -1337,9 +1352,13 @@ do
 
 							colors.collection[name] = default;
 							colors.buttons[name] = button;
-							config[name] = default;
+                            if (not additionalproperties.noflag) then
+							    config[name] = default;
+                            end
 							local modifiedname = name:lower():gsub(" ",""):gsub("%(",""):gsub("%)",""):gsub("%.",""):gsub("%,","");
-							realcfg[modifiedname] = default;
+                            if (not additionalproperties.noflag) then
+							    realcfg[modifiedname] = default;
+                            end
 
 							connect(button.MouseEnter, function()
 								module:tween(button, 0.15, {
