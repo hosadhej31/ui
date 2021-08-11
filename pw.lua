@@ -366,7 +366,7 @@ do
 				local offset = offsets[section];
 				local parent = category[section == 1 and "section1" or "section2"];
 
-				local additionalproperties = additionalproperties or {};
+				local additionalproperties = additionalproperties or { noflag = false };
 				local min = additionalproperties.min or 0;
 				local max = additionalproperties.max or 100;
 				local default = additionalproperties.default;
