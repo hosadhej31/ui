@@ -20,8 +20,8 @@ local options = _G.options or
 local GradientTwoEnabled = DefaultSettings["UIColorSettings"]["GradientTwoEnabled"]
 local grad1 = DefaultSettings["UIColorSettings"]["ColorGradient1"]
 local grad2 = DefaultSettings["UIColorSettings"]["ColorGradient2"]
-local ColorGradient1 = Color3.fromRGB(112, 85, 230)
-local ColorGradient2 = Color3.fromRGB(112, 85, 230)
+local ColorGradient1 = Color3.fromRGB(41, 84, 255)
+local ColorGradient2 = Color3.fromRGB(41, 112, 255)
 
 local uiGradients = {}
 local toggleInnerCircles = {}
