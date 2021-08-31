@@ -221,7 +221,7 @@ function library:CreateTab(name, list, size, pos)
 	if pos then
 		part.Position = pos
     else
-        part.Position = UDim2.new(0, #tabs == 0 and 50 or tabs[#tabs].Position.X.Offset + 205, 0, 25)
+        part.Position = UDim2.new(0, #tabs == 0 and 25 or tabs[#tabs].Position.X.Offset + 200, 0, 25)
     end
 
 	if size then
