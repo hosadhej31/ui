@@ -376,8 +376,6 @@ function library:CreateTab(name, list, size, pos)
 		local func = open and Open or Close
 		func()
 	end)
-	
-	
 
 	function elements:CreateSection(text)
 		text = text or "New button"
@@ -1018,7 +1016,7 @@ function library:CreateTab(name, list, size, pos)
 		
 		return SectionElements
 	end
-	
+
 	function elements:AddButton(text, callback)
 		text = text or "New button"
 		callback = callback or function() end
@@ -1123,6 +1121,7 @@ function library:CreateTab(name, list, size, pos)
 		text = text or "New color"
 		callback = callback or function() end
 
+        local actions = {}
 		local hueSatDragging = false;
 		local valueDragging = false;
 		local button = Instance.new("TextButton", bodyelements)
@@ -1329,12 +1328,20 @@ function library:CreateTab(name, list, size, pos)
 			end;
 		end);
 
+        function actions:Set(color)
+            statusFrame.BackgroundColor3 = color
+            ColorBoxButton.ImageColor3 = statusFrame.BackgroundColor3
+            callback(statusFrame.BackgroundColor3);
+        end
+
 		table.insert(PhaseOneInstances, button)
 		callback(statusFrame.BackgroundColor3);
 
 		Open()
+
+        return actions
 	end
-	
+
 	function elements:AddSwitch(text, callback)
 		local switchactions = {}
 		text = text or "New switch"
@@ -1442,7 +1449,7 @@ function library:CreateTab(name, list, size, pos)
 
 		return switchactions
 	end
-	
+
 	function elements:NewList(name, text)
 		text = text or "Empty List"
 		
@@ -1468,7 +1475,7 @@ function library:CreateTab(name, list, size, pos)
 		
 		return Top
 	end
-	
+
 	function elements:NewLogWindow(text)
 		local actions = {}
 		text = text or "New Window"
@@ -1560,7 +1567,7 @@ function library:CreateTab(name, list, size, pos)
 		return actions
 
 	end
-	
+
 	function elements:AddDrop(text, list, callback)
 		local switchactions = {}
 		text = text or "New Dropdown"
@@ -2051,7 +2058,7 @@ function library:CreateTab(name, list, size, pos)
 			
 			local clck = function()
 				spawn(function()
-					pcall(callback, name) 
+					pcall(callback, name)
 				end)
 				box.Text = name
 				CloseBox()
@@ -2067,6 +2074,16 @@ function library:CreateTab(name, list, size, pos)
 		table.insert(PhaseOneInstances, DropDownOutlinedTextBox)
 
 		Open()
+
+        function switchactions:Set(value)
+            if table.find(list, value) then
+                spawn(function()
+                    pcall(callback, value)
+                end)
+                box.Text = value
+                CloseBox()
+            end
+        end
 
 		return switchactions
 	end
@@ -2098,14 +2115,12 @@ function library:CreateTab(name, list, size, pos)
 		
 		return act
 	end
-	
-	
-
 
 	function elements:AddBox(placeholder, callback) 
 		placeholder = placeholder or "New Box"
 		callback = callback or function() end
 		
+        local actions = {}
 		local DisabledOutlineColor = Color3.fromRGB(60, 60, 60)
 
 		
@@ -2382,12 +2397,20 @@ function library:CreateTab(name, list, size, pos)
 				until back.TextTransparency > 0.9 or tarns_out == false
 			end
 		end
+
+        function actions:Set(value)
+            box.Text = value
+        end
+
 		box.FocusLost:Connect(FocusLost)
 		box.Changed:Connect(box_Changed)
 
 		table.insert(PhaseOneInstances, OutlinedTextBox)
 		Open()
+
+        return actions
 	end
+
 	local Mouse = game:service'Players'.LocalPlayer:GetMouse()
 	function elements:AddSlider(text, minvalue, maxvalue, callback)
 		local slideractions = {}
@@ -2629,5 +2652,6 @@ function library:CreateTab(name, list, size, pos)
 		return slideractions
 	end
 	return elements
-end                      
+end
+
 return library
