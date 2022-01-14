@@ -284,7 +284,7 @@ function createToggle(option, parent)
 		end
 		self.callback(state)
 	end
-	if option.state and type(option.state) == "boolean" then
+	if option.state ~= nil and type(option.state) == "boolean" then
 		option.callback(option.state)
 	end
 	
