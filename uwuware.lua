@@ -807,15 +807,6 @@ local function createList(option, parent, holder)
 			end
 		end)
 	end
-	if not table.find(option.values, option.value) then
-		option:AddValue(option.value)
-	else
-		option:SetValue(option.value)
-	end
-
-	for _, value in next, option.values do
-		option:AddValue(tostring(value))
-	end
 	
 	function option:RemoveValue(value)
 		for _,label in next, content:GetChildren() do
@@ -835,6 +826,16 @@ local function createList(option, parent, holder)
 		self.value = tostring(value)
 		listvalue.Text = self.value
 		self.callback(value)
+	end
+
+	if not table.find(option.values, option.value) then
+		option:AddValue(option.value)
+	else
+		option:SetValue(option.value)
+	end
+
+	for _, value in next, option.values do
+		option:AddValue(tostring(value))
 	end
 	
 	function option:Close()
