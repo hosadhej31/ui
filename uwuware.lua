@@ -624,6 +624,9 @@ local function createSlider(option, parent)
 		inputvalue.Text = value
 		self.callback(value)
 	end
+	if option.value ~= nil and type(option.value) == "number" then
+		option:SetValue(option.value)
+	end
 end
 local function createList(option, parent, holder)
 	local valueCount = 0
@@ -806,8 +809,10 @@ local function createList(option, parent, holder)
 	end
 	if not table.find(option.values, option.value) then
 		option:AddValue(option.value)
+	else
+		option:SetValue(option.value)
 	end
-	
+
 	for _, value in next, option.values do
 		option:AddValue(tostring(value))
 	end
